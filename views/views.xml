@@ -1,0 +1,93 @@
+<odoo>
+  <data>
+    <!-- explicit list view definition -->
+    <record model="ir.ui.view" id="fincas_pma.list">
+      <field name="name">fincas_pma list</field>
+      <field name="model">fincas_pma.fincas_pma</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="name"/>
+          <field name="active"/>
+          <field name="code_finca"/>
+          <field name="description"/>
+          <field name="employee_in_charge"/>
+          <field name="value_area_mts"/>
+          <field name="value_area_ha"/>
+        </tree>
+      </field>
+    </record>
+
+    <record model="ir.ui.view" id="fincas_pma.listaprovincias">
+      <field name="name">fincas_pma listaprovincias</field>
+      <field name="model">fincas_pma.provincias</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="name"/>
+          <field name="active"/>
+          <field name="code_provincia"/>
+          <field name="description"/>
+        </tree>
+      </field>
+    </record>
+
+
+<!--<field name="company_id"/> groups="base.group_multi_company"  optional="show"
+ domain="[('active', '=', True), ('company_id', '=', company_id)]"-->
+
+    <!-- actions opening views on models -->
+
+    <record model="ir.actions.act_window" id="fincas_pma.action_window">
+      <field name="name">fincas_pma window</field>
+      <field name="res_model">fincas_pma.fincas_pma</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+    <record model="ir.actions.act_window" id="fincas_pma.action_window_prov">
+      <field name="name">fincas_pma window provincias</field>
+      <field name="res_model">fincas_pma.provincias</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+
+<!--HERENCIA EN VISTAS
+    PRIMERO DEBEMOS SABER EL NOMBRE DE LA VISTA EN LA QUE QUEREMOS HEREDAR PARA AGREGAR EL CAMPO REQUERIDO
+    PARA NUESTRO EJEMPLO USAREMOS LA VISTA: project.edit_project -->
+		<record model="ir.ui.view" id="fincas_pma_project_project_form_inh">
+			<field name="name">project.project.form.inh</field>
+			<field name="model">project.project</field>
+			<field name="type">form</field>
+			<field name="inherit_id" ref="project.edit_project" />
+			<field name="arch" type="xml">
+				<notebook position="inside">
+					<page string="NOMEMCLATURA-FINCAS">
+						<group col="2" colspan="2">
+							<separator string="Datos Finca" colspan="2"/>
+								<field name="fincas_pma" placeholder="Finca Relacionada" options='{"no_open": True}'/>
+						</group>
+					</page>
+			</notebook>
+			</field>
+		</record>
+
+    <!-- Top menu item 
+    parent="project.menu_main_pm" groups="project.group_project_manager,project.group_project_user"/
+    -->
+
+    <menuitem name="fincas_pma" id="fincas_pma.menu_root"/>
+
+    <!-- menu categories -->
+
+    <menuitem name="Fincas Panama" id="fincas_pma.menu_1" parent="fincas_pma.menu_root"/>
+<!--
+    <menuitem name="Menu 2" id="fincas_pma.menu_2" parent="fincas_pma.menu_root"/>
+-->
+    <!-- actions -->
+
+    <menuitem name="List" id="fincas_pma.menu_1_list" parent="fincas_pma.menu_1"
+              action="fincas_pma.action_window"/>
+    <menuitem name="Lista Provincias" id="fincas_pma.menu_2_list" parent="fincas_pma.menu_1"
+              action="fincas_pma.action_window_prov"/>              
+<!--
+    <menuitem name="Server to list" id="fincas_pma" parent="fincas_pma.menu_2"
+              action="fincas_pma.action_server"/>
+-->
+  </data>
+</odoo>
