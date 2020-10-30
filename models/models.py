@@ -36,19 +36,56 @@ class fincas_pma(models.Model):
         for fincas_pma in self.filtered('employee_in_charge'):
             fincas_pma.company_id = fincas_pma.employee_in_charge.company_id
 
-    # HERENCIA - AMPLIANDO APLICACIONES EXISTENTES
-    #    AHORA AGREGAREMOS UN CAMPO A UN MODELO EXISTENTE;  EN ESTE CASO SERIA EL MODELO PROYECTO
-    #    EL CAMPO A AGREGAR ES: fincas_pma EN EL NOMBRE DEL MODELO:  project.project
-    #    ESTE SE BUSCA EN EL MENU: AJUSTES; OPCIN: TECNICO; SECCION: SECUENCIA E IDENTIFICADRES
-    
-    class FincasProject(models.Model):
-        _inherit = 'project.project'
-        fincas_pma = fields.Many2one('fincas_pma.fincas_pma', string = 'Finca', tracking=True)
+class provincias(models.Model):
+    _name="fincas_pma.provincias"
 
-    class provincias(models.Model):
-        _name="fincas_pma.provincias"
+    name = fields.Char('Nombre de Provincia', required=True)
+    active = fields.Boolean('Activo', default=True)
+    code_provincia = fields.Char('Código', required=True)
+    description = fields.Text(string='Descripción')
 
-        name = fields.Char('Nombre de Provincia', required=True)
-        active = fields.Boolean('Activo', default=True)
-        code_provincia = fields.Char('Código', required=True)
-        description = fields.Text(string='Descripción')
+class zafras(models.Model):
+    _name = "fincas_pma.zafras"
+    _description = "Codigos de Zafras - Cada anio una nueva: ejm.: 2020, 2021 . . . "
+
+    name = fields.Char('Nombre de Zafra o Año:', required=True)
+    active = fields.Boolean('Activo', default=True)
+    code_zafra = fields.Char('Código de Zafra', required=True)
+    description = fields.Text(string='Descripción')
+
+class frentes(models.Model):
+    _name = "fincas_pma.frentes"
+    _description = "Código de Frentes de Cosecha en Zafra"
+
+    name = fields.Char('Nombre de Frente de Cosecha:', required=True)
+    active = fields.Boolean('Activo', default=True)
+    code_frente = fields.Char('Código de Frente', required=True)
+    description = fields.Text(string='Descripción')
+
+class subfincas(models.Model):
+    _name = "fincas_pma.subfincas"
+    _description = "Código de Sub-Fincas de Cultivo de Caña"
+
+    name = fields.Char('Nombre de Sub Finca:', required=True)
+    active = fields.Boolean('Activo', default=True)
+    code_frente = fields.Char('Código de Sub-Finca', required=True)
+    description = fields.Text(string='Descripción')
+
+class unidadproduccion(models.Model):
+    _name = "fincas_pma.unidadproduccion"
+    _description = "Código de Unidad de Producción de Cultivo de Caña"
+
+    name = fields.Char('Nombre de Unidad de Producción:', required=True)
+    active = fields.Boolean('Activo', default=True)
+    code_frente = fields.Char('Código de U.P.', required=True)
+    description = fields.Text(string='Descripción')
+
+class tiposcortes(models.Model):
+    _name = "fincas_pma.tiposcortes"
+    _description = "Código de Tipos de Cortes de Cosecha de Caña"
+
+    name = fields.Char('Nombre de Tipos de Cortes:', required=True)
+    active = fields.Boolean('Activo', default=True)
+    code_frente = fields.Char('Código de T.D.C.', required=True)
+    description = fields.Text(string='Descripción')
+
