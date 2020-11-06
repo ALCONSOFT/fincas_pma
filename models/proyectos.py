@@ -17,5 +17,9 @@ class FincasProject(models.Model):
     tipocorte = fields.Many2one('fincas_pma.tiposcortes', string = 'T.D.C.', tracking=True)
     has = fields.Float('Superficie en HAS.', store=True)
     variedad = fields.Many2one('fincas_pma.variedades', string = 'Variedad', tracking=True)
-
+    correg = fields.Many2one('fincas_pma.corregs', string = 'Corregimiento', tracking=True)
+    fdc = fields.Date('Fecha de Cosecha', tracking=True)
+    fds = fields.Date('Fecha de Siembra', tracking=True)
+    hdc = fields.Datetime('Fecha y Hora de Cosecha', tracking=True)
+    hdq = fields.Datetime('Fecha y Hora de Quema', tracking=True)
     

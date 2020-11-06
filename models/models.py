@@ -98,3 +98,22 @@ class variedades(models.Model):
     code_variedad = fields.Char('Código de Variedad', required=True)
     description = fields.Text(string='Descripción')
 
+class distritos(models.Model):
+    _name = "fincas_pma.distritos"
+    _description = "Distritos de la Rep. de Panamá"
+
+    name = fields.Char('Nombre de Distrito de la Ubicación de la U.P.+Lot:', required=True)
+    active = fields.Boolean('Activo', default=True)
+    provincia = fields.Many2one('fincas_pma.provincias', string = 'Provincia', tracking=True)
+    description = fields.Text(string='Descripción')
+
+class corregs(models.Model):
+    _name = "fincas_pma.corregs"
+    _description = "Corregimentos de la Rep. de Panamá"
+
+    name = fields.Char('Nombre de Corregimiento de la Ubicación de la U.P.+Lot:', required=True)
+    active = fields.Boolean('Activo', default=True)
+    distrito = fields.Many2one('fincas_pma.distritos', string = 'Distrito', tracking=True)
+    description = fields.Text(string='Descripción')
+
+

@@ -60,7 +60,6 @@
 					<page string="NOMEMCLATURA-FINCAS">
 						<group col="4" colspan="2">
 							<separator string="Datos Finca" colspan="2"/>
-
 								<field name="fincas_pma" placeholder="Finca Relacionada" options='{"no_open": True}'/>
                 <field name="subfinca"   placeholder="Sub Finca Relacionada"/>
                 <field name="up" placeholder="U.P. Relacionado"/>
@@ -68,6 +67,11 @@
                 <field name="frente" placeholder="Frente Relacionado"/>
                 <field name="tipocorte" placeholder="T.D.C. Relacionado"/>
                 <field name="variedad" placeholder="Variedad de cultivo Relacionado"/>
+                <field name="correg" placeholder="Corregimeinto de la Up+Lot :: Proyecto"/>
+                <field name="fdc" placeholder="Fecha de Cosecha"/>
+                <field name="fds" placeholder="Fecha de Siembra"/>
+                <field name="hdc" placeholder="Fecha y hora de Cosecha"/>
+                <field name="hdq" placeholder="Fecha y hora de Quema"/>
                 <!--x-->
 						</group>
 					</page>

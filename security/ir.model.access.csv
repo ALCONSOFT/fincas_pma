@@ -6,3 +6,6 @@ access_fincas_pma_subfincas,fincas_pma.subfincas,model_fincas_pma_subfincas,base
 access_fincas_pma_up,fincas_pma.up,model_fincas_pma_up,base.group_user,1,1,1,1
 access_fincas_pma_tiposcortes,fincas_pma.tiposcortes,model_fincas_pma_tiposcortes,base.group_user,1,1,1,1
 access_fincas_pma_variedades,fincas_pma.variedades,model_fincas_pma_variedades,base.group_user,1,1,1,1
+access_fincas_pma_corregs,fincas_pma.corregs,model_fincas_pma_corregs,base.group_user,1,1,1,1
+access_fincas_pma_distritos,fincas_pma.distritos,model_fincas_pma_distritos,base.group_user,1,1,1,1
+access_fincas_pma_provincias,fincas_pma.provincias,model_fincas_pma_provincias,base.group_user,1,1,1,1
