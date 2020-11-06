@@ -71,8 +71,8 @@ class subfincas(models.Model):
     code_frente = fields.Char('Código de Sub-Finca', required=True)
     description = fields.Text(string='Descripción')
 
-class unidadproduccion(models.Model):
-    _name = "fincas_pma.unidadproduccion"
+class up(models.Model):
+    _name = "fincas_pma.up"
     _description = "Código de Unidad de Producción de Cultivo de Caña"
 
     name = fields.Char('Nombre de Unidad de Producción:', required=True)
@@ -87,5 +87,14 @@ class tiposcortes(models.Model):
     name = fields.Char('Nombre de Tipos de Cortes:', required=True)
     active = fields.Boolean('Activo', default=True)
     code_frente = fields.Char('Código de T.D.C.', required=True)
+    description = fields.Text(string='Descripción')
+
+class variedades(models.Model):
+    _name = "fincas_pma.variedades"
+    _description = "Código de Variedades Cultivadas"
+
+    name = fields.Char('Nombre de Vareidad de Cultivo:', required=True)
+    active = fields.Boolean('Activo', default=True)
+    code_variedad = fields.Char('Código de Variedad', required=True)
     description = fields.Text(string='Descripción')
 

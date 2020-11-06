@@ -1,2 +1,8 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
 access_fincas_pma_fincas_pma,fincas_pma.fincas_pma,model_fincas_pma_fincas_pma,base.group_user,1,1,1,1
+access_fincas_pma_zafras,fincas_pma.zafras,model_fincas_pma_zafras,base.group_user,1,1,1,1
+access_fincas_pma_frentes,fincas_pma.frentes,model_fincas_pma_frentes,base.group_user,1,1,1,1
+access_fincas_pma_subfincas,fincas_pma.subfincas,model_fincas_pma_subfincas,base.group_user,1,1,1,1
+access_fincas_pma_up,fincas_pma.up,model_fincas_pma_up,base.group_user,1,1,1,1
+access_fincas_pma_tiposcortes,fincas_pma.tiposcortes,model_fincas_pma_tiposcortes,base.group_user,1,1,1,1
+access_fincas_pma_variedades,fincas_pma.variedades,model_fincas_pma_variedades,base.group_user,1,1,1,1

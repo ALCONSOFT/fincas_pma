@@ -58,16 +58,17 @@
 			<field name="arch" type="xml">
 				<notebook position="inside">
 					<page string="NOMEMCLATURA-FINCAS">
-						<group col="2" colspan="2">
+						<group col="4" colspan="2">
 							<separator string="Datos Finca" colspan="2"/>
+
 								<field name="fincas_pma" placeholder="Finca Relacionada" options='{"no_open": True}'/>
                 <field name="subfinca"   placeholder="Sub Finca Relacionada"/>
-                <!--
-                <field name="unidadproduccion" placeholder="U.P. Relacionado"/>
+                <field name="up" placeholder="U.P. Relacionado"/>
                 <field name="lote" placeholder="Lote Relacionado"/>
                 <field name="frente" placeholder="Frente Relacionado"/>
                 <field name="tipocorte" placeholder="T.D.C. Relacionado"/>
-                -->
+                <field name="variedad" placeholder="Variedad de cultivo Relacionado"/>
+                <!--x-->
 						</group>
 					</page>
 			</notebook>

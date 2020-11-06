@@ -12,8 +12,10 @@ class FincasProject(models.Model):
     zafra = fields.Many2one('fincas_pma.zafras', string = 'Zafra', tracking=True)
     frente = fields.Many2one('fincas_pma.frentes', string = 'Frente', tracking=True)
     subfinca = fields.Many2one('fincas_pma.subfincas', string = 'Sub Finca', tracking=True)
-    unidadproduccion = fields.Many2one('fincas_pma.unidadproducion', string = 'U.P.', tracking=True)
+    up = fields.Many2one('fincas_pma.up', string = 'U.P.', tracking=True)
     lote = fields.Char('LOT', required=True, tracking=True, default='000')
     tipocorte = fields.Many2one('fincas_pma.tiposcortes', string = 'T.D.C.', tracking=True)
+    has = fields.Float('Superficie en HAS.', store=True)
+    variedad = fields.Many2one('fincas_pma.variedades', string = 'Variedad', tracking=True)
 
     
