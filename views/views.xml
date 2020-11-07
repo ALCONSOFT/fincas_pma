@@ -72,6 +72,28 @@
                 <field name="fds" placeholder="Fecha de Siembra"/>
                 <field name="hdc" placeholder="Fecha y hora de Cosecha"/>
                 <field name="hdq" placeholder="Fecha y hora de Quema"/>
+                <field name="hasq"/>
+                <field name="tonq"/>
+                <field name="tche1"/>
+                <field name="tche2"/>
+                <field name="tche3"/>
+                <field name="hasc"/>
+                <field name="toncos"/>
+                <field name="tonme"/>
+                <field name="tonrt"/>
+                <field name="tchr"/>
+                <field name="difton"/>
+                <field name="difprc"/>
+                <field name="dist"/>
+                <field name="tds"/>
+                <field name="are"/>
+                <field name="bx"/>
+                <field name="sac"/>
+                <field name="pza"/>
+                <field name="red"/>
+                <field name="ph"/>
+                <field name="tch20"/>
+                <field name="dif20"/>
                 <!--x-->
 						</group>
 					</page>

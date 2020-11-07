@@ -17,7 +17,7 @@
     # Check https://github.com/odoo/odoo/blob/13.0/odoo/addons/base/data/ir_module_category_data.xml
     # for the full list
     'category': 'Uncategorized',
-    'version': '0.1-20-11-05 - 21:34',
+    'version': '0.1-20-11-06 - 21:42',
 
     # any module necessary for this one to work correctly
     'depends': ['base', 'hr', 'project'],
