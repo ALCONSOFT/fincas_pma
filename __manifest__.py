@@ -7,7 +7,7 @@
         subtitle on modules listing or apps.openerp.com""",
 
     'description': """
-        Máestro de fincas con  parametros de Pamama
+        Máestro de fincas con  parametros de Paamama
     """,
 
     'author': "Alconsoft",
@@ -17,7 +17,7 @@
     # Check https://github.com/odoo/odoo/blob/13.0/odoo/addons/base/data/ir_module_category_data.xml
     # for the full list
     'category': 'Uncategorized',
-    'version': '0.1-20-11-06 - 21:42',
+    'version': '0.1-13/11/20 - 20:27',
 
     # any module necessary for this one to work correctly
     'depends': ['base', 'hr', 'project'],
@@ -30,6 +30,7 @@
         ###############################
         'views/views.xml',
         'views/templates.xml',
+        'views/Frentes.xml',
         ####### CARGA AUTOMATICA AL INSTALAR DE DATOS ESTATICOS ########################
         'static/xls/fincas_pma.fincas_pma.csv'
         ###############################
