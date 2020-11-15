@@ -1,0 +1,5 @@
+"name","active","code_labor","description","rata_labor","unidad_medida","cantidad_minima","cantidad_maxima","equivalencia_tiempo","observacion"
+"C013 - FUMIGACION MANUAL DE HERBICIDAS","True","C013","FUMIGACION MANUAL DE HERBICIDAS","7.72","Tanques","2.0","2.0","8.0","1 tanque (200lts) = 1 Ha"
+"A013 - Control Manual de maleza","True","A013","Control Manual de maleza
+","7.72","Tanques","2.0","2.0","8.0","Privativo: al momento de decidir la Ha prevalece sobre el tanque.
+"

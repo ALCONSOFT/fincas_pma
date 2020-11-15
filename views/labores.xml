@@ -1,0 +1,34 @@
+<odoo>
+    <data>
+    <!-- explicit list view definition -->
+    <record model="ir.ui.view" id="fincas_pma.list_labores">
+      <field name="name">fincas_pma lista labores</field>
+      <field name="model">fincas_pma.labores</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="name"/>
+          <field name="active"/>
+          <field name="code_labor"/>
+          <field name="description"/>
+          <field name="rata_labor"/>
+          <field name="unidad_medida"/>
+          <field name="cantidad_minima"/>
+          <field name="cantidad_maxima"/>
+          <field name="equivalencia_tiempo"/>
+          <field name="observacion"/>
+        </tree>
+      </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="fincas_pma.action_window_labor">
+      <field name="name">fincas_pma window labores</field>
+      <field name="res_model">fincas_pma.labores</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem name="Lista Labores" id="fincas_pma.menu_list_labores" parent="fincas_pma.menu_1"
+              action="fincas_pma.action_window_labor"/>              
+
+    </data>
+</odoo>
+

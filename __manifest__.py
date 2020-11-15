@@ -17,7 +17,7 @@
     # Check https://github.com/odoo/odoo/blob/13.0/odoo/addons/base/data/ir_module_category_data.xml
     # for the full list
     'category': 'Uncategorized',
-    'version': '0.1-20-11-06 - 21:42',
+    'version': '0.1-20-11-14 - 18:50',
 
     # any module necessary for this one to work correctly
     'depends': ['base', 'hr', 'project'],
@@ -30,8 +30,10 @@
         ###############################
         'views/views.xml',
         'views/templates.xml',
+        'views/labores.xml',
         ####### CARGA AUTOMATICA AL INSTALAR DE DATOS ESTATICOS ########################
-        'static/xls/fincas_pma.fincas_pma.csv'
+        'static/xls/fincas_pma.fincas_pma.csv',
+        'static/xls/fincas_pma.labores.csv',
         ###############################
     ],
     # only loaded in demonstration mode

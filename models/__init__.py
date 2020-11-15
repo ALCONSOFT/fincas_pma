@@ -3,5 +3,6 @@
 from . import models
 # Modelos asignados a Alejandro
 from . import proyectos
+from . import labores
 # Modelos asigandos a Manuel
 # Modelos asignados a Roberto
