@@ -17,7 +17,7 @@
     # Check https://github.com/odoo/odoo/blob/13.0/odoo/addons/base/data/ir_module_category_data.xml
     # for the full list
     'category': 'Uncategorized',
-    'version': '0.1-20-11-20 - 06:30',
+    'version': '0.1-20-11-20 - 7:45',
 
     # any module necessary for this one to work correctly
     'depends': ['base', 'hr', 'project'],
@@ -41,6 +41,7 @@
         'static/xls/fincas_pma.labores.csv',
         'static/xls/fincas_pma.up.csv',
         'static/xls/fincas_pma.subfincas.csv',
+        'static/xls/fincas_pma.variedades.csv',
         ###############################
     ],
     # only loaded in demonstration mode
