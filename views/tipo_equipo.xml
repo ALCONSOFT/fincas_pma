@@ -1,0 +1,22 @@
+<odoo>
+    <data>
+        <record model="ir.ui.view" id="fincas_pma.listtipo_equipo">
+            <field name="name">fincas_pma_listtipo_equipo</field>
+            <field name="model">fincas_pma.tipo_equipo</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name"/>
+                </tree>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="fincas_pma.action_window_tipo_equipo">
+            <field name="name">fincas_pma window tipo_equipo</field>
+            <field name="res_model">fincas_pma.tipo_equipo</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <menuitem name="Lista tipo_equipo" id="fincas_pma.menu_9_list" parent="fincas_pma.menu_1"
+                  action="fincas_pma.action_window_tipo_equipo"/>
+    </data>
+</odoo>
