@@ -10,6 +10,7 @@ class FincasProject(models.Model):
     # PROPIEDADES de la finca y DE LA UBICACION DE LA UP+LOT  PROY
     fincas_pma = fields.Many2one('fincas_pma.fincas_pma', string = 'Finca', tracking=True)
     zafra = fields.Many2one('fincas_pma.zafras', string = 'Periodo Zafra', tracking=True)
+    odc = fields.Integer('Orden de Corte.', store=True)
     frente = fields.Many2one('fincas_pma.frentes', string = 'Frente', tracking=True)
     subfinca = fields.Many2one('fincas_pma.subfincas', string = 'Sub Finca', tracking=True)
     up = fields.Many2one('fincas_pma.up', string = 'U.P.', tracking=True)
@@ -18,7 +19,7 @@ class FincasProject(models.Model):
     correg = fields.Many2one('fincas_pma.corregs', string = 'Corregimiento', tracking=True)
     dist = fields.Float('Distancia al Ingenio', digits=(10, 3), tracking=True)
     desr = fields.Float('Distancia entre Surcos', digits=(10, 3), tracking=True)
-    ubic = fields.Char('Ubicación', required=True, tracking=True, default='')
+    ubic = fields.Char('Ubicación', required=True, tracking=True)
     tds = fields.Char('Tipo de Suelo', tracking=True)
     # PROPIEDADES DE LA CAÑA
     tipocorte = fields.Many2one('fincas_pma.tiposcortes', string = 'T.D.C.', tracking=True)

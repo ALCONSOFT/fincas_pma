@@ -56,6 +56,18 @@
       </field>
     </record>
 
+    <record model="ir.ui.view" id="fincas_pma.listazafras">
+      <field name="name">fincas_pma lista Zafras</field>
+      <field name="model">fincas_pma.zafras</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="name"/>
+          <field name="active"/>
+          <field name="code_zafra"/>
+          <field name="description"/>
+        </tree>
+      </field>
+    </record>
 
 <!--<field name="company_id"/> groups="base.group_multi_company"  optional="show"
  domain="[('active', '=', True), ('company_id', '=', company_id)]"-->
@@ -82,6 +94,11 @@
       <field name="res_model">fincas_pma.tiposcortes</field>
       <field name="view_mode">tree,form</field>
     </record>
+    <record model="ir.actions.act_window" id="fincas_pma.action_window_zafras">
+      <field name="name">fincas_pma window Zafras</field>
+      <field name="res_model">fincas_pma.zafras</field>
+      <field name="view_mode">tree,form</field>
+    </record>
 
 <!--HERENCIA EN VISTAS
     PRIMERO DEBEMOS SABER EL NOMBRE DE LA VISTA EN LA QUE QUEREMOS HEREDAR PARA AGREGAR EL CAMPO REQUERIDO
@@ -96,14 +113,17 @@
 					<page string="-NOMENCLATURA-FINCAS-">
 						<group col="4" colspan="2">
 							<separator string="Datos Finca y Ubicación" colspan="2"/>
+                <newline/>
                 <field name="up" placeholder="U.P. Relacionado"/>
                 <field name="lote" placeholder="Lote Relacionado"/>
-								<field name="fincas_pma" placeholder="Finca Relacionada" options='{"no_open": True}'/>
+                <field name="fincas_pma" placeholder="Finca Relacionada" options='{"no_open": True}'/>
                 <field name="subfinca"   placeholder="Sub Finca Relacionada"/>
                 <field name="frente" placeholder="Frente Relacionado"/>
+                <field name="odc" placeholder="Orden de Corte"/>                
                 <field name="variedad" placeholder="Variedad de cultivo Relacionado"/>
                 <field name="correg" placeholder="Corregimeinto de la Up+Lot :: Proyecto"/>
-              <separator string="Proiedades de la Caña" colspan="2"/>
+              <separator string="Propiedades de la Caña" colspan="2"/>
+                <newline/>
                 <field name="tipocorte" placeholder="T.D.C. Relacionado"/>
                 <field name="fdc" placeholder="Fecha de Cosecha"/>
                 <field name="fds" placeholder="Fecha de Siembra"/>
@@ -123,7 +143,9 @@
                 <field name="difprc"/>
                 <field name="dist"/>
                 <field name="tds"/>
+                <newline/>
               <separator string="Indicadores de Azucar" colspan="2"/>
+                <newline/>
                 <field name="are"/>
                 <field name="bx"/>
                 <field name="sac"/>
@@ -131,8 +153,15 @@
                 <field name="red"/>
                 <field name="ph"/>
               <separator string="Historicos Real por Ha." colspan="2"/>
+                <newline/>
                 <field name="tch_01"/>
                 <field name="dif_01"/>
+                <field name="tch_02"/>
+                <field name="dif_02"/>
+                <field name="tch_03"/>
+                <field name="dif_03"/>
+                <field name="tch_04"/>
+                <field name="dif_04"/>
                 <!--x-->
 						</group>
 					</page>
@@ -165,6 +194,9 @@
 
     <menuitem name="Lista Tipos de Cortes" id="fincas_pma.menu_tdc_list" parent="fincas_pma.menu_1"
               action="fincas_pma.action_window_tiposcortes"/>              
+
+    <menuitem name="Lista Zafras" id="fincas_pma.menu_zafras_list" parent="fincas_pma.menu_1"
+              action="fincas_pma.action_window_zafras"/>              
 
 <!--
     <menuitem name="Server to list" id="fincas_pma" parent="fincas_pma.menu_2"
