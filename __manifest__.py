@@ -17,10 +17,10 @@
     # Check https://github.com/odoo/odoo/blob/13.0/odoo/addons/base/data/ir_module_category_data.xml
     # for the full list
     'category': 'Uncategorized',
-    'version': '0.1-20-11-14 - 18:50',
+    'version': '0.1-20-11-21 - 18:30',
 
     # any module necessary for this one to work correctly
-    'depends': ['base', 'hr', 'project'],
+    'depends': ['base', 'hr', 'project', 'hr_timesheet', 'sale_management','maintenance'],
 
     # always loaded: Aqui se cargan los formularios de vista.
     # IMPORTANTE: SE QUITA EL CARACTER "#" PARA QUE SE PUEDA CARGAR ARCHIVO CON LA LISTA DE ACCESO DE SEGURIDAD
@@ -31,9 +31,21 @@
         'views/views.xml',
         'views/templates.xml',
         'views/labores.xml',
+        'views/equiposymq.xml',
+        'views/variedades.xml',
+        'views/subfincas.xml',
+        'views/tipo_activo.xml',
+        'views/tipo_equipo.xml',
         ####### CARGA AUTOMATICA AL INSTALAR DE DATOS ESTATICOS ########################
         'static/xls/fincas_pma.fincas_pma.csv',
         'static/xls/fincas_pma.labores.csv',
+        'static/xls/fincas_pma.up.csv',
+        'static/xls/fincas_pma.subfincas.csv',
+        'static/xls/fincas_pma.variedades.csv',
+        'static/xls/fincas_pma.tiposcortes.csv',
+        'static/xls/fincas_pma.zafras.csv',
+        'static/xls/res.partner.csv',
+        'static/xls/project.project.csv',
         ###############################
     ],
     # only loaded in demonstration mode

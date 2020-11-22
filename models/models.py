@@ -68,7 +68,7 @@ class subfincas(models.Model):
 
     name = fields.Char('Nombre de Sub Finca:', required=True)
     active = fields.Boolean('Activo', default=True)
-    code_frente = fields.Char('Código de Sub-Finca', required=True)
+    code_subfinca = fields.Char('Código de Sub-Finca', required=True)
     description = fields.Text(string='Descripción')
 
 class up(models.Model):
@@ -77,7 +77,7 @@ class up(models.Model):
 
     name = fields.Char('Nombre de Unidad de Producción:', required=True)
     active = fields.Boolean('Activo', default=True)
-    code_frente = fields.Char('Código de U.P.', required=True)
+    code_up = fields.Char('Código de U.P.', required=True)
     description = fields.Text(string='Descripción')
 
 class tiposcortes(models.Model):
@@ -86,7 +86,7 @@ class tiposcortes(models.Model):
 
     name = fields.Char('Nombre de Tipos de Cortes:', required=True)
     active = fields.Boolean('Activo', default=True)
-    code_frente = fields.Char('Código de T.D.C.', required=True)
+    code_tipocorte = fields.Char('Código de T.D.C.', required=True)
     description = fields.Text(string='Descripción')
 
 class variedades(models.Model):
@@ -115,5 +115,3 @@ class corregs(models.Model):
     active = fields.Boolean('Activo', default=True)
     distrito = fields.Many2one('fincas_pma.distritos', string = 'Distrito', tracking=True)
     description = fields.Text(string='Descripción')
-
-

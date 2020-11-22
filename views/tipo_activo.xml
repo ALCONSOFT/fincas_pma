@@ -1,0 +1,26 @@
+<odoo>
+  <data>
+
+ <record model="ir.ui.view" id="fincas_pma.listtipo_activo">
+      <field name="name">fincas_pma_listtipo_activo</field>
+      <field name="model">fincas_pma.tipo_activo</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="name"/>
+        </tree>
+      </field>
+    </record>
+
+<record model="ir.actions.act_window" id="fincas_pma.action_window_tipo_activo">
+      <field name="name">fincas_pma window tipo_activo</field>
+      <field name="res_model">fincas_pma.tipo_activo</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+
+
+ <menuitem name="Lista tipo_activo" id="fincas_pma.menu_8_list" parent="fincas_pma.menu_1"
+              action="fincas_pma.action_window_tipo_activo"/>                     
+
+
+ </data>
+</odoo>

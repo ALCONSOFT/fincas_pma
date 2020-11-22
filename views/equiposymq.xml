@@ -1,0 +1,29 @@
+<odoo>
+  <data>
+    <record model="ir.ui.view" id="fincas_pma_maintenance_equipment_form_inh">
+      <field name="name">maintenance.equipment.form.inh</field>
+      <field name="model">maintenance.equipment</field>
+      <field name="type">form</field>
+      <field name="inherit_id" ref="maintenance.hr_equipment_view_form"/>
+      <field name="arch" type="xml">
+        <notebook position="inside">
+          <page string="NOMEMCLATURA-EQUIPOS">
+            <group col="4" colspan="2">
+              <separator string="Datos Equipo" colspan="2"/>
+              <field name="codigo_activo"/>
+              <field name="tipo_activo"/>
+              <field name="placa"/>
+              <field name="tipo_equipo"/>
+              <field name="motor"/>
+              <field name="marca"/>
+              <field name="anio"/>
+              <field name="localizacion"/>
+              <field name="foto"/>
+            </group>
+          </page>
+        </notebook>
+      </field>
+    </record>
+  </data>
+
+</odoo>
