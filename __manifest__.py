@@ -46,6 +46,7 @@
         'static/xls/fincas_pma.zafras.csv',
         'static/xls/res.partner.csv',
         'static/xls/project.project.csv',
+        'static/xls/fincas_pma.tipo_equipo.csv',
         ###############################
     ],
     # only loaded in demonstration mode
