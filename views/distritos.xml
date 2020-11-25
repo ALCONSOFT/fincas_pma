@@ -1,0 +1,29 @@
+<odoo>
+  <data>
+
+ <record model="ir.ui.view" id="fincas_pma.listdistritos">
+      <field name="name">fincas_pma_listdistritos</field>
+      <field name="model">fincas_pma.distritos</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="name"/>
+          <field name="active"/>
+          <field name="provincia"/>
+          <field name="description"/>
+        </tree>
+      </field>
+    </record>
+
+<record model="ir.actions.act_window" id="fincas_pma.action_window_distritos">
+      <field name="name">fincas_pma window distritos</field>
+      <field name="res_model">fincas_pma.distritos</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+
+
+ <menuitem name="Lista Distritos" id="fincas_pma.menu_8_list" parent="fincas_pma.menu_1"
+              action="fincas_pma.action_window_distritos"/>                     
+
+
+ </data>
+</odoo>

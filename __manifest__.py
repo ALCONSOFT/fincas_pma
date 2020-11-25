@@ -37,6 +37,9 @@
         'views/tipo_activo.xml',
         'views/tipo_equipo.xml',
         'views/empleados.xml',
+        'views/corregs.xml',
+        'views/distritos.xml',
+        'views/tipo_cultivo.xml',
         ####### CARGA AUTOMATICA AL INSTALAR DE DATOS ESTATICOS ########################
         'static/xls/fincas_pma.fincas_pma.csv',
         'static/xls/fincas_pma.labores.csv',

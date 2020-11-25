@@ -1,0 +1,29 @@
+<odoo>
+  <data>
+
+ <record model="ir.ui.view" id="fincas_pma.listcorregs">
+      <field name="name">fincas_pma_listcorregs</field>
+      <field name="model">fincas_pma.corregs</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="name"/>
+          <field name="active"/>
+          <field name="distrito"/>
+          <field name="description"/>
+        </tree>
+      </field>
+    </record>
+
+<record model="ir.actions.act_window" id="fincas_pma.action_window_corregs">
+      <field name="name">fincas_pma window corregs</field>
+      <field name="res_model">fincas_pma.corregs</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+
+
+ <menuitem name="Lista Correguimientos" id="fincas_pma.menu_7_list" parent="fincas_pma.menu_1"
+              action="fincas_pma.action_window_corregs"/>                     
+
+
+ </data>
+</odoo>
