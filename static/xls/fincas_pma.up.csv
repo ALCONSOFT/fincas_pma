@@ -1,0 +1,64 @@
+id,name,active,code_up,description
+1,100002,true,100002,Las Loras
+2,100790,true,100790,Altos de San Pedro
+3,110038,true,110038,Lechería
+4,110411,true,110411,La Cueva
+5,110418,true,110418,LUQUI LSP
+6,110434,true,110434,CICHISA
+7,110483,true,110483,Luis Díaz
+8,110485,true,110485,Rafael Otero
+9,110754,true,110754,LUQUI Alanje
+10,110780,true,110780,Lucila Morales
+11,110781,true,110781,Kenia Guardia
+12,110834,true,110834,Loma de San Pedro
+13,110868,true,110868,Cañaverales
+14,110886,true,110886,INLU
+15,110898,true,110898,Pericote
+16,110899,true,110899,PROLUXSA
+17,100004,true,100004,Guarumal Beitia
+18,100076,true,100076,Las Martinas
+19,110008,true,110008,Las Moras
+20,110069,true,110069,Fundacion Arauz
+21,110073,true,110073,Antonio Beitia
+22,110075,true,110075,Ester Sanchez
+23,110077,true,110077,Oscar De Leon
+24,110078,true,110078,Francisco Aizpurua
+25,110079,true,110079,Manuel Rojas
+26,110082,true,110082,Barqueta
+27,110902,true,110902,El Guácimo
+28,130796,true,130796,S S Esquivel
+29,100001,true,100001,Jarquin
+30,100889,true,100889,Efraín Hernández
+31,110025,true,110025,Pinto Arauz
+32,110044,true,110044,Fernando Rios
+33,110056,true,110056,Gloria Quintero
+34,110080,true,110080,Ulises Montoto
+35,110081,true,110081,Cira Arauz
+36,110420,true,110420,Natividad Quintero
+37,110836,true,110836,Darío Olmos
+38,110851,true,110851,Hernán Hernández
+39,110859,true,110859,Cristi Quintero
+40,130479,true,130479,Inm. Jarquin
+41,130480,true,130480,H. Rio Vista
+42,130905,true,130905,Nical Foundation
+43,110928,true,110928,Calle Larga
+44,110036,true,110036,Julissa Sanchez
+45,110055,true,110055,Merrow
+46,110061,true,110061,Berlina
+47,110062,true,110062,Monte Grande
+48,110063,true,110063,Indios
+49,110064,true,110064,Bagala
+50,110066,true,110066,MD Miró SA
+51,110723,true,110723,Finca Corotú
+52,110745,true,110745,Alcibiades Morales
+53,110760,true,110760,Los Llanos
+54,110788,true,110788,Sánchez y Vasquez
+55,110872,true,110872,Efraín Hernández
+56,110893,true,110893,Cañas Blancas
+57,130863,true,130863,Cesar Morales
+58,130895,true,130895,Ubaldine Pérez
+59,130910,true,130910,Ubaldine Pérez
+60,130918,true,130918,Ganadera Canta G
+61,130920,true,130920,Natividad Pérez
+62,130927,true,130927,Ganadera JM
+63,100013,true,100013,Sanidad Vegetal

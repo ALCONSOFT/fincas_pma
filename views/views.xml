@@ -30,6 +30,44 @@
       </field>
     </record>
 
+    <record model="ir.ui.view" id="fincas_pma.listaup">
+      <field name="name">fincas_pma listaup</field>
+      <field name="model">fincas_pma.up</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="name"/>
+          <field name="active"/>
+          <field name="code_up"/>
+          <field name="description"/>
+        </tree>
+      </field>
+    </record>
+
+    <record model="ir.ui.view" id="fincas_pma.listatiposcortes">
+      <field name="name">fincas_pma lista Tipos de Cortes</field>
+      <field name="model">fincas_pma.tiposcortes</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="name"/>
+          <field name="active"/>
+          <field name="code_tipocorte"/>
+          <field name="description"/>
+        </tree>
+      </field>
+    </record>
+
+    <record model="ir.ui.view" id="fincas_pma.listazafras">
+      <field name="name">fincas_pma lista Zafras</field>
+      <field name="model">fincas_pma.zafras</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="name"/>
+          <field name="active"/>
+          <field name="code_zafra"/>
+          <field name="description"/>
+        </tree>
+      </field>
+    </record>
 
 <!--<field name="company_id"/> groups="base.group_multi_company"  optional="show"
  domain="[('active', '=', True), ('company_id', '=', company_id)]"-->
@@ -46,6 +84,21 @@
       <field name="res_model">fincas_pma.provincias</field>
       <field name="view_mode">tree,form</field>
     </record>
+    <record model="ir.actions.act_window" id="fincas_pma.action_window_up">
+      <field name="name">fincas_pma window up</field>
+      <field name="res_model">fincas_pma.up</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+    <record model="ir.actions.act_window" id="fincas_pma.action_window_tiposcortes">
+      <field name="name">fincas_pma window Tipos de Cortes</field>
+      <field name="res_model">fincas_pma.tiposcortes</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+    <record model="ir.actions.act_window" id="fincas_pma.action_window_zafras">
+      <field name="name">fincas_pma window Zafras</field>
+      <field name="res_model">fincas_pma.zafras</field>
+      <field name="view_mode">tree,form</field>
+    </record>
 
 <!--HERENCIA EN VISTAS
     PRIMERO DEBEMOS SABER EL NOMBRE DE LA VISTA EN LA QUE QUEREMOS HEREDAR PARA AGREGAR EL CAMPO REQUERIDO
@@ -57,17 +110,21 @@
 			<field name="inherit_id" ref="project.edit_project" />
 			<field name="arch" type="xml">
 				<notebook position="inside">
-					<page string="NOMEMCLATURA-FINCAS">
+					<page string="-NOMENCLATURA-FINCAS-">
 						<group col="4" colspan="2">
-							<separator string="Datos Finca" colspan="2"/>
-								<field name="fincas_pma" placeholder="Finca Relacionada" options='{"no_open": True}'/>
-                <field name="subfinca"   placeholder="Sub Finca Relacionada"/>
+							<separator string="Datos Finca y Ubicación" colspan="2"/>
+                <newline/>
                 <field name="up" placeholder="U.P. Relacionado"/>
                 <field name="lote" placeholder="Lote Relacionado"/>
+                <field name="fincas_pma" placeholder="Finca Relacionada" options='{"no_open": True}'/>
+                <field name="subfinca"   placeholder="Sub Finca Relacionada"/>
                 <field name="frente" placeholder="Frente Relacionado"/>
-                <field name="tipocorte" placeholder="T.D.C. Relacionado"/>
+                <field name="odc" placeholder="Orden de Corte"/>                
                 <field name="variedad" placeholder="Variedad de cultivo Relacionado"/>
                 <field name="correg" placeholder="Corregimeinto de la Up+Lot :: Proyecto"/>
+              <separator string="Propiedades de la Caña" colspan="2"/>
+                <newline/>
+                <field name="tipocorte" placeholder="T.D.C. Relacionado"/>
                 <field name="fdc" placeholder="Fecha de Cosecha"/>
                 <field name="fds" placeholder="Fecha de Siembra"/>
                 <field name="hdc" placeholder="Fecha y hora de Cosecha"/>
@@ -86,14 +143,25 @@
                 <field name="difprc"/>
                 <field name="dist"/>
                 <field name="tds"/>
+                <newline/>
+              <separator string="Indicadores de Azucar" colspan="2"/>
+                <newline/>
                 <field name="are"/>
                 <field name="bx"/>
                 <field name="sac"/>
                 <field name="pza"/>
                 <field name="red"/>
                 <field name="ph"/>
-                <field name="tch20"/>
-                <field name="dif20"/>
+              <separator string="Historicos Real por Ha." colspan="2"/>
+                <newline/>
+                <field name="tch_01"/>
+                <field name="dif_01"/>
+                <field name="tch_02"/>
+                <field name="dif_02"/>
+                <field name="tch_03"/>
+                <field name="dif_03"/>
+                <field name="tch_04"/>
+                <field name="dif_04"/>
                 <!--x-->
 						</group>
 					</page>
@@ -105,20 +173,31 @@
     parent="project.menu_main_pm" groups="project.group_project_manager,project.group_project_user"/
     -->
 
-    <menuitem name="fincas_pma" id="fincas_pma.menu_root"/>
+    <menuitem name="Fincas Panamá" id="fincas_pma.menu_root"/>
 
     <!-- menu categories -->
 
-    <menuitem name="Fincas Panama" id="fincas_pma.menu_1" parent="fincas_pma.menu_root"/>
+    <menuitem name="- Fincas -" id="fincas_pma.menu_1" parent="fincas_pma.menu_root"/>
 <!--
     <menuitem name="Menu 2" id="fincas_pma.menu_2" parent="fincas_pma.menu_root"/>
 -->
     <!-- actions -->
 
-    <menuitem name="List" id="fincas_pma.menu_1_list" parent="fincas_pma.menu_1"
+    <menuitem name="List de Fincas" id="fincas_pma.menu_1_list" parent="fincas_pma.menu_1"
               action="fincas_pma.action_window"/>
+
     <menuitem name="Lista Provincias" id="fincas_pma.menu_2_list" parent="fincas_pma.menu_1"
-              action="fincas_pma.action_window_prov"/>              
+              action="fincas_pma.action_window_prov"/>
+
+    <menuitem name="Lista UPs" id="fincas_pma.menu_up_list" parent="fincas_pma.menu_1"
+              action="fincas_pma.action_window_up"/>              
+
+    <menuitem name="Lista Tipos de Cortes" id="fincas_pma.menu_tdc_list" parent="fincas_pma.menu_1"
+              action="fincas_pma.action_window_tiposcortes"/>              
+
+    <menuitem name="Lista Zafras" id="fincas_pma.menu_zafras_list" parent="fincas_pma.menu_1"
+              action="fincas_pma.action_window_zafras"/>              
+
 <!--
     <menuitem name="Server to list" id="fincas_pma" parent="fincas_pma.menu_2"
               action="fincas_pma.action_server"/>

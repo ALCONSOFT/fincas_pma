@@ -9,3 +9,4 @@ access_fincas_pma_variedades,fincas_pma.variedades,model_fincas_pma_variedades,b
 access_fincas_pma_corregs,fincas_pma.corregs,model_fincas_pma_corregs,base.group_user,1,1,1,1
 access_fincas_pma_distritos,fincas_pma.distritos,model_fincas_pma_distritos,base.group_user,1,1,1,1
 access_fincas_pma_provincias,fincas_pma.provincias,model_fincas_pma_provincias,base.group_user,1,1,1,1
+access_fincas_pma_labores,fincas_pma.labores,model_fincas_pma_labores,base.group_user,1,1,1,1
