@@ -9,3 +9,4 @@ from . import equiposymq
 from . import tipo_activo
 from . import tipo_equipo
 # Modelos asignados a Roberto
+from . import empleados
