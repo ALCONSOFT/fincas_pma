@@ -8,4 +8,5 @@ from . import labores
 from . import equiposymq
 from . import tipo_activo
 from . import tipo_equipo
+from . import marca
 # Modelos asignados a Roberto
