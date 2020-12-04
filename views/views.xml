@@ -100,96 +100,27 @@
       <field name="view_mode">tree,form</field>
     </record>
 
-<!--HERENCIA EN VISTAS
-    PRIMERO DEBEMOS SABER EL NOMBRE DE LA VISTA EN LA QUE QUEREMOS HEREDAR PARA AGREGAR EL CAMPO REQUERIDO
-    PARA NUESTRO EJEMPLO USAREMOS LA VISTA: project.edit_project -->
-		<record model="ir.ui.view" id="fincas_pma_project_project_form_inh">
-			<field name="name">project.project.form.inh</field>
-			<field name="model">project.project</field>
-			<field name="type">form</field>
-			<field name="inherit_id" ref="project.edit_project" />
-			<field name="arch" type="xml">
-				<notebook position="inside">
-					<page string="-NOMENCLATURA-FINCAS-">
-						<group col="4" colspan="2">
-							<separator string="Datos Finca y Ubicación" colspan="2"/>
-                <newline/>
-                <field name="up" placeholder="U.P. Relacionado"/>
-                <field name="lote" placeholder="Lote Relacionado"/>
-                <field name="fincas_pma" placeholder="Finca Relacionada" options='{"no_open": True}'/>
-                <field name="subfinca"   placeholder="Sub Finca Relacionada"/>
-                <field name="frente" placeholder="Frente Relacionado"/>
-                <field name="odc" placeholder="Orden de Corte"/>                
-                <field name="variedad" placeholder="Variedad de cultivo Relacionado"/>
-                <field name="correg" placeholder="Corregimeinto de la Up+Lot :: Proyecto"/>
-              <separator string="Propiedades de la Caña" colspan="2"/>
-                <newline/>
-                <field name="tipocorte" placeholder="T.D.C. Relacionado"/>
-                <field name="fdc" placeholder="Fecha de Cosecha"/>
-                <field name="fds" placeholder="Fecha de Siembra"/>
-                <field name="hdc" placeholder="Fecha y hora de Cosecha"/>
-                <field name="hdq" placeholder="Fecha y hora de Quema"/>
-                <field name="hasq"/>
-                <field name="tonq"/>
-                <field name="tche1"/>
-                <field name="tche2"/>
-                <field name="tche3"/>
-                <field name="hasc"/>
-                <field name="toncos"/>
-                <field name="tonme"/>
-                <field name="tonrt"/>
-                <field name="tchr"/>
-                <field name="difton"/>
-                <field name="difprc"/>
-                <field name="dist"/>
-                <field name="tds"/>
-                <newline/>
-              <separator string="Indicadores de Azucar" colspan="2"/>
-                <newline/>
-                <field name="are"/>
-                <field name="bx"/>
-                <field name="sac"/>
-                <field name="pza"/>
-                <field name="red"/>
-                <field name="ph"/>
-              <separator string="Historicos Real por Ha." colspan="2"/>
-                <newline/>
-                <field name="tch_01"/>
-                <field name="dif_01"/>
-                <field name="tch_02"/>
-                <field name="dif_02"/>
-                <field name="tch_03"/>
-                <field name="dif_03"/>
-                <field name="tch_04"/>
-                <field name="dif_04"/>
-                <!--x-->
-						</group>
-					</page>
-			</notebook>
-			</field>
-		</record>
-
-    <!-- Top menu item 
-    parent="project.menu_main_pm" groups="project.group_project_manager,project.group_project_user"/
-    -->
 
     <menuitem name="Fincas Panamá" id="fincas_pma.menu_root"/>
 
     <!-- menu categories -->
 
-    <menuitem name="- Fincas -" id="fincas_pma.menu_1" parent="fincas_pma.menu_root"/>
+    <menuitem name="- Fincas    -" id="fincas_pma.menu_1" parent="fincas_pma.menu_root"/>
+    <menuitem name="- Labores   -" id="fincas_pma.menu_2" parent="fincas_pma.menu_root"/>
+    <menuitem name="- Proyectos -" id="fincas_pma.menu_3" parent="fincas_pma.menu_root"/>
+    <menuitem name="- Equipos   -" id="fincas_pma.menu_4" parent="fincas_pma.menu_root"/>
 <!--
     <menuitem name="Menu 2" id="fincas_pma.menu_2" parent="fincas_pma.menu_root"/>
 -->
     <!-- actions -->
 
-    <menuitem name="List de Fincas" id="fincas_pma.menu_1_list" parent="fincas_pma.menu_1"
+    <menuitem name="Lista de Fincas" id="fincas_pma.menu_1_list" parent="fincas_pma.menu_1"
               action="fincas_pma.action_window"/>
 
     <menuitem name="Lista Provincias" id="fincas_pma.menu_2_list" parent="fincas_pma.menu_1"
               action="fincas_pma.action_window_prov"/>
 
-    <menuitem name="Lista UPs" id="fincas_pma.menu_up_list" parent="fincas_pma.menu_1"
+    <menuitem name="Lista UPs" id="fincas_pma.menu_up_list" parent="fincas_pma.menu_3"
               action="fincas_pma.action_window_up"/>              
 
     <menuitem name="Lista Tipos de Cortes" id="fincas_pma.menu_tdc_list" parent="fincas_pma.menu_1"
