@@ -10,3 +10,4 @@ class FincasEmpleados(models.Model):
     nempl = fields.Char('Numero de Empleado', required=True, tracking=True)
     fincas_pma = fields.Many2one('fincas_pma.fincas_pma', string = 'Finca', tracking=True)
     salario = fields.Char('Salario por horas', required=True, tracking=True)
+    f_ingreso = fields.Date('Fecha de ingreso', tracking=True)
