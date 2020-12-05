@@ -14,7 +14,12 @@
               <field name="nempl"/>
               <field name="fincas_pma"/>
               <field name="salario"/>
-              <field name="f_ingreso"/>
+              <field name="fecha_ingreso"/>
+              <field name="cod_hora"/>
+              <field name="t_sangre"/>
+              <field name="t_salario"/>
+              <field name="hora_regular"/>
+              <field name="salario_pactado"/>
             </group>
           </page>
         </notebook>
