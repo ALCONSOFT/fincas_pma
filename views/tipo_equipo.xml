@@ -11,12 +11,12 @@
         </record>
 
         <record model="ir.actions.act_window" id="fincas_pma.action_window_tipo_equipo">
-            <field name="name">fincas_pma window tipo_equipo</field>
+            <field name="name">Mantenimiento de Tipos de Equipos y Maq.</field>
             <field name="res_model">fincas_pma.tipo_equipo</field>
             <field name="view_mode">tree,form</field>
         </record>
 
-        <menuitem name="Lista tipo_equipo" id="fincas_pma.menu_9_list" parent="fincas_pma.menu_1"
+        <menuitem name="Lista tipo_equipo" id="fincas_pma.menu_9_list" parent="fincas_pma.menu_4"
                   action="fincas_pma.action_window_tipo_equipo"/>
     </data>
 </odoo>

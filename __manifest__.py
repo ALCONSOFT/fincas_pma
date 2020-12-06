@@ -7,7 +7,10 @@
         subtitle on modules listing or apps.openerp.com""",
 
     'description': """
-        Máestro de fincas con  parametros de Pamama
+        Máestro de fincas con parametros de Pamama.
+        - Rama: dev_project
+        - - Correccion bug de desinstalacion: Causado tal vez por???
+        - - Agregando etiquetas: up y lote en Kanba Project.project
     """,
 
     'author': "Alconsoft",
@@ -17,7 +20,7 @@
     # Check https://github.com/odoo/odoo/blob/13.0/odoo/addons/base/data/ir_module_category_data.xml
     # for the full list
     'category': 'Uncategorized',
-    'version': '0.1-20-11-21 - 18:30',
+    'version': '0.Rama: dev_project-20-12-05 - 06:45',
 
     # any module necessary for this one to work correctly
     'depends': ['base', 'hr', 'project', 'hr_timesheet', 'sale_management','maintenance'],
@@ -37,6 +40,7 @@
         'views/tipo_activo.xml',
         'views/tipo_equipo.xml',
         'views/marca.xml',
+        'views/proyectos_uplotes.xml',
         ####### CARGA AUTOMATICA AL INSTALAR DE DATOS ESTATICOS ########################
         'static/xls/fincas_pma.fincas_pma.csv',
         'static/xls/fincas_pma.labores.csv',
