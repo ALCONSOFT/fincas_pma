@@ -54,6 +54,7 @@
         'static/xls/fincas_pma.tipo_activo.csv',
         'static/xls/fincas_pma.tipo_equipo.csv',
         'static/xls/fincas_pma.marca.csv',
+        'static/xls/maintenance.equipment.csv',
         ###############################
     ],
     # only loaded in demonstration mode
