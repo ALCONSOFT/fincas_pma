@@ -21,6 +21,7 @@ class FincasProject(models.Model):
     desr = fields.Float('Distancia entre Surcos', digits=(10, 3), tracking=True)
     ubic = fields.Char('Ubicación', required=True, tracking=True)
     tds = fields.Char('Tipo de Suelo', tracking=True)
+    fecha_est_cosecha = fields.DATETIME('Fecha estimada de cosecha', tracking=True)
     # PROPIEDADES DE LA CAÑA
     tipocorte = fields.Many2one('fincas_pma.tiposcortes', string = 'T.D.C.', tracking=True)
     variedad = fields.Many2one('fincas_pma.variedades', string = 'Variedad', tracking=True)

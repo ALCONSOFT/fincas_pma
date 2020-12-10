@@ -44,6 +44,7 @@
                 <field name="difprc"/>
                 <field name="dist"/>
                 <field name="tds"/>
+                <field name="fecha_est_cosecha"/>
                 <newline/>
               <separator string="Indicadores de Azucar" colspan="2"/>
                 <newline/>
