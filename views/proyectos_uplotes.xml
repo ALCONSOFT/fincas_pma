@@ -90,7 +90,7 @@
       <field name="view_mode">tree,kanban,form</field>
     </record>
     <!--ELEMENTO DE MENU: Lista de Labores-->
-    <menuitem name="Lista de Proyectos: UPLotes" id="fincas_pma.menu_list_labores" parent="fincas_pma.menu_3"
+    <menuitem name="Lista de Proyectos: UPLotes" id="fincas_pma.menu_list_uplotes" parent="fincas_pma.menu_3"
               action="fincas_pma.action_window_uplotes"/>              
 
     <!-- PROJECT KANBAN -->
@@ -123,11 +123,4 @@
                 <span>Name:</span>
                
             </xpath>       
-
-
-                
-
-
-                    
-
 -->            

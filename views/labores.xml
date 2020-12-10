@@ -25,6 +25,7 @@
       <field name="res_model">fincas_pma.labores</field>
       <field name="view_mode">tree,form</field>
     </record>
+
     <!--ELEMENTO DE MENU: Lista de Labores-->
     <menuitem name="Lista Labores" id="fincas_pma.menu_list_labores" parent="fincas_pma.menu_2"
               action="fincas_pma.action_window_labor"/>              
