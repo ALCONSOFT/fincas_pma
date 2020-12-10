@@ -40,6 +40,7 @@
         'views/tipo_activo.xml',
         'views/tipo_equipo.xml',
         'views/marca.xml',
+        'views/Frentes.xml',
         'views/proyectos_uplotes.xml',
         ####### CARGA AUTOMATICA AL INSTALAR DE DATOS ESTATICOS ########################
         'static/xls/fincas_pma.fincas_pma.csv',
@@ -53,8 +54,10 @@
         'static/xls/project.project.csv',
         'static/xls/fincas_pma.tipo_activo.csv',
         'static/xls/fincas_pma.tipo_equipo.csv',
+        'static/xls/fincas_pma.frentes.csv',
         'static/xls/fincas_pma.marca.csv',
-        'static/xls/maintenance.equipment.csv',
+        
+       # 'static/xls/maintenance.equipment.csv',
         ###############################
     ],
     # only loaded in demonstration mode
