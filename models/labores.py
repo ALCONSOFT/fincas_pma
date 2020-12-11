@@ -13,7 +13,7 @@ class labores(models.Model):
 
     name = fields.Char('Nombre de Labor', required=True)
     active = fields.Boolean('Activo', default=True)
-    code_labor = fields.Char('Código Labor', required=True)
+    code_labor = fields.Char('Código Labor', required=True, index=True)
     description = fields.Text(string='Descripción')
     #employee_in_charge = fields.Many2one('hr.employee', string='Empleado', tracking=True, domain="['|', ('company_id', '=', False), ('company_id', '=', company_id)]")
     ########## CUANDO SE HAGAN CAMBIOS EN EL MODELO ES NECESARIO DESINSTALAR LA APPS EN ODOO
@@ -29,3 +29,17 @@ class labores(models.Model):
     equivalencia_tiempo = fields.Float(string='Equivalencia en Tiempo de Labor', required=True, digits=(14, 4), store=True)
     observacion = fields.Text(string='Observaciones')
     
+    #SQL constraints are defined through the model attribute _sql_constraints.
+    #  The latter is assigned to a list of triples of strings 
+    # (name, sql_definition, message), where name is a valid SQL constraint
+    #  name, sql_definition is a table_constraint expression, and message is
+    #  the error message.
+    _sql_constraints = [
+        ('code_labor_unique',
+         'UNIQUE(code_labor)',
+         "El código de Labor debe ser único"),
+
+        ('name_unique',
+         'UNIQUE(name)',
+         "The Labor title must be unique"),
+    ]    
