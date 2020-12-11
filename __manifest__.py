@@ -7,7 +7,10 @@
         subtitle on modules listing or apps.openerp.com""",
 
     'description': """
-        Máestro de fincas con  parametros de Pamama
+        Máestro de fincas con parametros de Pamama.
+        - Rama: dev_project
+        - - Correccion bug de desinstalacion: Causado tal vez por???
+        - - Agregando etiquetas: up y lote en Kanba Project.project
     """,
 
     'author': "Alconsoft",
@@ -17,10 +20,10 @@
     # Check https://github.com/odoo/odoo/blob/13.0/odoo/addons/base/data/ir_module_category_data.xml
     # for the full list
     'category': 'Uncategorized',
-    'version': '0.1-20-11-24 - 21:44',
+    'version': '0.Rama: main 20201211 - 08:15',
 
     # any module necessary for this one to work correctly
-    'depends': ['base', 'hr', 'project', 'hr_timesheet', 'sale_management','maintenance'],
+    'depends': ['base', 'hr', 'project', 'hr_timesheet', 'sale_management','purchase','maintenance'],
 
     # always loaded: Aqui se cargan los formularios de vista.
     # IMPORTANTE: SE QUITA EL CARACTER "#" PARA QUE SE PUEDA CARGAR ARCHIVO CON LA LISTA DE ACCESO DE SEGURIDAD
@@ -41,6 +44,8 @@
         'views/distritos.xml',
         'views/tipo_cultivo.xml',
         'views/Frentes.xml',
+        'views/marca.xml',
+        'views/proyectos_uplotes.xml',
         ####### CARGA AUTOMATICA AL INSTALAR DE DATOS ESTATICOS ########################
         'static/xls/fincas_pma.fincas_pma.csv',
         'static/xls/fincas_pma.labores.csv',
@@ -51,6 +56,10 @@
         'static/xls/fincas_pma.zafras.csv',
         'static/xls/res.partner.csv',
         'static/xls/project.project.csv',
+        'static/xls/fincas_pma.tipo_activo.csv',
+        'static/xls/fincas_pma.tipo_equipo.csv',
+        'static/xls/fincas_pma.marca.csv',
+        'static/xls/maintenance.equipment.csv',
         ###############################
     ],
     # only loaded in demonstration mode

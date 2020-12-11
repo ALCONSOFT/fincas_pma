@@ -19,14 +19,15 @@
         </tree>
       </field>
     </record>
-
+    <!--ACCION DE VENTANA: Labores-->
     <record model="ir.actions.act_window" id="fincas_pma.action_window_labor">
-      <field name="name">fincas_pma window labores</field>
+      <field name="name">Mantenimiento de Labores</field>
       <field name="res_model">fincas_pma.labores</field>
       <field name="view_mode">tree,form</field>
     </record>
 
-    <menuitem name="Lista Labores" id="fincas_pma.menu_list_labores" parent="fincas_pma.menu_1"
+    <!--ELEMENTO DE MENU: Lista de Labores-->
+    <menuitem name="Lista Labores" id="fincas_pma.menu_list_labores" parent="fincas_pma.menu_2"
               action="fincas_pma.action_window_labor"/>              
 
     </data>
