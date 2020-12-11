@@ -12,6 +12,8 @@
           <field name="employee_in_charge"/>
           <field name="employee_in_charge2"/>
           <field name="company_id"/>
+          <field name="value_area_mts"/>
+          <field name="value_area_ha"/>
           <field name="description"/>
           
         </tree>

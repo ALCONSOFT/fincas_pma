@@ -64,6 +64,8 @@ class frentes(models.Model):
     company_id = fields.Many2one('res.company', compute='_compute_employee_fincas_pma', store=True, readonly=False,
         default=lambda self: self.env.company, required=True)
     employee_in_charge2 = fields.Many2one('hr.employee', string='Responbles', tracking=True, domain="['|', ('company_id', '=', False), ('company_id', '=', company_id)]")
+    value_area_mts = fields.Integer('Area en mts.')
+    value_area_ha = fields.Float(compute="_value_pc", store=True)
     description = fields.Text(string='Descripción')
 
 class subfincas(models.Model):
