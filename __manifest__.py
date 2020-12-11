@@ -20,7 +20,7 @@
     # Check https://github.com/odoo/odoo/blob/13.0/odoo/addons/base/data/ir_module_category_data.xml
     # for the full list
     'category': 'Uncategorized',
-    'version': '0.Rama: main 20201211 - 08:15',
+    'version': '0.Rama: main 20201211 - 13:59',
 
     # any module necessary for this one to work correctly
     'depends': ['base', 'hr', 'project', 'hr_timesheet', 'sale_management','purchase','maintenance'],

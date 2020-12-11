@@ -16,3 +16,13 @@ class FincasEmpleados(models.Model):
     t_salario = fields.Char('Tipo de salario',  tracking=True)
     hora_regular = fields.Float('Hora regular',  tracking=True)
     salario_pactado = fields.Float('Salario pactado', tracking=True)
+
+    _sql_constraints = [
+        ('code_identification_unique',
+         'UNIQUE(identification_id)',
+         "El código de Identificación debe ser único"),
+
+        ('nempl_unique',
+         'UNIQUE(nempl)',
+         "El Número de Empleado debe ser único"),
+    ]    
