@@ -39,6 +39,11 @@
         'views/subfincas.xml',
         'views/tipo_activo.xml',
         'views/tipo_equipo.xml',
+        'views/empleados.xml',
+        'views/corregs.xml',
+        'views/distritos.xml',
+        'views/tipo_cultivo.xml',
+        'views/Frentes.xml',
         'views/marca.xml',
         'views/proyectos_uplotes.xml',
         ####### CARGA AUTOMATICA AL INSTALAR DE DATOS ESTATICOS ########################

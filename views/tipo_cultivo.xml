@@ -1,0 +1,29 @@
+<odoo>
+  <data>
+
+ <record model="ir.ui.view" id="fincas_pma.listipo_cultivo">
+      <field name="name">fincas_pma_listtipo_cultivo</field>
+      <field name="model">fincas_pma.tipo_cultivo</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="name"/>
+          <field name="active"/>
+          <field name="codigo"/>
+          <field name="description"/>
+        </tree>
+      </field>
+    </record>
+
+<record model="ir.actions.act_window" id="fincas_pma.action_window_tipo_cultivo">
+      <field name="name">fincas_pma window tipo_cultivo</field>
+      <field name="res_model">fincas_pma.tipo_cultivo</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+
+
+ <menuitem name="Lista Tipo cultivo" id="fincas_pma.menu_6_list" parent="fincas_pma.menu_1"
+              action="fincas_pma.action_window_tipo_cultivo"/>                     
+
+
+ </data>
+</odoo>
