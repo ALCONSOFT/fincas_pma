@@ -9,7 +9,11 @@
           <field name="name"/>
           <field name="active"/>
           <field name="code_frente"/>
+          <field name="employee_in_charge"/>
+          <field name="employee_in_charge2"/>
+          <field name="company_id"/>
           <field name="description"/>
+          
         </tree>
       </field>
     </record>
