@@ -36,6 +36,16 @@ class fincas_pma(models.Model):
         for fincas_pma in self.filtered('employee_in_charge'):
             fincas_pma.company_id = fincas_pma.employee_in_charge.company_id
 
+    _sql_constraints = [
+        ('code_finca_unique',
+         'UNIQUE(code_finca)',
+         "El código de Finca debe ser único"),
+
+        ('name_unique',
+         'UNIQUE(name)',
+         "El nombre de Finca debe ser único"),
+    ]    
+
 class provincias(models.Model):
     _name="fincas_pma.provincias"
 
