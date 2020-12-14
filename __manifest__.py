@@ -11,6 +11,7 @@
         - Rama: dev_project
         - - Correccion bug de desinstalacion: Causado tal vez por???
         - - Agregando etiquetas: up y lote en Kanba Project.project
+        Máestro de fincas con  parametros de Paamama
     """,
 
     'author': "Alconsoft",
@@ -33,6 +34,8 @@
         ###############################
         'views/views.xml',
         'views/templates.xml',
+        'views/Frentes.xml',
+        'views/up.xml',
         'views/labores.xml',
         'views/equiposymq.xml',
         'views/variedades.xml',

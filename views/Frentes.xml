@@ -15,7 +15,6 @@
           <field name="value_area_mts"/>
           <field name="value_area_ha"/>
           <field name="description"/>
-          
         </tree>
       </field>
     </record>
