@@ -62,9 +62,12 @@
         'static/xls/fincas_pma.tipo_equipo.csv',
         'static/xls/fincas_pma.frentes.csv',
         'static/xls/fincas_pma.marca.csv',
+        'static/xls/fincas_pma.provincias.csv',
+        'static/xls/fincas_pma.distritos.csv',
+        'static/xls/fincas_pma.corregs.csv',
         ####### archivos dependientes
         'static/xls/res.partner.csv',
-        'static/xls/maintenance.equipment.csv',
+        #'static/xls/maintenance.equipment.csv',
         'static/xls/project.project.csv',
         ###############################
     ],

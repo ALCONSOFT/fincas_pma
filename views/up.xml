@@ -8,7 +8,7 @@
         <tree>
           <field name="name"/>
           <field name="active"/>
-          <field name="code_frente"/>
+          <field name="code_up"/>
           <field name="description"/>
         </tree>
       </field>
