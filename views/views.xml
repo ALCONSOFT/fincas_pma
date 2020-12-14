@@ -105,13 +105,11 @@
 
     <!-- menu categories -->
 
-    <menuitem name="- Fincas    -" id="fincas_pma.menu_1" parent="fincas_pma.menu_root"/>
-    <menuitem name="- Labores   -" id="fincas_pma.menu_2" parent="fincas_pma.menu_root"/>
-    <menuitem name="- Proyectos -" id="fincas_pma.menu_3" parent="fincas_pma.menu_root"/>
-    <menuitem name="- Equipos   -" id="fincas_pma.menu_4" parent="fincas_pma.menu_root"/>
-<!--
-    <menuitem name="Menu 2" id="fincas_pma.menu_2" parent="fincas_pma.menu_root"/>
--->
+    <menuitem name="[ Fincas    ]" id="fincas_pma.menu_1" parent="fincas_pma.menu_root"/>
+    
+    <menuitem name="[ Proyectos ]" id="fincas_pma.menu_3" parent="fincas_pma.menu_root"/>
+    <menuitem name="[ Equipos   ]" id="fincas_pma.menu_4" parent="fincas_pma.menu_root"/>
+    <menuitem name="[ Labores   ]" id="fincas_pma.menu_2" parent="fincas_pma.menu_root"/>
     <!-- actions -->
 
     <menuitem name="Lista de Fincas" id="fincas_pma.menu_1_list" parent="fincas_pma.menu_1"
@@ -128,10 +126,5 @@
 
     <menuitem name="Lista Zafras" id="fincas_pma.menu_zafras_list" parent="fincas_pma.menu_1"
               action="fincas_pma.action_window_zafras"/>              
-
-<!--
-    <menuitem name="Server to list" id="fincas_pma" parent="fincas_pma.menu_2"
-              action="fincas_pma.action_server"/>
--->
   </data>
 </odoo>

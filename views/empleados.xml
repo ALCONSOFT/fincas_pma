@@ -1,0 +1,31 @@
+
+<odoo>
+  <data>
+  <record model="ir.ui.view" id="fincas_pma_hr_employee_form_inh">
+      <field name="name">hr.employee.form.inh</field>
+      <field name="model">hr.employee</field>
+      <field name="type">form</field>
+      <field name="inherit_id" ref="hr.view_employee_form"/>
+      <field name="arch" type="xml">
+        <notebook position="inside">
+          <page string="NOMEMCLATURA-empleado">
+            <group col="4" colspan="2">
+              <separator string="Datos Empleados" colspan="2"/>
+              <field name="nempl"/>
+              <field name="fincas_pma"/>
+              <field name="salario"/>
+              <field name="fecha_ingreso"/>
+              <field name="cod_hora"/>
+              <field name="t_sangre"/>
+              <field name="t_salario"/>
+              <field name="hora_regular"/>
+              <field name="salario_pactado"/>
+            </group>
+          </page>
+        </notebook>
+      </field>
+    </record>
+  </data>
+
+</odoo>
+

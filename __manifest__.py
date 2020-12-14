@@ -21,10 +21,10 @@
     # Check https://github.com/odoo/odoo/blob/13.0/odoo/addons/base/data/ir_module_category_data.xml
     # for the full list
     'category': 'Uncategorized',
-    'version': '0.Rama: dev_project-20-12-05 - 06:45',
+    'version': '0.Rama: main 20201211 - 21:10',
 
     # any module necessary for this one to work correctly
-    'depends': ['base', 'hr', 'project', 'hr_timesheet', 'sale_management','maintenance'],
+    'depends': ['base', 'hr', 'project', 'hr_timesheet', 'sale_management','purchase','maintenance'],
 
     # always loaded: Aqui se cargan los formularios de vista.
     # IMPORTANTE: SE QUITA EL CARACTER "#" PARA QUE SE PUEDA CARGAR ARCHIVO CON LA LISTA DE ACCESO DE SEGURIDAD
@@ -42,6 +42,11 @@
         'views/subfincas.xml',
         'views/tipo_activo.xml',
         'views/tipo_equipo.xml',
+        'views/empleados.xml',
+        'views/corregs.xml',
+        'views/distritos.xml',
+        'views/tipo_cultivo.xml',
+        'views/Frentes.xml',
         'views/marca.xml',
         'views/Frentes.xml',
         'views/proyectos_uplotes.xml',
@@ -53,14 +58,14 @@
         'static/xls/fincas_pma.variedades.csv',
         'static/xls/fincas_pma.tiposcortes.csv',
         'static/xls/fincas_pma.zafras.csv',
-        'static/xls/res.partner.csv',
-        'static/xls/project.project.csv',
         'static/xls/fincas_pma.tipo_activo.csv',
         'static/xls/fincas_pma.tipo_equipo.csv',
         'static/xls/fincas_pma.frentes.csv',
         'static/xls/fincas_pma.marca.csv',
-        
-       # 'static/xls/maintenance.equipment.csv',
+        ####### archivos dependientes
+        'static/xls/res.partner.csv',
+        'static/xls/maintenance.equipment.csv',
+        'static/xls/project.project.csv',
         ###############################
     ],
     # only loaded in demonstration mode
