@@ -12,6 +12,15 @@ class equiposymq(models.Model):
     marca = fields.Char(string= 'Marca')
     anio = fields.Char(string= 'Año')
     localizacion = fields.Char(string= 'Localizacion')
+<<<<<<< Updated upstream
     foto = fields.Char(string= 'Foto')
+=======
+    # Agregados 2020-12-11
+    foto = fields.Binary('Image', attachment=True, tracking=True)
+    project_id = fields.Many2one('project.project', 'Proyecto UPLote', track_visibility='onchange', tracking=True)
+    frente = fields.Many2one('fincas_pma.frentes', string = 'Frente', tracking=True)
+    contrato = fields.Char(string= 'Contrato', tracking=True)
+    status = fields.Char(string= 'Estado', tracking=True)
+>>>>>>> Stashed changes
 
 

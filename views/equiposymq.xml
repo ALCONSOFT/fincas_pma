@@ -19,11 +19,31 @@
               <field name="anio"/>
               <field name="localizacion"/>
               <field name="foto"/>
+              <field name="project_id"/>
+              <field name="frente"/>
+              <field name="contrato"/>
+              <field name="estado"/>
             </group>
           </page>
         </notebook>
       </field>
     </record>
+<<<<<<< Updated upstream
+=======
+    
+    <record model="ir.ui.view" id="fincas_pma_maintenance_equipment_list_inh">
+      <field name="name">maintenance.equipment.list.inh</field>
+      <field name="model">maintenance.equipment</field>
+      <field name="type">form</field>
+      <field name="inherit_id" ref="maintenance.hr_equipment_view_tree"/>
+      <field name="arch" type="xml">
+          <field name="name" position="after"> 
+              <field name="frente"/>
+          </field>
+      </field>
+    </record>
+    
+>>>>>>> Stashed changes
   </data>
 
 </odoo>
