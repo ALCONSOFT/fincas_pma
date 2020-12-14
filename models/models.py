@@ -2,6 +2,7 @@
 
 from odoo import models, fields, api
 
+
 class fincas_pma(models.Model):
     _name = 'fincas_pma.fincas_pma'
     _description = 'fincas_pma.fincas_pma - FINCAS PANAMA V.20/10/24-13:04'
@@ -130,4 +131,12 @@ class corregs(models.Model):
     name = fields.Char('Nombre de Corregimiento de la Ubicación de la U.P.+Lot:', required=True)
     active = fields.Boolean('Activo', default=True)
     distrito = fields.Many2one('fincas_pma.distritos', string = 'Distrito', tracking=True)
+    description = fields.Text(string='Descripción')
+
+class tipo_cane(models.Model):
+    _name = "fincas_pma.tipo_cane"
+    _description = "Tipo de Caña"
+
+    name = fields.Char('Nombre Tipo de Caña:', required=True)
+    active = fields.Boolean('Activo', default=True)
     description = fields.Text(string='Descripción')
