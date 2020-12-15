@@ -1,34 +1,34 @@
 id,name,active,code_tipocorte,description
-1,CQ04,true,CQ04,
-2,C04,true,C04,
-3,RSB,true,RSB,
-4,C06,true,C06,
-5,C05,true,C05,
-6,R,true,R,
-7,GC,true,GC,
-8,CQ02,true,CQ02,
-9,C01,true,C01,
-10,RS,true,RS,
-11,C11,true,C11,
-12,C15,true,C15,
-13,GCRS,true,GCRS,
+1,CQ04,true,CQ04,Caña quedada de 4 cortes
+2,C04,true,C04,Caña que tiene 4 cortes
+3,RSB,true,RSB,Caña sembrada para semillas basica en el lote que tenía caña cultivada
+4,C06,true,C06,Caña que tiene 6 cortes
+5,C05,true,C05,Caña que tiene 5 cortes 
+6,R,true,R,Caña sembrada para molino en lote que tenía caña cultivada
+7,GC,true,GC,Grancultura
+8,CQ02,true,CQ02,Caña quedada de 2 cortes
+9,C01,true,C01,Caña que tiene un corte
+10,RS,true,RS,Caña sembrada para semilla en lote que tenía caña cultivada
+11,C11,true,C11,Caña que tiene 11 cortes
+12,C15,true,C15,Caña que tiene 15 cortes
+13,GCRS,true,GCRS,Caña de renovacion que se quedó sin cosechar en la siembra anterior
 14,C01S,true,C01S,
-15,C03,true,C03,
-16,CQ01,true,CQ01,
-17,C07,true,C07,
-18,C02,true,C02,
-19,C0Q1,true,C0Q1,
-20,CQ06,true,CQ06,
-21,C010,true,C010,
+15,C03,true,C03,Caña que tiene 3 cortes
+16,CQ01,true,CQ01,Caña quedada de 1 cortes
+17,C07,true,C07,Caña que tiene 7 cortes
+18,C02,true,C02,Caña que tiene 3 cortes
+19,C0Q1,true,C0Q1,Caña quedada de 1 cortes
+20,CQ06,true,CQ06,Caña quedada de 6 cortes
+21,C010,true,C010,Caña que tiene 3 cortes
 22,C01SB,true,C01SB,
-23,C17,true,C17,
-24,CQ09,true,CQ09,
-25,C09,true,C09,
-26,CQ11,true,CQ11,
-27,CQ05,true,CQ05,
-28,C08,true,C08,
-29,C13,true,C13,
-30,FS,true,FS,
-31,CQ07,true,CQ07,
-32,C12,true,C12,
-33,GCR   ,true,GCR   ,
+23,C17,true,C17,Caña que tiene 17 cortes
+24,CQ09,true,CQ09,Caña quedada de 9 cortes
+25,C09,true,C09,Caña que tiene 9 cortes
+26,CQ11,true,CQ11,Caña quedada de 11 cortes
+27,CQ05,true,CQ05,Caña quedada de 5 cortes
+28,C08,true,C08,Caña que tiene 8 cortes
+29,C13,true,C13,Caña que tiene 13 cortes
+30,FS,true,FS,Caña sembrada para semilla en lote nuevo que tenía otro cultivo
+31,CQ07,true,CQ07,Caña quedada de 7 cortes
+32,C12,true,C12,Caña que tiene 12 cortes
+33,GCR   ,true,GCR   ,Caña de renovacion que se quedó sin cosechar en la zafra anterior

@@ -11,6 +11,7 @@
         - Rama: dev_project
         - - Correccion bug de desinstalacion: Causado tal vez por???
         - - Agregando etiquetas: up y lote en Kanba Project.project
+        Máestro de fincas con  parametros de Paamama
     """,
 
     'author': "Alconsoft",
@@ -33,6 +34,8 @@
         ###############################
         'views/views.xml',
         'views/templates.xml',
+        'views/Frentes.xml',
+        'views/up.xml',
         'views/labores.xml',
         'views/equiposymq.xml',
         'views/variedades.xml',
@@ -59,10 +62,13 @@
         'static/xls/fincas_pma.tipo_equipo.csv',
         'static/xls/fincas_pma.frentes.csv',
         'static/xls/fincas_pma.marca.csv',
+        'static/xls/fincas_pma.provincias.csv',
+        'static/xls/fincas_pma.distritos.csv',
+        'static/xls/fincas_pma.corregs.csv',
         'static/xls/fincas_pma.tipo_cane.csv',
         ####### archivos dependientes
         'static/xls/res.partner.csv',
-        'static/xls/maintenance.equipment.csv',
+        #'static/xls/maintenance.equipment.csv',
         'static/xls/project.project.csv',
         ###############################
     ],
