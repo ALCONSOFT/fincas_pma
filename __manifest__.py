@@ -21,7 +21,7 @@
     # Check https://github.com/odoo/odoo/blob/13.0/odoo/addons/base/data/ir_module_category_data.xml
     # for the full list
     'category': 'Uncategorized',
-    'version': '0.Rama: main 20201211 - 21:10',
+    'version': '0.Rama: main 20201214 - 15:15',
 
     # any module necessary for this one to work correctly
     'depends': ['base', 'hr', 'project', 'hr_timesheet', 'sale_management','purchase','maintenance'],
@@ -65,6 +65,7 @@
         'static/xls/fincas_pma.provincias.csv',
         'static/xls/fincas_pma.distritos.csv',
         'static/xls/fincas_pma.corregs.csv',
+        'static/xls/fincas_pma.tipo_cane.csv',
         ####### archivos dependientes
         'static/xls/res.partner.csv',
         #'static/xls/maintenance.equipment.csv',

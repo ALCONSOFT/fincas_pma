@@ -69,6 +69,18 @@
       </field>
     </record>
 
+    <record model="ir.ui.view" id="fincas_pma.lista_tipo_cane">
+      <field name="name">fincas_pma lista Tipo de Caña</field>
+      <field name="model">fincas_pma.tipo_cane</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="name"/>
+          <field name="active"/>
+          <field name="description"/>
+        </tree>
+      </field>
+    </record>
+
 <!--<field name="company_id"/> groups="base.group_multi_company"  optional="show"
  domain="[('active', '=', True), ('company_id', '=', company_id)]"-->
 
@@ -99,6 +111,11 @@
       <field name="res_model">fincas_pma.zafras</field>
       <field name="view_mode">tree,form</field>
     </record>
+    <record model="ir.actions.act_window" id="fincas_pma.action_window_tipo_cane">
+      <field name="name">fincas_pma window Tipo Cane</field>
+      <field name="res_model">fincas_pma.tipo_cane</field>
+      <field name="view_mode">tree,form</field>
+    </record>
 
 
     <menuitem name="Fincas Panamá" id="fincas_pma.menu_root"/>
@@ -125,6 +142,9 @@
               action="fincas_pma.action_window_tiposcortes"/>              
 
     <menuitem name="Lista Zafras" id="fincas_pma.menu_zafras_list" parent="fincas_pma.menu_1"
-              action="fincas_pma.action_window_zafras"/>              
+              action="fincas_pma.action_window_zafras"/>
+    <menuitem name="Lista Tipo Caña" id="fincas_pma.menu_tipo_cane_list" parent="fincas_pma.menu_1"
+              action="fincas_pma.action_window_tipo_cane"/>              
+
   </data>
 </odoo>
