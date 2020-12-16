@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 from odoo import models, fields, api
-
+from datetime import timedelta
 
 class fincas_pma(models.Model):
     _name = 'fincas_pma.fincas_pma'

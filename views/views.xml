@@ -80,6 +80,25 @@
         </tree>
       </field>
     </record>
+<!-- -->
+    <record model="ir.ui.view" id="fincas_pma.lista_calendario">
+      <field name="name">fincas_pma lista Calendarios</field>
+      <field name="model">fincas_pma.calendario</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="name"/>
+          <field name="active"/>
+          <field name="description"/>
+          <field name="code_zafra"/>
+          <field name="fecha_hora_inicio"/>
+          <field name="fecha_hora_fin"/>
+          <field name="fecha_hora_cultivo_i"/>
+          <field name="fecha_hora_cultivo_f"/>
+          <field name="periodo_actual"/>
+          <field name="ahora"/>
+        </tree>
+      </field>
+    </record>
 
 <!--<field name="company_id"/> groups="base.group_multi_company"  optional="show"
  domain="[('active', '=', True), ('company_id', '=', company_id)]"-->
@@ -116,7 +135,11 @@
       <field name="res_model">fincas_pma.tipo_cane</field>
       <field name="view_mode">tree,form</field>
     </record>
-
+    <record model="ir.actions.act_window" id="fincas_pma.action_window_calendario">
+      <field name="name">Calendario Zafra Cultivo</field>
+      <field name="res_model">fincas_pma.calendario</field>
+      <field name="view_mode">tree,form</field>
+    </record>
 
     <menuitem name="Fincas Panamá" id="fincas_pma.menu_root"/>
 
@@ -143,8 +166,12 @@
 
     <menuitem name="Lista Zafras" id="fincas_pma.menu_zafras_list" parent="fincas_pma.menu_1"
               action="fincas_pma.action_window_zafras"/>
+
     <menuitem name="Lista Tipo Caña" id="fincas_pma.menu_tipo_cane_list" parent="fincas_pma.menu_1"
               action="fincas_pma.action_window_tipo_cane"/>              
+
+    <menuitem name="Lista Calendarios" id="fincas_pma.menu_calendario_list" parent="fincas_pma.menu_1"
+              action="fincas_pma.action_window_calendario"/>                            
 
   </data>
 </odoo>

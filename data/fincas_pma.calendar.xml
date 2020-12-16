@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+      <record id="fincas_pma_calendar1" model="fincas_pma.calendar">
+          <field name="name">2018-2019</field>
+          <field name="active">True</field>
+          <field name="description">TEMPORADA ZAFRA CULTIVO 2018-2019</field>
+          <field name="fecha_hora_inicio">01/01/2019 6:00</field>
+          <field name="fecha_hora_fin">30/04/2019 5:59</field>
+          <field name="fecha_hora_cultivo_i">01/01/2019 6:00</field>
+          <field name="fecha_hora_cultivo_f">30/04/2019 5:59</field>
+          <field name="periodo_actual">True</field>
+      </record>
+    </data>
+</odoo>
+<!--
+          <record id="object0" model="fincas_pma.fincas_pma">
+            <field name="name">Object 0</field>
+            <field name="value">0</field>
+          </record>
+<field name="code_zafra">2018-2019</field>
+
+    name = fields.Char('Nombre del Periodo Zafra-Cultivo', required=True)
+    active = fields.Boolean('Activo', default=True)
+    code_zafra = fields.Many2one('fincas_pma.zafras', string = 'Zafra_Cultivo', tracking=True, required=True)
+    description = fields.Text(string='Descripción', tracking=True, required=True)
+    fecha_hora_inicio = fields.Datetime(string='Fecha Hora Inicio Zafra', tracking=True, required=True)
+    fecha_hora_fin = fields.Datetime(string='Fecha Hora Fin Zafra', tracking=True, required=True)
+    fecha_hora_cultivo_i = fields.Datetime(string='Fecha Hora Inicio Cultivo', tracking=True, required=True)
+    fecha_hora_cultivo_f = fields.Datetime(string='Fecha Hora Fin Cultivo', tracking=True, required=True)
+    periodo_actual = fields.Boolean('Periodo Corriente', default=False, tracking=True, required=True)
+-->

@@ -4,6 +4,7 @@ from . import models
 # Modelos asignados a Alejandro
 from . import proyectos
 from . import labores
+from . import calendario
 # Modelos asigandos a Manuel
 from . import equiposymq
 from . import tipo_activo
