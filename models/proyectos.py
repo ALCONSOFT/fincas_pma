@@ -63,3 +63,23 @@ class FincasProject(models.Model):
     dosm = fields.Float('Dosis Madurador', digits=(11, 4), tracking=True)
     mad = fields.Char('Madurador', tracking=True)
     fdam = fields.Date('Fecha de Aplicación de Madurador', tracking=True)
+    # CODE REFERENCE - UP+LOT - LLAVE UNICA
+    uplote = fields.Char(string='UP.Lote', tracking=True, store=True, compute='_onchange_uplote', required=True)
+
+    _sql_constraints = [
+        ('uplote_unique',
+         'UNIQUE(uplote)',
+         "El código de UP+Lote debe ser único")
+        ]
+    
+    @api.depends('up','lote')
+    def _onchange_uplote(self):
+        lc_uplote = ''
+        if not self.up:
+            print('Sin UP', self.up)
+            return lc_uplote
+        else:
+            self.uplote = self.up.code_up + '-' + self.lote
+            lc_uplote = self.uplote
+            print('Con UP:', lc_uplote)
+        return lc_uplote

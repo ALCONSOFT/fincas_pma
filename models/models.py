@@ -96,6 +96,8 @@ class up(models.Model):
     active = fields.Boolean('Activo', default=True)
     code_up = fields.Char('Código de U.P.', required=True)
     description = fields.Text(string='Descripción')
+    partner_id = fields.Many2one('res.partner', string='Proveedor', required=False, change_default=True, tracking=True)
+
 
 class tiposcortes(models.Model):
     _name = "fincas_pma.tiposcortes"
