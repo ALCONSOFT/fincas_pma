@@ -72,6 +72,7 @@
         ####### archivos dependientes
         #'static/xls/res.partner.csv',
         'static/xls/maintenance.equipment.csv',
+        #'static/xls/account_analytic_account.csv',
         'static/xls/project.project.csv',
         ###############################
     ],
