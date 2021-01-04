@@ -8,5 +8,13 @@ class tipo_activo(models.Model):
     name = fields.Char('Tipo Activo:', required=True)
     active = fields.Boolean('Activo', default=True) 
 
+    _sql_constraints = [
+        
+        ('name_unique',
+         'UNIQUE(name)',
+         "El nombre de activo debe ser único"),
+    ]    
+
+
 
 

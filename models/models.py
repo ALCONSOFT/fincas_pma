@@ -55,6 +55,8 @@ class provincias(models.Model):
     code_provincia = fields.Char('Código', required=True)
     description = fields.Text(string='Descripción')
 
+    
+
 class zafras(models.Model):
     _name = "fincas_pma.zafras"
     _description = "Codigos de Zafras - Cada anio una nueva: ejm.: 2020, 2021 . . . "
@@ -63,6 +65,17 @@ class zafras(models.Model):
     active = fields.Boolean('Activo', default=True)
     code_zafra = fields.Char('Código de Zafra', required=True)
     description = fields.Text(string='Descripción')
+
+    _sql_constraints = [
+        ('code_zafra_unique',
+         'UNIQUE(code_zafra)',
+         "El código de zafra debe ser único"),
+
+        ('name_unique',
+         'UNIQUE(name)',
+         "El nombre de zafra debe ser único"),
+    ]    
+
 
 class frentes(models.Model):
     _name = "fincas_pma.frentes"
@@ -79,6 +92,17 @@ class frentes(models.Model):
     value_area_ha = fields.Float(compute="_value_pc", store=True)
     description = fields.Text(string='Descripción')
 
+    _sql_constraints = [
+        ('code_frente_unique',
+         'UNIQUE(code_frente)',
+         "El código de Frente debe ser único"),
+
+        ('name_unique',
+         'UNIQUE(name)',
+         "El nombre de Frente debe ser único"),
+    ]    
+
+
 class subfincas(models.Model):
     _name = "fincas_pma.subfincas"
     _description = "Código de Sub-Fincas de Cultivo de Caña"
@@ -87,6 +111,17 @@ class subfincas(models.Model):
     active = fields.Boolean('Activo', default=True)
     code_subfinca = fields.Char('Código de Sub-Finca', required=True)
     description = fields.Text(string='Descripción')
+
+    _sql_constraints = [
+        ('code_subfinca_unique',
+         'UNIQUE(code_subfinca)',
+         "El código de subfinca debe ser único"),
+
+        ('name_unique',
+         'UNIQUE(name)',
+         "El nombre de subfinca debe ser único"),
+    ]    
+
 
 class up(models.Model):
     _name = "fincas_pma.up"
@@ -97,6 +132,17 @@ class up(models.Model):
     code_up = fields.Char('Código de U.P.', required=True)
     description = fields.Text(string='Descripción')
 
+    _sql_constraints = [
+        ('code_up_unique',
+         'UNIQUE(code_up)',
+         "El código de UP debe ser único"),
+
+        ('name_unique',
+         'UNIQUE(name)',
+         "El nombre de UP debe ser único"),
+    ]    
+
+
 class tiposcortes(models.Model):
     _name = "fincas_pma.tiposcortes"
     _description = "Código de Tipos de Cortes de Cosecha de Caña"
@@ -105,6 +151,17 @@ class tiposcortes(models.Model):
     active = fields.Boolean('Activo', default=True)
     code_tipocorte = fields.Char('Código de T.D.C.', required=True)
     description = fields.Text(string='Descripción')
+
+    _sql_constraints = [
+        ('code_tipocorte_unique',
+         'UNIQUE(code_tipocorte)',
+         "El código de tipo de corte debe ser único"),
+
+        ('name_unique',
+         'UNIQUE(name)',
+         "El nombre de tipocorte debe ser único"),
+    ]    
+
 
 class variedades(models.Model):
     _name = "fincas_pma.variedades"
@@ -115,6 +172,17 @@ class variedades(models.Model):
     code_variedad = fields.Char('Código de Variedad', required=True)
     description = fields.Text(string='Descripción')
 
+    _sql_constraints = [
+        ('code_variedad_unique',
+         'UNIQUE(code_variedad)',
+         "El código de variedad debe ser único"),
+
+        ('name_unique',
+         'UNIQUE(name)',
+         "El nombre de variedad debe ser único"),
+    ]    
+
+
 class distritos(models.Model):
     _name = "fincas_pma.distritos"
     _description = "Distritos de la Rep. de Panamá"
@@ -124,6 +192,14 @@ class distritos(models.Model):
     provincia = fields.Many2one('fincas_pma.provincias', string = 'Provincia', tracking=True)
     description = fields.Text(string='Descripción')
 
+    _sql_constraints = [
+
+        ('name_unique',
+         'UNIQUE(name)',
+         "El nombre de distrito debe ser único"),
+    ]    
+
+
 class corregs(models.Model):
     _name = "fincas_pma.corregs"
     _description = "Corregimentos de la Rep. de Panamá"
@@ -132,6 +208,8 @@ class corregs(models.Model):
     active = fields.Boolean('Activo', default=True)
     distrito = fields.Many2one('fincas_pma.distritos', string = 'Distrito', tracking=True)
     description = fields.Text(string='Descripción')
+
+
 
 class tipo_cane(models.Model):
     _name = "fincas_pma.tipo_cane"

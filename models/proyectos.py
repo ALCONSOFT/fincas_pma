@@ -63,3 +63,9 @@ class FincasProject(models.Model):
     dosm = fields.Float('Dosis Madurador', digits=(11, 4), tracking=True)
     mad = fields.Char('Madurador', tracking=True)
     fdam = fields.Date('Fecha de Aplicación de Madurador', tracking=True)
+
+    _sql_constraints = [
+        ('lote_unique',
+         'UNIQUE(lote)',
+         "El código de lote debe ser único"),
+    ]    

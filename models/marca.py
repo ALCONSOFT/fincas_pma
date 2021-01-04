@@ -8,3 +8,11 @@ class marca(models.Model):
     name = fields.Char('Marca:', required=True)
     active = fields.Boolean('Activo', default=True) 
 
+    _sql_constraints = [
+    
+        ('name_unique',
+         'UNIQUE(name)',
+         "El nombre de marca debe ser único"),
+    ]    
+
+
