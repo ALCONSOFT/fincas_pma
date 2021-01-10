@@ -11,7 +11,7 @@
         - Rama: dev_project
         - - Correccion bug de desinstalacion: Causado tal vez por???
         - - Agregando etiquetas: up y lote en Kanba Project.project
-        Máestro de fincas con  parametros de Paamama
+        Máestro de fincas con  parametros de Pamama.
     """,
 
     'author': "Alconsoft",
@@ -21,7 +21,7 @@
     # Check https://github.com/odoo/odoo/blob/13.0/odoo/addons/base/data/ir_module_category_data.xml
     # for the full list
     'category': 'Uncategorized',
-    'version': '0.Rama: main 20201214 - 15:15',
+    'version': '0.Rama: main 2020-12-27 - 14:00',
 
     # any module necessary for this one to work correctly
     'depends': ['base', 'hr', 'project', 'hr_timesheet', 'sale_management','purchase','maintenance'],
@@ -50,6 +50,8 @@
         'views/marca.xml',
         'views/Frentes.xml',
         'views/proyectos_uplotes.xml',
+        #'views/tipo_cane.xml',
+        #'views/calendario.xml', #Carga como parte de la vista: views.xml
         ####### CARGA AUTOMATICA AL INSTALAR DE DATOS ESTATICOS ########################
         'static/xls/fincas_pma.fincas_pma.csv',
         'static/xls/fincas_pma.labores.csv',
@@ -66,9 +68,11 @@
         'static/xls/fincas_pma.distritos.csv',
         'static/xls/fincas_pma.corregs.csv',
         'static/xls/fincas_pma.tipo_cane.csv',
+        'static/xls/fincas_pma.calendario.csv',##error al cargar la fechahora-se corrigio erae el formato de fecha##
         ####### archivos dependientes
-        'static/xls/res.partner.csv',
-        #'static/xls/maintenance.equipment.csv',
+        #'static/xls/res.partner.csv',
+        'static/xls/maintenance.equipment.csv',
+        #'static/xls/account_analytic_account.csv',
         'static/xls/project.project.csv',
         ###############################
     ],

@@ -10,6 +10,7 @@
           <field name="active"/>
           <field name="code_up"/>
           <field name="description"/>
+          <field name="partner_id"/>
         </tree>
       </field>
     </record>

@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 from odoo import models, fields, api
-
+from datetime import timedelta
 
 class fincas_pma(models.Model):
     _name = 'fincas_pma.fincas_pma'
@@ -131,6 +131,8 @@ class up(models.Model):
     active = fields.Boolean('Activo', default=True)
     code_up = fields.Char('Código de U.P.', required=True)
     description = fields.Text(string='Descripción')
+    partner_id = fields.Many2one('res.partner', string='Proveedor', required=False, change_default=True, tracking=True)
+
 
     _sql_constraints = [
         ('code_up_unique',

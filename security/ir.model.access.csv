@@ -15,3 +15,4 @@ access_fincas_pma_tipo_activo,fincas_pma.tipo_activo,model_fincas_pma_tipo_activ
 access_fincas_pma_tipo_equipo,fincas_pma.tipo_equipo,model_fincas_pma_tipo_equipo,base.group_user,1,1,1,1
 access_fincas_pma_marca,fincas_pma.marca,model_fincas_pma_marca,base.group_user,1,1,1,1
 access_fincas_pma_tipo_cane,fincas_pma.tipo_cane,model_fincas_pma_tipo_cane,base.group_user,1,1,1,1
+access_fincas_pma_calendario,fincas_pma.calendario,model_fincas_pma_calendario,base.group_user,1,1,1,1

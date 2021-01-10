@@ -58,7 +58,7 @@ def mi_departamento(url, db, uid, password, depa):
         #print("id_Odoo: ", ident)
     else: return ids[0]
 #    except Exception:
-#    e = sys.exc_info()[1]
+#    e = sys.exc_info()[1] 
 #    print(e.args[0])
 #    print(e.args[1])
 
