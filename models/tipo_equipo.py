@@ -7,3 +7,11 @@ class tipo_equipo(models.Model):
 
     name = fields.Char('Tipo de equipo:', required=True)
     active = fields.Boolean('Activo', default=True) 
+
+    _sql_constraints = [
+ 
+        ('name_unique',
+         'UNIQUE(name)',
+         "El nombre de tipo de equipo debe ser único"),
+    ]    
+

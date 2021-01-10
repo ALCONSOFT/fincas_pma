@@ -63,6 +63,7 @@ class FincasProject(models.Model):
     dosm = fields.Float('Dosis Madurador', digits=(11, 4), tracking=True)
     mad = fields.Char('Madurador', tracking=True)
     fdam = fields.Date('Fecha de Aplicación de Madurador', tracking=True)
+
     # CODE REFERENCE - UP+LOT - LLAVE UNICA
     uplote = fields.Char(string='UP.Lote', tracking=True, store=True, compute='_onchange_uplote', required=True)
 
@@ -83,3 +84,4 @@ class FincasProject(models.Model):
             lc_uplote = self.uplote
             print('Con UP:', lc_uplote)
         return lc_uplote
+
