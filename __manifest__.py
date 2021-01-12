@@ -21,7 +21,7 @@
     # Check https://github.com/odoo/odoo/blob/13.0/odoo/addons/base/data/ir_module_category_data.xml
     # for the full list
     'category': 'Uncategorized',
-    'version': '0.2021-01-10 - 10:00',
+    'version': '0.2021-01-11 - 19:00',
 
     # any module necessary for this one to work correctly
     'depends': ['base', 'hr', 'project', 'hr_timesheet', 'sale_management','purchase','maintenance','abs_project_po'],
@@ -50,8 +50,6 @@
         'views/marca.xml',
         'views/Frentes.xml',
         'views/proyectos_uplotes.xml',
-        #'views/tipo_cane.xml',
-        #'views/calendario.xml', #Carga como parte de la vista: views.xml
         ####### CARGA AUTOMATICA AL INSTALAR DE DATOS ESTATICOS ########################
         'static/xls/fincas_pma.fincas_pma.csv',
         'static/xls/fincas_pma.labores.csv',
@@ -74,11 +72,13 @@
         'static/xls/maintenance.equipment.csv',
         #'static/xls/account_analytic_account.csv',
         'static/xls/project.project.csv',
+
         ###############################
     ],
     # only loaded in demonstration mode
     'demo': [
         'demo/demo.xml',
+
     ],
     # Aplicacion:  si aparace cierto (true) esta modulo sera una aplicacion que aprecera en el listado de aplicaciones de odoo.
     'application': True,

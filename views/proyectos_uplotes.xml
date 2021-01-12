@@ -11,17 +11,18 @@
 			<field name="inherit_id" ref="project.edit_project" />
 			<field name="arch" type="xml">
 				<notebook position="inside">
-					<page string="-NOMENCLATURA-FINCAS-">
+					<page string="[ NOMENCLATURA-FINCAS ]">
 						<group col="4" colspan="2">
 							<separator string="Datos Finca y Ubicación" colspan="2"/>
                 <newline/>
                 <field name="up" placeholder="U.P. Relacionado"/>
                 <field name="lote" placeholder="Lote Relacionado"/>
-                <field name="uplote" readonly="1"/>
+                <field name="uplote" readonly="0"/>
                 <field name="fincas_pma" placeholder="Finca Relacionada" options='{"no_open": True}'/>
                 <field name="subfinca"   placeholder="Sub Finca Relacionada"/>
                 <field name="frente" placeholder="Frente Relacionado"/>
-                <field name="odc" placeholder="Orden de Corte"/>                
+                <field name="odc" placeholder="Orden de Corte"/>
+                <field name="has" placeholder="Superficie"/>                
                 <field name="variedad" placeholder="Variedad de cultivo Relacionado"/>
                 <field name="correg" placeholder="Corregimeinto de la Up+Lot :: Proyecto"/>
               <separator string="Propiedades de la Caña" colspan="2"/>
@@ -68,6 +69,14 @@
                 <!--x-->
 						</group>
 					</page>
+                    <page string="[ MADURANTES ]">
+						<group col="4" colspan="2">
+							<separator string="Datos Finca y Ubicación" colspan="2"/>
+                            <field name="dosm"/>
+                            <field name="mad"/>
+                            <field name="fdam"/>
+                        </group>
+                    </page>
 			</notebook>
 			</field>
 		</record>

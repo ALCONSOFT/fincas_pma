@@ -28,6 +28,7 @@ class labores(models.Model):
     cantidad_maxima = fields.Float(string='Cantidad Máxima de Labor', required=True, digits=(14, 4), store=True)
     equivalencia_tiempo = fields.Float(string='Equivalencia en Tiempo de Labor', required=True, digits=(14, 4), store=True)
     observacion = fields.Text(string='Observaciones')
+    external_id = fields.Char(string='External Reference', states={'open': [('readonly', False)]}, copy=False, readonly=True, help="Used to hold the reference of the external mean that created this statement (name of imported file, reference of online synchronization...)")    
     
     #SQL constraints are defined through the model attribute _sql_constraints.
     #  The latter is assigned to a list of triples of strings 

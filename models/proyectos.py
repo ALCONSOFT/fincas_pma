@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 from odoo import models, fields, api
+from openerp import exceptions
 # HERENCIA - AMPLIANDO APLICACIONES EXISTENTES
 #    AHORA AGREGAREMOS UN CAMPO A UN MODELO EXISTENTE;  EN ESTE CASO SERIA EL MODELO PROYECTO
 #    EL CAMPO A AGREGAR ES: fincas_pma EN EL NOMBRE DEL MODELO:  project.project
@@ -63,9 +64,9 @@ class FincasProject(models.Model):
     dosm = fields.Float('Dosis Madurador', digits=(11, 4), tracking=True)
     mad = fields.Char('Madurador', tracking=True)
     fdam = fields.Date('Fecha de Aplicación de Madurador', tracking=True)
-
+    external_id = fields.Char(string='External Reference', states={'open': [('readonly', False)]}, copy=False, readonly=True, help="Used to hold the reference of the external mean that created this statement (name of imported file, reference of online synchronization...)")
     # CODE REFERENCE - UP+LOT - LLAVE UNICA
-    uplote = fields.Char(string='UP.Lote', tracking=True, store=True, compute='_onchange_uplote', required=True)
+    uplote = fields.Char(string='UP.Lote', tracking=True, store=True)
 
     _sql_constraints = [
         ('uplote_unique',
@@ -74,7 +75,7 @@ class FincasProject(models.Model):
         ]
     
     @api.depends('up','lote')
-    def _onchange_uplote(self):
+    def _calcula_uplote(self):
         lc_uplote = ''
         if not self.up:
             print('Sin UP', self.up)
@@ -83,5 +84,13 @@ class FincasProject(models.Model):
             self.uplote = self.up.code_up + '-' + self.lote
             lc_uplote = self.uplote
             print('Con UP:', lc_uplote)
-        return lc_uplote
+            return lc_uplote
 
+    @api.onchange('up','lote')
+    def _onchange_uplote(self):
+        lc_uplote = ''
+        if not self.up:
+            lc_uplote = ''
+        else:
+            lc_uplote = self.up.code_up + '-' + self.lote
+        self.uplote = lc_uplote
