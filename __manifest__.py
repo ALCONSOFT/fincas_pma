@@ -68,7 +68,7 @@
         'static/xls/fincas_pma.tipo_cane.csv',
         'static/xls/fincas_pma.calendario.csv',##error al cargar la fechahora-se corrigio erae el formato de fecha##
         ####### archivos dependientes
-        #'static/xls/res.partner.csv',
+        'static/xls/res.partner.csv',
         'static/xls/maintenance.equipment.csv',
         #'static/xls/account_analytic_account.csv',
         'static/xls/project.project.csv',

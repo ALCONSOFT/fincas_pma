@@ -1,58 +1,62 @@
 id,name,display_name
-11,Fernando Ríos,Fernando Ríos
-12,Gloria Quintero,Gloria Quintero
-13,"Toama Holdings, S.A.","Toama Holdings, S.A."
-14,"Corporación Agrícola e Industrial Merrow, S.A.","Corporación Agrícola e Industrial Merrow, S.A."
-15,"Reforestadora Merrow, S.A.","Reforestadora Merrow, S.A."
-16,"Fundación Probo e Inversiones Praderas, S.A","Fundación Probo e Inversiones Praderas, S.A"
-17,"Fundación Probo e Inversiones Praderas, S.A","Fundación Probo e Inversiones Praderas, S.A"
-18,"Mercedes D. de Miró e Hijas, S.A.","Mercedes D. de Miró e Hijas, S.A."
-19,"Fundacion Arauz, S.A.","Fundacion Arauz, S.A."
-20,"ISMABE, S.A., e ILIANBE, S.A.","ISMABE, S.A., e ILIANBE, S.A."
-21,Luis Alberto Núñez Sánchez,Luis Alberto Núñez Sánchez
-22,"Oscar Danilo De León Sánchez, Claudia María De León Sánchez y Kenia Margarita De León Sánchez.","Oscar Danilo De León Sánchez, Claudia María De León Sánchez y Kenia Margarita De León Sánchez."
-23,Francisco Javier Aizpurúa Del Cid,Francisco Javier Aizpurúa Del Cid
-24,Manuel Rojas,Manuel Rojas
-25,Ulises Montoto Mejía,Ulises Montoto Mejía
-26,"Martin Alberto Arauz Ríos, Fernando Arauz Ríos, Gerardo Antonio Arauz Ríos, Luis Carlos Arauz Ríos y Carmen Leonor Arauz Ríos","Martin Alberto Arauz Ríos, Fernando Arauz Ríos, Gerardo Antonio Arauz Ríos, Luis Carlos Arauz Ríos y Carmen Leonor Arauz Ríos"
-27,JANO International Foundation,JANO International Foundation
-28,"Inmobiliaria LUQUI, S.A.","Inmobiliaria LUQUI, S.A."
-29,Natividad Quintero Morales,Natividad Quintero Morales
-30,"Central Industral Chiricana, S.A.","Central Industral Chiricana, S.A."
-31,Fundación Araúz Díaz y Efraín Sang Morales,Fundación Araúz Díaz y Efraín Sang Morales
-32,Hermanos Otero Guerra,Hermanos Otero Guerra
-33,Hermanos Morales Corella,Hermanos Morales Corella
-34,"Inmobiliaria LUQUI, S.A.","Inmobiliaria LUQUI, S.A."
-35,"Inversiones Los Llanos, S.A.","Inversiones Los Llanos, S.A."
-36,Lucila Morales,Lucila Morales
-37,Kenia Guardia,Kenia Guardia
-38,Dimas Sánchez Morales y Jorge Iván Vasquez Zambrao,Dimas Sánchez Morales y Jorge Iván Vasquez Zambrao
-39,"Darío Olmos, S.A.","Darío Olmos, S.A."
-40,Hernán Hernández Lezcano,Hernán Hernández Lezcano
-41,Cristi Amparo Quintero Morales,Cristi Amparo Quintero Morales
-42,"Pinto Arauz, S.A","Pinto Arauz, S.A"
-43,Fundación Hernández Tagle,Fundación Hernández Tagle
-44,"INLU, Inc.","INLU, Inc."
-45,Fundación Hernández Tagle,Fundación Hernández Tagle
-46,"Cia. Inmobiliaria Cañas Blancas, S. A.","Cia. Inmobiliaria Cañas Blancas, S. A."
-47,"Productos Lux, S. A.","Productos Lux, S. A."
-48,"Inversiones El Guácimo, S.A.","Inversiones El Guácimo, S.A."
-49,13 Sociedades Anónimas del Grupo Miró,13 Sociedades Anónimas del Grupo Miró
-50,"Inmobiliaria Jrquin, S.A.","Inmobiliaria Jrquin, S.A."
-51,"Hacienda Rio vista, S.A.","Hacienda Rio vista, S.A."
-52,Fundación Don Nico,Fundación Don Nico
-53,Cesar Javier Morales Vega,Cesar Javier Morales Vega
-54,Ubaldine Pérez Morales,Ubaldine Pérez Morales
-55,The Nical Foundation,The Nical Foundation
-56,Ubaldine Pérez Morales,Ubaldine Pérez Morales
-57,"Ganadera Canta Gallos, S.A.","Ganadera Canta Gallos, S.A."
-58,Natividad Serrano de Pérez,Natividad Serrano de Pérez
-59,"Ganadera JM, S.A","Ganadera JM, S.A"
-60,Fundación Probo,Fundación Probo
-61,Merrow International Corp.,Merrow International Corp.
-62,"Toama Holdings, S.A.","Toama Holdings, S.A."
-63,"Corporación Agrícola e Industrial Merrow, S.A.","Corporación Agrícola e Industrial Merrow, S.A."
-64,"Corporación Agrícola e Industrial Merrow, S.A.","Corporación Agrícola e Industrial Merrow, S.A."
-65,"Toama Holdings, S.A.","Toama Holdings, S.A."
-66,"Corporación Agrícola e Industrial Merrow, S.A.","Corporación Agrícola e Industrial Merrow, S.A."
-67,Julissa Isidra Sánchez de Madriñán y Lissette Arelis Guerra Sánchez,Julissa Isidra Sánchez de Madriñán y Lissette Arelis Guerra Sánchez
+11,Jarquin,Jarquin
+12,Las Loras,Las Loras
+13,Guarumal Beitia,Guarumal Beitia
+14,Sanidad Vegetal,Sanidad Vegetal
+15,Las Martinas,Las Martinas
+16,Altos de San Pedro,Altos de San Pedro
+17,Efraín Hernández,Efraín Hernández
+18,Las Moras,Las Moras
+19,Pinto Arauz,Pinto Arauz
+20,Julissa Sanchez,Julissa Sanchez
+21,Lechería,Lechería
+22,Fernando Rios,Fernando Rios
+23,Merrow,Merrow
+24,Gloria Quintero,Gloria Quintero
+25,Berlina,Berlina
+26,Monte Grande,Monte Grande
+27,Indios,Indios
+28,Bagala,Bagala
+29,MD Miró SA,MD Miró SA
+30,Fundacion Arauz,Fundacion Arauz
+31,Antonio Beitia,Antonio Beitia
+32,Ester Sanchez,Ester Sanchez
+33,Oscar De Leon,Oscar De Leon
+34,Francisco Aizpurua,Francisco Aizpurua
+35,Manuel Rojas,Manuel Rojas
+36,Ulises Montoto,Ulises Montoto
+37,Cira Arauz,Cira Arauz
+38,Barqueta,Barqueta
+39,La Cueva,La Cueva
+40,LUQUI LSP,LUQUI LSP
+41,Natividad Quintero,Natividad Quintero
+42,CICHISA,CICHISA
+43,Luis Díaz,Luis Díaz
+44,Rafael Otero,Rafael Otero
+45,Finca Corotú,Finca Corotú
+46,Alcibiades Morales,Alcibiades Morales
+47,LUQUI Alanje,LUQUI Alanje
+48,Los Llanos,Los Llanos
+49,Lucila Morales,Lucila Morales
+50,Kenia Guardia,Kenia Guardia
+51,Sánchez y Vasquez,Sánchez y Vasquez
+52,Loma de San Pedro,Loma de San Pedro
+53,Darío Olmos,Darío Olmos
+54,Hernán Hernández,Hernán Hernández
+55,Cristi Quintero,Cristi Quintero
+56,Cañaverales,Cañaverales
+57,INLU,INLU
+58,Cañas Blancas,Cañas Blancas
+59,Pericote,Pericote
+60,PROLUXSA,PROLUXSA
+61,El Guácimo,El Guácimo
+62,Calle Larga,Calle Larga
+63,Inm. Jarquin,Inm. Jarquin
+64,H. Rio Vista,H. Rio Vista
+65,S S Esquivel,S S Esquivel
+66,Cesar Morales,Cesar Morales
+67,Ubaldine Pérez,Ubaldine Pérez
+68,Nical Foundation,Nical Foundation
+69,Ganadera Canta G,Ganadera Canta G
+70,Natividad Pérez,Natividad Pérez
+71,Ganadera JM,Ganadera JM
