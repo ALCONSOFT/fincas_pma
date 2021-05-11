@@ -77,6 +77,11 @@
                             <field name="fdam"/>
                         </group>
                     </page>
+                    <page string="[ CUENTA ANALITICA ]">
+                        <group col="4" colspan="2">
+                            <field name="analytic_account_id"/>
+                        </group>
+                    </page>
 			</notebook>
 			</field>
 		</record>
@@ -100,9 +105,23 @@
       <field name="res_model">project.project</field>
       <field name="view_mode">tree,kanban,form</field>
     </record>
+    <!-- ACCION DE VENTANA: CUENTAS ANALITICAS-->
+    <record model="ir.actions.act_window" id="fincas_pma.action_window_cuentas_analiticas">
+      <field name="name">Mantenimiento Cuentas Analiticas</field>
+      <field name="res_model">account.analytic.account</field>
+      <field name="view_mode">tree,kanban,form</field>
+    </record>
+
     <!--ELEMENTO DE MENU: Lista de Labores-->
-    <menuitem name="Lista de Proyectos: UPLotes" id="fincas_pma.menu_list_uplotes" parent="fincas_pma.menu_3"
-              action="fincas_pma.action_window_uplotes"/>              
+    <menuitem name="Lista de Proyectos: UPLotes"
+        id="fincas_pma.menu_list_uplotes"
+        parent="fincas_pma.menu_3"
+        action="fincas_pma.action_window_uplotes"/>
+    <!--ELEMENTO DE MENU: Lista de Cuentas Analiticas-->
+    <menuitem name="Lista de Cuentas Analiticas"
+        id="fincas_pma.menu_list_cuentas_analiticas"
+        parent="fincas_pma.menu_3"
+        action="fincas_pma.action_window_cuentas_analiticas"/>
 
     <!-- PROJECT KANBAN -->
     

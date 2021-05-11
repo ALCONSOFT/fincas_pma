@@ -12,6 +12,7 @@
         - - Correccion bug de desinstalacion: Causado tal vez por???
         - - Agregando etiquetas: up y lote en Kanba Project.project
         Máestro de fincas con  parametros de Pamama.
+        Agregando cuenta analitica a Proyectos (UPLotes) y Menú de Cuenta Analitica.
     """,
 
     'author': "Alconsoft",
@@ -21,7 +22,7 @@
     # Check https://github.com/odoo/odoo/blob/13.0/odoo/addons/base/data/ir_module_category_data.xml
     # for the full list
     'category': 'Uncategorized',
-    'version': '0.2021-01-11 - 19:00',
+    'version': '0.2021-05-10 - 18:30',
 
     # any module necessary for this one to work correctly
     'depends': ['base', 'hr', 'project', 'hr_timesheet', 'sale_management','purchase','maintenance','abs_project_po'],
@@ -53,17 +54,17 @@
         ####### CARGA AUTOMATICA AL INSTALAR DE DATOS ESTATICOS ########################
         'static/xls/fincas_pma.fincas_pma.csv',
         'static/xls/fincas_pma.labores.csv',
-        'static/xls/fincas_pma.up.csv',
+        #'static/xls/fincas_pma.up.csv',
         'static/xls/fincas_pma.subfincas.csv',
-        'static/xls/fincas_pma.variedades.csv',
-        'static/xls/fincas_pma.tiposcortes.csv',
-        'static/xls/fincas_pma.zafras.csv',
+        #'static/xls/fincas_pma.variedades.csv',
+        #'static/xls/fincas_pma.tiposcortes.csv',
+        #'static/xls/fincas_pma.zafras.csv',
         'static/xls/fincas_pma.tipo_activo.csv',
-        'static/xls/fincas_pma.tipo_equipo.csv',
+        #'static/xls/fincas_pma.tipo_equipo.csv',
         'static/xls/fincas_pma.frentes.csv',
-        'static/xls/fincas_pma.marca.csv',
+        #'static/xls/fincas_pma.marca.csv',
         'static/xls/fincas_pma.provincias.csv',
-        'static/xls/fincas_pma.distritos.csv',
+        #'static/xls/fincas_pma.distritos.csv',
         'static/xls/fincas_pma.corregs.csv',
         'static/xls/fincas_pma.tipo_cane.csv',
         'static/xls/fincas_pma.calendario.csv',##error al cargar la fechahora-se corrigio erae el formato de fecha##
