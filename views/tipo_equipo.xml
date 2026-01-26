@@ -4,16 +4,16 @@
             <field name="name">fincas_pma_listtipo_equipo</field>
             <field name="model">fincas_pma.tipo_equipo</field>
             <field name="arch" type="xml">
-                <tree>
+                <list>
                     <field name="name"/>
-                </tree>
+                </list>
             </field>
         </record>
 
         <record model="ir.actions.act_window" id="fincas_pma.action_window_tipo_equipo">
             <field name="name">Mantenimiento de Tipos de Equipos y Maq.</field>
             <field name="res_model">fincas_pma.tipo_equipo</field>
-            <field name="view_mode">tree,form</field>
+            <field name="view_mode">list,form</field>
         </record>
 
         <menuitem name="Lista tipo_equipo" id="fincas_pma.menu_9_list" parent="fincas_pma.menu_4"

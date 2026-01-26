@@ -4,16 +4,16 @@
             <field name="name">fincas_pma_listmarca</field>
             <field name="model">fincas_pma.marca</field>
             <field name="arch" type="xml">
-                <tree>
+                <list>
                     <field name="name"/>
-                </tree>
+                </list>
             </field>
         </record>
 
         <record model="ir.actions.act_window" id="fincas_pma.action_window_marca">
             <field name="name">Mantenimientos de Marcas</field>
             <field name="res_model">fincas_pma.marca</field>
-            <field name="view_mode">tree,form</field>
+            <field name="view_mode">list,form</field>
         </record>
 
         <menuitem name="Lista marca" id="fincas_pma.menu_10_list" parent="fincas_pma.menu_4"

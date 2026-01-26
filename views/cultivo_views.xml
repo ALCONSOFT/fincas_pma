@@ -1,0 +1,407 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- ================================================== -->
+    <!-- CULTIVO - VISTAS                                   -->
+    <!-- ================================================== -->
+
+    <!-- Cultivo - Vista Lista -->
+    <record id="view_cultivo_list" model="ir.ui.view">
+        <field name="name">fincas_pma.cultivo.list</field>
+        <field name="model">fincas_pma.cultivo</field>
+        <field name="arch" type="xml">
+            <list string="Cultivos">
+                <field name="codigo"/>
+                <field name="name"/>
+                <field name="nombre_cientifico"/>
+                <field name="tipo_cultivo"/>
+                <field name="vida_util_anios"/>
+                <field name="rendimiento_promedio"/>
+                <field name="variedad_count"/>
+            </list>
+        </field>
+    </record>
+
+    <!-- Cultivo - Vista Formulario -->
+    <record id="view_cultivo_form" model="ir.ui.view">
+        <field name="name">fincas_pma.cultivo.form</field>
+        <field name="model">fincas_pma.cultivo</field>
+        <field name="arch" type="xml">
+            <form string="Cultivo">
+                <sheet>
+                    <div class="oe_button_box" name="button_box">
+                        <button name="%(action_variedad_cultivo)d" type="action"
+                                class="oe_stat_button" icon="fa-leaf">
+                            <field name="variedad_count" widget="statinfo" string="Variedades"/>
+                        </button>
+                    </div>
+                    <field name="image" widget="image" class="oe_avatar"/>
+                    <div class="oe_title">
+                        <label for="name"/>
+                        <h1><field name="name" placeholder="Nombre del Cultivo"/></h1>
+                        <field name="nombre_cientifico" placeholder="Nombre científico"/>
+                    </div>
+                    <group>
+                        <group string="Información General">
+                            <field name="codigo"/>
+                            <field name="familia_botanica"/>
+                            <field name="tipo_cultivo"/>
+                            <field name="active"/>
+                        </group>
+                        <group string="Características Productivas">
+                            <field name="ciclo_dias"/>
+                            <field name="vida_util_anios"/>
+                            <field name="meses_primera_cosecha"/>
+                            <field name="cosechas_por_anio"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Requerimientos Climáticos" name="clima">
+                            <group>
+                                <group string="Temperatura (°C)">
+                                    <field name="temp_min"/>
+                                    <field name="temp_optima_min"/>
+                                    <field name="temp_optima_max"/>
+                                    <field name="temp_max"/>
+                                </group>
+                                <group string="Precipitación (mm/año)">
+                                    <field name="precipitacion_min"/>
+                                    <field name="precipitacion_optima"/>
+                                    <field name="precipitacion_max"/>
+                                </group>
+                            </group>
+                            <group>
+                                <group string="Altitud (msnm)">
+                                    <field name="altitud_min"/>
+                                    <field name="altitud_optima_min"/>
+                                    <field name="altitud_optima_max"/>
+                                    <field name="altitud_max"/>
+                                </group>
+                                <group string="Suelo - pH">
+                                    <field name="ph_min"/>
+                                    <field name="ph_optimo_min"/>
+                                    <field name="ph_optimo_max"/>
+                                    <field name="ph_max"/>
+                                </group>
+                            </group>
+                            <group>
+                                <field name="tipos_suelo_recomendados"/>
+                            </group>
+                        </page>
+                        <page string="Rendimientos" name="rendimiento">
+                            <group>
+                                <group>
+                                    <field name="rendimiento_min"/>
+                                    <field name="rendimiento_promedio"/>
+                                    <field name="rendimiento_optimo"/>
+                                    <field name="unidad_rendimiento_id"/>
+                                </group>
+                            </group>
+                        </page>
+                        <page string="Variedades" name="variedades">
+                            <field name="variedad_ids">
+                                <list>
+                                    <field name="codigo"/>
+                                    <field name="name"/>
+                                    <field name="origen"/>
+                                    <field name="rendimiento_esperado"/>
+                                    <field name="calidad_general"/>
+                                </list>
+                            </field>
+                        </page>
+                        <page string="Etapas Fenológicas" name="fenologia">
+                            <field name="fenologia_ids">
+                                <list editable="bottom">
+                                    <field name="secuencia" widget="handle"/>
+                                    <field name="codigo"/>
+                                    <field name="name"/>
+                                    <field name="dias_inicio"/>
+                                    <field name="dias_fin"/>
+                                    <field name="duracion_dias"/>
+                                    <field name="requerimiento_agua"/>
+                                </list>
+                            </field>
+                        </page>
+                        <page string="Parámetros de Calidad" name="calidad">
+                            <field name="parametro_calidad_ids">
+                                <list editable="bottom">
+                                    <field name="secuencia" widget="handle"/>
+                                    <field name="codigo"/>
+                                    <field name="name"/>
+                                    <field name="tipo_dato"/>
+                                    <field name="unidad"/>
+                                    <field name="valor_optimo_min"/>
+                                    <field name="valor_optimo_max"/>
+                                    <field name="es_critico"/>
+                                </list>
+                            </field>
+                        </page>
+                        <page string="Notas" name="notas">
+                            <group>
+                                <field name="description" placeholder="Descripción general del cultivo..."/>
+                            </group>
+                            <group>
+                                <field name="notas_tecnicas" placeholder="Notas técnicas adicionales..."/>
+                            </group>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Cultivo - Vista Kanban -->
+    <record id="view_cultivo_kanban" model="ir.ui.view">
+        <field name="name">fincas_pma.cultivo.kanban</field>
+        <field name="model">fincas_pma.cultivo</field>
+        <field name="arch" type="xml">
+            <kanban class="o_kanban_mobile">
+                <field name="name"/>
+                <field name="codigo"/>
+                <field name="tipo_cultivo"/>
+                <field name="variedad_count"/>
+                <field name="image"/>
+                <templates>
+                    <t t-name="card">
+                        <aside>
+                            <field name="image" widget="image" class="o_kanban_image"/>
+                        </aside>
+                        <main>
+                            <strong><field name="name"/></strong>
+                            <div class="text-muted"><field name="nombre_cientifico"/></div>
+                            <div>
+                                <span class="badge bg-info"><field name="tipo_cultivo"/></span>
+                                <span class="float-end"><field name="variedad_count"/> variedades</span>
+                            </div>
+                        </main>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
+
+    <!-- Cultivo - Búsqueda -->
+    <record id="view_cultivo_search" model="ir.ui.view">
+        <field name="name">fincas_pma.cultivo.search</field>
+        <field name="model">fincas_pma.cultivo</field>
+        <field name="arch" type="xml">
+            <search string="Buscar Cultivos">
+                <field name="name"/>
+                <field name="codigo"/>
+                <field name="nombre_cientifico"/>
+                <filter string="Perennes" name="perenne" domain="[('tipo_cultivo', '=', 'perenne')]"/>
+                <filter string="Semi-permanentes" name="semipermanente" domain="[('tipo_cultivo', '=', 'semipermanente')]"/>
+                <filter string="Anuales" name="anual" domain="[('tipo_cultivo', '=', 'anual')]"/>
+                <separator/>
+                <filter string="Archivados" name="inactive" domain="[('active', '=', False)]"/>
+                <group expand="0" string="Agrupar Por">
+                    <filter string="Tipo de Cultivo" name="group_tipo" context="{'group_by': 'tipo_cultivo'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <!-- Cultivo - Acción -->
+    <record id="action_cultivo" model="ir.actions.act_window">
+        <field name="name">Cultivos</field>
+        <field name="res_model">fincas_pma.cultivo</field>
+        <field name="view_mode">kanban,list,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Crear un nuevo cultivo
+            </p>
+            <p>
+                Defina los cultivos que se manejan en sus fincas: café, banano, piña, palma, caña, etc.
+            </p>
+        </field>
+    </record>
+
+    <!-- ================================================== -->
+    <!-- VARIEDAD CULTIVO - VISTAS                          -->
+    <!-- ================================================== -->
+
+    <!-- Variedad - Vista Lista -->
+    <record id="view_variedad_cultivo_list" model="ir.ui.view">
+        <field name="name">fincas_pma.variedad_cultivo.list</field>
+        <field name="model">fincas_pma.variedad_cultivo</field>
+        <field name="arch" type="xml">
+            <list string="Variedades">
+                <field name="codigo"/>
+                <field name="name"/>
+                <field name="cultivo_id"/>
+                <field name="origen"/>
+                <field name="rendimiento_esperado"/>
+                <field name="calidad_general"/>
+                <field name="resistencia_plagas"/>
+                <field name="resistencia_enfermedades"/>
+            </list>
+        </field>
+    </record>
+
+    <!-- Variedad - Vista Formulario -->
+    <record id="view_variedad_cultivo_form" model="ir.ui.view">
+        <field name="name">fincas_pma.variedad_cultivo.form</field>
+        <field name="model">fincas_pma.variedad_cultivo</field>
+        <field name="arch" type="xml">
+            <form string="Variedad de Cultivo">
+                <sheet>
+                    <field name="image" widget="image" class="oe_avatar"/>
+                    <div class="oe_title">
+                        <label for="name"/>
+                        <h1><field name="name" placeholder="Nombre de la Variedad"/></h1>
+                    </div>
+                    <group>
+                        <group string="Información General">
+                            <field name="codigo"/>
+                            <field name="cultivo_id"/>
+                            <field name="origen"/>
+                            <field name="ano_liberacion"/>
+                            <field name="obtentor"/>
+                            <field name="parentales"/>
+                            <field name="active"/>
+                        </group>
+                        <group string="Características Productivas">
+                            <field name="rendimiento_esperado"/>
+                            <field name="unidad_rendimiento_id"/>
+                            <field name="ciclo_dias"/>
+                            <field name="calidad_general"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Resistencias" name="resistencias">
+                            <group>
+                                <group>
+                                    <field name="resistencia_sequia"/>
+                                    <field name="resistencia_plagas"/>
+                                    <field name="resistencia_enfermedades"/>
+                                    <field name="tolerancia_frio"/>
+                                </group>
+                            </group>
+                        </page>
+                        <page string="Café" name="cafe"
+                              invisible="cultivo_id.codigo != 'CAF'">
+                            <group>
+                                <group>
+                                    <field name="cafe_porte"/>
+                                    <field name="cafe_altitud_recomendada"/>
+                                    <field name="cafe_puntaje_taza_tipico"/>
+                                </group>
+                                <group>
+                                    <field name="cafe_resistencia_roya"/>
+                                    <field name="cafe_resistencia_cbd"/>
+                                </group>
+                            </group>
+                            <group>
+                                <field name="cafe_perfil_taza" placeholder="Notas de cata..."/>
+                            </group>
+                        </page>
+                        <page string="Banano" name="banano"
+                              invisible="cultivo_id.codigo != 'BAN'">
+                            <group>
+                                <group>
+                                    <field name="banano_grupo_genomico"/>
+                                    <field name="banano_ciclo_semanas"/>
+                                    <field name="banano_calibre_tipico"/>
+                                </group>
+                                <group>
+                                    <field name="banano_manos_por_racimo"/>
+                                    <field name="banano_peso_racimo"/>
+                                    <field name="banano_resistencia_sigatoka"/>
+                                    <field name="banano_resistencia_fusarium"/>
+                                </group>
+                            </group>
+                        </page>
+                        <page string="Piña" name="pina"
+                              invisible="cultivo_id.codigo != 'PIN'">
+                            <group>
+                                <group>
+                                    <field name="pina_grupo"/>
+                                    <field name="pina_peso_fruta"/>
+                                    <field name="pina_color_pulpa"/>
+                                </group>
+                                <group>
+                                    <field name="pina_brix_tipico"/>
+                                    <field name="pina_acidez_tipica"/>
+                                    <field name="pina_ratio_tipico"/>
+                                </group>
+                            </group>
+                        </page>
+                        <page string="Palma" name="palma"
+                              invisible="cultivo_id.codigo != 'PAL'">
+                            <group>
+                                <group>
+                                    <field name="palma_tipo"/>
+                                    <field name="palma_produccion_rff"/>
+                                </group>
+                                <group>
+                                    <field name="palma_extraccion_aceite"/>
+                                    <field name="palma_altura_tronco"/>
+                                    <field name="palma_resistencia_pc"/>
+                                </group>
+                            </group>
+                        </page>
+                        <page string="Caña" name="cana"
+                              invisible="cultivo_id.codigo != 'CAN'">
+                            <group>
+                                <group>
+                                    <field name="cana_contenido_sacarosa"/>
+                                    <field name="cana_contenido_fibra"/>
+                                    <field name="cana_tch_tipico"/>
+                                </group>
+                                <group>
+                                    <field name="cana_maduracion"/>
+                                    <field name="cana_floracion"/>
+                                    <field name="cana_resistencia_carbon"/>
+                                    <field name="cana_resistencia_roya"/>
+                                </group>
+                            </group>
+                        </page>
+                        <page string="Notas" name="notas">
+                            <group>
+                                <field name="description"/>
+                                <field name="notas"/>
+                            </group>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Variedad - Búsqueda -->
+    <record id="view_variedad_cultivo_search" model="ir.ui.view">
+        <field name="name">fincas_pma.variedad_cultivo.search</field>
+        <field name="model">fincas_pma.variedad_cultivo</field>
+        <field name="arch" type="xml">
+            <search string="Buscar Variedades">
+                <field name="name"/>
+                <field name="codigo"/>
+                <field name="cultivo_id"/>
+                <field name="origen"/>
+                <filter string="Premium" name="premium" domain="[('calidad_general', '=', 'premium')]"/>
+                <filter string="Alta Resistencia" name="resistente" domain="[('resistencia_plagas', '=', 'alta')]"/>
+                <separator/>
+                <filter string="Archivados" name="inactive" domain="[('active', '=', False)]"/>
+                <group expand="0" string="Agrupar Por">
+                    <filter string="Cultivo" name="group_cultivo" context="{'group_by': 'cultivo_id'}"/>
+                    <filter string="Calidad" name="group_calidad" context="{'group_by': 'calidad_general'}"/>
+                    <filter string="Origen" name="group_origen" context="{'group_by': 'origen'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <!-- Variedad - Acción -->
+    <record id="action_variedad_cultivo" model="ir.actions.act_window">
+        <field name="name">Variedades</field>
+        <field name="res_model">fincas_pma.variedad_cultivo</field>
+        <field name="view_mode">list,form</field>
+        <field name="context">{'search_default_group_cultivo': 1}</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Crear una nueva variedad
+            </p>
+        </field>
+    </record>
+
+</odoo>

@@ -5,20 +5,20 @@
       <field name="name">fincas_pma_listup</field>
       <field name="model">fincas_pma.up</field>
       <field name="arch" type="xml">
-        <tree>
+        <list>
           <field name="name"/>
           <field name="active"/>
           <field name="code_up"/>
           <field name="description"/>
           <field name="partner_id"/>
-        </tree>
+        </list>
       </field>
     </record>
 
 <record model="ir.actions.act_window" id="fincas_pma.action_window_up">
       <field name="name">fincas_pma window up</field>
       <field name="res_model">fincas_pma.up</field>
-      <field name="view_mode">tree,form</field>
+      <field name="view_mode">list,form</field>
     </record>
 
 

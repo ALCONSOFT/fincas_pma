@@ -5,16 +5,16 @@
       <field name="name">fincas_pma_listtipo_activo</field>
       <field name="model">fincas_pma.tipo_activo</field>
       <field name="arch" type="xml">
-        <tree>
+        <list>
           <field name="name"/>
-        </tree>
+        </list>
       </field>
     </record>
 
 <record model="ir.actions.act_window" id="fincas_pma.action_window_tipo_activo">
       <field name="name">Mantenimiento de Tipos de Activos</field>
       <field name="res_model">fincas_pma.tipo_activo</field>
-      <field name="view_mode">tree,form</field>
+      <field name="view_mode">list,form</field>
     </record>
 
 

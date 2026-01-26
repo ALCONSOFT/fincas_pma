@@ -1,38 +1,100 @@
 # -*- coding: utf-8 -*-
 {
-    'name': "fincas_pma",
+    'name': "Fincas PMA - Gestión Agrícola Multi-Cultivo",
 
     'summary': """
-        Adecuación de fincas para Panamá y ejemplo de programación de modulos en ORM-Odoo
-        subtitle on modules listing or apps.openerp.com""",
+        Sistema integral de gestión de fincas agrícolas para Panamá,
+        Centro América y Colombia. Multi-cultivo: Café, Banano, Piña,
+        Palma Aceitera, Caña de Azúcar.""",
 
     'description': """
-        Máestro de fincas con parametros de Pamama.
-        - Rama: Main
-        - - Correccion bug de desinstalacion: Causado tal vez por???
-        - - Agregando etiquetas: up y lote en Kanba Project.project
-        Máestro de fincas con  parametros de Pamama.
-        Agregando cuenta analitica a Proyectos (UPLotes) y Menú de Cuenta Analitica.
+Fincas PMA - Sistema de Gestión Agrícola Multi-Cultivo
+======================================================
+
+Módulo completo para la gestión de fincas agrícolas basado en las
+mejores prácticas internacionales de agricultura sostenible.
+
+CULTIVOS SOPORTADOS
+-------------------
+* Café (Arábica, Robusta)
+* Banano y Plátano
+* Piña (MD2, Cayena, etc.)
+* Palma Aceitera
+* Caña de Azúcar
+* Otros cultivos tropicales
+
+FUNCIONALIDADES PRINCIPALES
+---------------------------
+* Gestión de Fincas y Lotes de Producción
+* Catálogo de Cultivos y Variedades
+* Ciclos de Producción (Zafras)
+* Gestión de Insumos Agrícolas
+* Registro de Aplicaciones con Trazabilidad
+* Control Fitosanitario (MIP)
+* Monitoreo de Plagas y Enfermedades
+* Registro de Cosechas Multi-Cultivo
+* Certificaciones de Sostenibilidad (RA, GlobalGAP, Orgánico)
+* Labores Agrícolas por Lote
+* Análisis de Suelos
+* Trazabilidad Field-to-Mill
+
+CERTIFICACIONES SOPORTADAS
+--------------------------
+* Rainforest Alliance / UTZ
+* GlobalG.A.P.
+* Orgánico (USDA, EU, JAS)
+* Fairtrade
+* RSPO (Palma)
+* Bonsucro (Caña)
+* 4C (Café)
+* C.A.F.E. Practices
+
+REGIONES
+--------
+* Panamá
+* Costa Rica
+* Guatemala
+* Honduras
+* Colombia
+* Otros países de la región
+
+CHANGELOG
+---------
+* v18.0.1.0.0 - Migración a Odoo 18, arquitectura multi-cultivo
+* v0.2021-05-10 - Versión original para caña de azúcar
     """,
 
     'author': "Alconsoft",
     'website': "http://www.alconsoft.net",
 
-    # Categories can be used to filter modules in modules listing
-    # Check https://github.com/odoo/odoo/blob/13.0/odoo/addons/base/data/ir_module_category_data.xml
-    # for the full list
-    'category': 'Uncategorized',
-    'version': '0.2021-05-10 - 18:30',
+    'category': 'Agriculture',
+    'version': '18.0.1.0.0',
+    'license': 'LGPL-3',
 
-    # any module necessary for this one to work correctly
-    'depends': ['base', 'hr', 'project', 'hr_timesheet', 'sale_management','purchase','maintenance','abs_project_po'],
+    # Dependencias del módulo
+    'depends': [
+        'base',
+        'mail',
+        'hr',
+        'project',
+        'hr_timesheet',
+        'sale_management',
+        'purchase',
+        'maintenance',
+        'uom',
+        # 'abs_project_po',  # Comentado - verificar disponibilidad en Odoo 18
+    ],
 
-    # always loaded: Aqui se cargan los formularios de vista.
-    # IMPORTANTE: SE QUITA EL CARACTER "#" PARA QUE SE PUEDA CARGAR ARCHIVO CON LA LISTA DE ACCESO DE SEGURIDAD
+    # Archivos de datos (cargados siempre)
     'data': [
-        ####### ESTO IMPEDIA QUE SE PUDIERA VER EL MENU ########################
+        # Seguridad - Accesos
         'security/ir.model.access.csv',
-        ###############################
+
+        # Datos iniciales
+        'data/sequences.xml',
+        'data/cultivos_data.xml',
+
+        # Vistas - Modelos base
         'views/views.xml',
         'views/templates.xml',
         'views/Frentes.xml',
@@ -47,40 +109,50 @@
         'views/corregs.xml',
         'views/distritos.xml',
         'views/tipo_cultivo.xml',
-        'views/Frentes.xml',
         'views/marca.xml',
-        'views/Frentes.xml',
         'views/proyectos_uplotes.xml',
-        ####### CARGA AUTOMATICA AL INSTALAR DE DATOS ESTATICOS ########################
+
+        # Vistas - Nuevos modelos multi-cultivo
+        'views/cultivo_views.xml',
+        'views/lote_views.xml',
+        'views/insumo_views.xml',
+        'views/cosecha_views.xml',
+        'views/sanidad_views.xml',
+        'views/certificacion_views.xml',
+        'views/labor_lote_views.xml',
+
+        # Menús principales
+        'views/menus.xml',
+
+        # Datos estáticos iniciales
         'static/xls/fincas_pma.fincas_pma.csv',
         'static/xls/fincas_pma.labores.csv',
-        #'static/xls/fincas_pma.up.csv',
         'static/xls/fincas_pma.subfincas.csv',
-        #'static/xls/fincas_pma.variedades.csv',
-        #'static/xls/fincas_pma.tiposcortes.csv',
-        #'static/xls/fincas_pma.zafras.csv',
         'static/xls/fincas_pma.tipo_activo.csv',
-        #'static/xls/fincas_pma.tipo_equipo.csv',
         'static/xls/fincas_pma.frentes.csv',
-        #'static/xls/fincas_pma.marca.csv',
         'static/xls/fincas_pma.provincias.csv',
-        #'static/xls/fincas_pma.distritos.csv',
         'static/xls/fincas_pma.corregs.csv',
         'static/xls/fincas_pma.tipo_cane.csv',
-        'static/xls/fincas_pma.calendario.csv',##error al cargar la fechahora-se corrigio erae el formato de fecha##
-        ####### archivos dependientes
+        'static/xls/fincas_pma.calendario.csv',
         'static/xls/res.partner.csv',
         'static/xls/maintenance.equipment.csv',
-        #'static/xls/account_analytic_account.csv',
         'static/xls/project.project.csv',
-
-        ###############################
     ],
-    # only loaded in demonstration mode
+
+    # Datos de demostración
     'demo': [
         'demo/demo.xml',
-
     ],
-    # Aplicacion:  si aparace cierto (true) esta modulo sera una aplicacion que aprecera en el listado de aplicaciones de odoo.
+
+    # Configuración
+    'installable': True,
     'application': True,
+    'auto_install': False,
+
+    # Assets para Odoo 18
+    'assets': {
+        'web.assets_backend': [
+            # Agregar CSS/JS personalizados aquí si es necesario
+        ],
+    },
 }

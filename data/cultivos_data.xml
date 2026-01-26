@@ -1,0 +1,385 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+
+        <!-- ================================= -->
+        <!-- TIPOS DE INSUMOS                  -->
+        <!-- ================================= -->
+        <record id="tipo_insumo_fertilizante" model="fincas_pma.tipo_insumo">
+            <field name="name">Fertilizante</field>
+            <field name="codigo">FERT</field>
+            <field name="secuencia">10</field>
+            <field name="es_fertilizante">True</field>
+            <field name="requiere_carencia">False</field>
+        </record>
+
+        <record id="tipo_insumo_herbicida" model="fincas_pma.tipo_insumo">
+            <field name="name">Herbicida</field>
+            <field name="codigo">HERB</field>
+            <field name="secuencia">20</field>
+            <field name="es_agroquimico">True</field>
+        </record>
+
+        <record id="tipo_insumo_fungicida" model="fincas_pma.tipo_insumo">
+            <field name="name">Fungicida</field>
+            <field name="codigo">FUNG</field>
+            <field name="secuencia">30</field>
+            <field name="es_agroquimico">True</field>
+        </record>
+
+        <record id="tipo_insumo_insecticida" model="fincas_pma.tipo_insumo">
+            <field name="name">Insecticida</field>
+            <field name="codigo">INSE</field>
+            <field name="secuencia">40</field>
+            <field name="es_agroquimico">True</field>
+        </record>
+
+        <record id="tipo_insumo_biologico" model="fincas_pma.tipo_insumo">
+            <field name="name">Control Biológico</field>
+            <field name="codigo">BIO</field>
+            <field name="secuencia">50</field>
+            <field name="es_biologico">True</field>
+            <field name="requiere_carencia">False</field>
+        </record>
+
+        <!-- ================================= -->
+        <!-- TIPOS DE CERTIFICACIONES          -->
+        <!-- ================================= -->
+        <record id="tipo_cert_rainforest" model="fincas_pma.tipo_certificacion">
+            <field name="name">Rainforest Alliance</field>
+            <field name="codigo">RA</field>
+            <field name="secuencia">10</field>
+            <field name="es_sostenibilidad">True</field>
+            <field name="vigencia_meses">12</field>
+            <field name="sitio_web">https://www.rainforest-alliance.org</field>
+        </record>
+
+        <record id="tipo_cert_globalgap" model="fincas_pma.tipo_certificacion">
+            <field name="name">GlobalG.A.P.</field>
+            <field name="codigo">GGAP</field>
+            <field name="secuencia">20</field>
+            <field name="es_calidad">True</field>
+            <field name="vigencia_meses">12</field>
+            <field name="sitio_web">https://www.globalgap.org</field>
+        </record>
+
+        <record id="tipo_cert_organico_usda" model="fincas_pma.tipo_certificacion">
+            <field name="name">Orgánico USDA</field>
+            <field name="codigo">ORG-USDA</field>
+            <field name="secuencia">30</field>
+            <field name="es_organico">True</field>
+            <field name="vigencia_meses">12</field>
+            <field name="periodo_transicion_meses">36</field>
+        </record>
+
+        <record id="tipo_cert_fairtrade" model="fincas_pma.tipo_certificacion">
+            <field name="name">Fairtrade</field>
+            <field name="codigo">FT</field>
+            <field name="secuencia">40</field>
+            <field name="es_comercio_justo">True</field>
+            <field name="vigencia_meses">36</field>
+            <field name="sitio_web">https://www.fairtrade.net</field>
+        </record>
+
+        <record id="tipo_cert_rspo" model="fincas_pma.tipo_certificacion">
+            <field name="name">RSPO (Palma Sostenible)</field>
+            <field name="codigo">RSPO</field>
+            <field name="secuencia">50</field>
+            <field name="es_sostenibilidad">True</field>
+            <field name="vigencia_meses">60</field>
+            <field name="sitio_web">https://rspo.org</field>
+        </record>
+
+        <record id="tipo_cert_bonsucro" model="fincas_pma.tipo_certificacion">
+            <field name="name">Bonsucro (Caña Sostenible)</field>
+            <field name="codigo">BONSUCRO</field>
+            <field name="secuencia">60</field>
+            <field name="es_sostenibilidad">True</field>
+            <field name="vigencia_meses">36</field>
+            <field name="sitio_web">https://www.bonsucro.com</field>
+        </record>
+
+        <!-- ================================= -->
+        <!-- CULTIVOS PRINCIPALES              -->
+        <!-- ================================= -->
+
+        <!-- CAFÉ -->
+        <record id="cultivo_cafe" model="fincas_pma.cultivo">
+            <field name="name">Café</field>
+            <field name="codigo">CAF</field>
+            <field name="nombre_cientifico">Coffea spp.</field>
+            <field name="familia_botanica">Rubiaceae</field>
+            <field name="tipo_cultivo">perenne</field>
+            <field name="vida_util_anios">25</field>
+            <field name="meses_primera_cosecha">36</field>
+            <field name="cosechas_por_anio">1</field>
+            <field name="temp_min">15</field>
+            <field name="temp_optima_min">18</field>
+            <field name="temp_optima_max">24</field>
+            <field name="temp_max">30</field>
+            <field name="precipitacion_min">1200</field>
+            <field name="precipitacion_optima">1800</field>
+            <field name="precipitacion_max">2500</field>
+            <field name="altitud_min">400</field>
+            <field name="altitud_optima_min">1000</field>
+            <field name="altitud_optima_max">1600</field>
+            <field name="altitud_max">2000</field>
+            <field name="ph_min">4.5</field>
+            <field name="ph_optimo_min">5.5</field>
+            <field name="ph_optimo_max">6.5</field>
+            <field name="ph_max">7.0</field>
+            <field name="rendimiento_promedio">20</field>
+            <field name="description">Cultivo perenne de importancia económica en zonas de altura. Principal producto de exportación de varios países centroamericanos y Colombia.</field>
+        </record>
+
+        <!-- BANANO -->
+        <record id="cultivo_banano" model="fincas_pma.cultivo">
+            <field name="name">Banano</field>
+            <field name="codigo">BAN</field>
+            <field name="nombre_cientifico">Musa acuminata</field>
+            <field name="familia_botanica">Musaceae</field>
+            <field name="tipo_cultivo">semipermanente</field>
+            <field name="ciclo_dias">365</field>
+            <field name="vida_util_anios">15</field>
+            <field name="meses_primera_cosecha">12</field>
+            <field name="cosechas_por_anio">52</field>
+            <field name="temp_min">15</field>
+            <field name="temp_optima_min">25</field>
+            <field name="temp_optima_max">30</field>
+            <field name="temp_max">35</field>
+            <field name="precipitacion_min">1500</field>
+            <field name="precipitacion_optima">2500</field>
+            <field name="precipitacion_max">4000</field>
+            <field name="altitud_min">0</field>
+            <field name="altitud_optima_min">0</field>
+            <field name="altitud_optima_max">300</field>
+            <field name="altitud_max">1000</field>
+            <field name="ph_min">5.5</field>
+            <field name="ph_optimo_min">6.0</field>
+            <field name="ph_optimo_max">7.0</field>
+            <field name="ph_max">7.5</field>
+            <field name="rendimiento_promedio">2500</field>
+            <field name="description">Cultivo tropical de exportación. Panamá, Costa Rica y Ecuador son los principales exportadores de la región.</field>
+        </record>
+
+        <!-- PIÑA -->
+        <record id="cultivo_pina" model="fincas_pma.cultivo">
+            <field name="name">Piña</field>
+            <field name="codigo">PIN</field>
+            <field name="nombre_cientifico">Ananas comosus</field>
+            <field name="familia_botanica">Bromeliaceae</field>
+            <field name="tipo_cultivo">semipermanente</field>
+            <field name="ciclo_dias">540</field>
+            <field name="vida_util_anios">3</field>
+            <field name="meses_primera_cosecha">18</field>
+            <field name="cosechas_por_anio">0.7</field>
+            <field name="temp_min">15</field>
+            <field name="temp_optima_min">23</field>
+            <field name="temp_optima_max">30</field>
+            <field name="temp_max">35</field>
+            <field name="precipitacion_min">1000</field>
+            <field name="precipitacion_optima">1500</field>
+            <field name="precipitacion_max">2500</field>
+            <field name="altitud_min">0</field>
+            <field name="altitud_optima_min">100</field>
+            <field name="altitud_optima_max">800</field>
+            <field name="altitud_max">1200</field>
+            <field name="ph_min">4.5</field>
+            <field name="ph_optimo_min">5.0</field>
+            <field name="ph_optimo_max">6.0</field>
+            <field name="ph_max">6.5</field>
+            <field name="rendimiento_promedio">70</field>
+            <field name="description">Costa Rica es el principal exportador mundial de piña. Cultivo intensivo con alta demanda de mano de obra.</field>
+        </record>
+
+        <!-- PALMA ACEITERA -->
+        <record id="cultivo_palma" model="fincas_pma.cultivo">
+            <field name="name">Palma Aceitera</field>
+            <field name="codigo">PAL</field>
+            <field name="nombre_cientifico">Elaeis guineensis</field>
+            <field name="familia_botanica">Arecaceae</field>
+            <field name="tipo_cultivo">perenne</field>
+            <field name="vida_util_anios">25</field>
+            <field name="meses_primera_cosecha">36</field>
+            <field name="cosechas_por_anio">24</field>
+            <field name="temp_min">20</field>
+            <field name="temp_optima_min">25</field>
+            <field name="temp_optima_max">28</field>
+            <field name="temp_max">33</field>
+            <field name="precipitacion_min">1500</field>
+            <field name="precipitacion_optima">2000</field>
+            <field name="precipitacion_max">3000</field>
+            <field name="altitud_min">0</field>
+            <field name="altitud_optima_min">0</field>
+            <field name="altitud_optima_max">500</field>
+            <field name="altitud_max">800</field>
+            <field name="ph_min">4.0</field>
+            <field name="ph_optimo_min">5.0</field>
+            <field name="ph_optimo_max">6.5</field>
+            <field name="ph_max">7.5</field>
+            <field name="rendimiento_promedio">20</field>
+            <field name="description">Colombia es el principal productor de América Latina. Honduras y Guatemala también tienen producción significativa.</field>
+        </record>
+
+        <!-- CAÑA DE AZÚCAR -->
+        <record id="cultivo_cana" model="fincas_pma.cultivo">
+            <field name="name">Caña de Azúcar</field>
+            <field name="codigo">CAN</field>
+            <field name="nombre_cientifico">Saccharum officinarum</field>
+            <field name="familia_botanica">Poaceae</field>
+            <field name="tipo_cultivo">semipermanente</field>
+            <field name="ciclo_dias">365</field>
+            <field name="vida_util_anios">6</field>
+            <field name="meses_primera_cosecha">12</field>
+            <field name="cosechas_por_anio">1</field>
+            <field name="temp_min">15</field>
+            <field name="temp_optima_min">25</field>
+            <field name="temp_optima_max">32</field>
+            <field name="temp_max">38</field>
+            <field name="precipitacion_min">1000</field>
+            <field name="precipitacion_optima">1500</field>
+            <field name="precipitacion_max">2500</field>
+            <field name="altitud_min">0</field>
+            <field name="altitud_optima_min">0</field>
+            <field name="altitud_optima_max">1000</field>
+            <field name="altitud_max">1500</field>
+            <field name="ph_min">5.0</field>
+            <field name="ph_optimo_min">6.0</field>
+            <field name="ph_optimo_max">7.5</field>
+            <field name="ph_max">8.5</field>
+            <field name="rendimiento_promedio">80</field>
+            <field name="description">Cultivo tradicional en Panamá, Guatemala y Colombia. Base de la industria azucarera y de biocombustibles.</field>
+        </record>
+
+        <!-- ================================= -->
+        <!-- VARIEDADES DE CAFÉ               -->
+        <!-- ================================= -->
+        <record id="variedad_cafe_caturra" model="fincas_pma.variedad_cultivo">
+            <field name="name">Caturra</field>
+            <field name="codigo">CAT</field>
+            <field name="cultivo_id" ref="cultivo_cafe"/>
+            <field name="origen">Brasil</field>
+            <field name="ano_liberacion">1949</field>
+            <field name="rendimiento_esperado">25</field>
+            <field name="cafe_porte">bajo</field>
+            <field name="cafe_resistencia_roya">susceptible</field>
+            <field name="calidad_general">primera</field>
+            <field name="cafe_perfil_taza">Acidez media-alta, cuerpo medio, notas dulces y afrutadas</field>
+        </record>
+
+        <record id="variedad_cafe_geisha" model="fincas_pma.variedad_cultivo">
+            <field name="name">Geisha/Gesha</field>
+            <field name="codigo">GEI</field>
+            <field name="cultivo_id" ref="cultivo_cafe"/>
+            <field name="origen">Etiopía</field>
+            <field name="rendimiento_esperado">12</field>
+            <field name="cafe_porte">alto</field>
+            <field name="cafe_resistencia_roya">media</field>
+            <field name="calidad_general">premium</field>
+            <field name="cafe_perfil_taza">Aromático, floral, jazmín, bergamota, cítricos. Cuerpo sedoso.</field>
+            <field name="cafe_puntaje_taza_tipico">90</field>
+            <field name="cafe_altitud_recomendada">1400-1800 msnm</field>
+        </record>
+
+        <record id="variedad_cafe_castillo" model="fincas_pma.variedad_cultivo">
+            <field name="name">Castillo</field>
+            <field name="codigo">CAS</field>
+            <field name="cultivo_id" ref="cultivo_cafe"/>
+            <field name="origen">Colombia</field>
+            <field name="obtentor">Cenicafé</field>
+            <field name="ano_liberacion">2005</field>
+            <field name="rendimiento_esperado">28</field>
+            <field name="cafe_porte">medio</field>
+            <field name="cafe_resistencia_roya">alta</field>
+            <field name="cafe_resistencia_cbd">alta</field>
+            <field name="calidad_general">primera</field>
+        </record>
+
+        <!-- ================================= -->
+        <!-- VARIEDADES DE BANANO             -->
+        <!-- ================================= -->
+        <record id="variedad_banano_cavendish" model="fincas_pma.variedad_cultivo">
+            <field name="name">Gran Enano (Cavendish)</field>
+            <field name="codigo">GE</field>
+            <field name="cultivo_id" ref="cultivo_banano"/>
+            <field name="rendimiento_esperado">2800</field>
+            <field name="banano_grupo_genomico">aaa</field>
+            <field name="banano_ciclo_semanas">44</field>
+            <field name="banano_calibre_tipico">39-46</field>
+            <field name="banano_manos_por_racimo">9-12</field>
+            <field name="banano_peso_racimo">35</field>
+            <field name="banano_resistencia_sigatoka">susceptible</field>
+            <field name="banano_resistencia_fusarium">susceptible</field>
+        </record>
+
+        <record id="variedad_banano_williams" model="fincas_pma.variedad_cultivo">
+            <field name="name">Williams</field>
+            <field name="codigo">WIL</field>
+            <field name="cultivo_id" ref="cultivo_banano"/>
+            <field name="rendimiento_esperado">2600</field>
+            <field name="banano_grupo_genomico">aaa</field>
+            <field name="banano_ciclo_semanas">42</field>
+            <field name="banano_peso_racimo">32</field>
+        </record>
+
+        <!-- ================================= -->
+        <!-- VARIEDADES DE PIÑA               -->
+        <!-- ================================= -->
+        <record id="variedad_pina_md2" model="fincas_pma.variedad_cultivo">
+            <field name="name">MD2 (Gold)</field>
+            <field name="codigo">MD2</field>
+            <field name="cultivo_id" ref="cultivo_pina"/>
+            <field name="origen">Hawaii</field>
+            <field name="obtentor">Del Monte</field>
+            <field name="rendimiento_esperado">75</field>
+            <field name="pina_grupo">md2</field>
+            <field name="pina_peso_fruta">1.8</field>
+            <field name="pina_brix_tipico">14</field>
+            <field name="pina_acidez_tipica">0.5</field>
+            <field name="pina_color_pulpa">amarillo_intenso</field>
+            <field name="calidad_general">premium</field>
+        </record>
+
+        <!-- ================================= -->
+        <!-- VARIEDADES DE PALMA              -->
+        <!-- ================================= -->
+        <record id="variedad_palma_deli_ghana" model="fincas_pma.variedad_cultivo">
+            <field name="name">Deli x Ghana</field>
+            <field name="codigo">DXG</field>
+            <field name="cultivo_id" ref="cultivo_palma"/>
+            <field name="palma_tipo">tenera</field>
+            <field name="palma_produccion_rff">25</field>
+            <field name="palma_extraccion_aceite">24</field>
+            <field name="palma_altura_tronco">45</field>
+            <field name="palma_resistencia_pc">media</field>
+        </record>
+
+        <!-- ================================= -->
+        <!-- VARIEDADES DE CAÑA               -->
+        <!-- ================================= -->
+        <record id="variedad_cana_cp722086" model="fincas_pma.variedad_cultivo">
+            <field name="name">CP 72-2086</field>
+            <field name="codigo">CP722086</field>
+            <field name="cultivo_id" ref="cultivo_cana"/>
+            <field name="origen">Florida, USA</field>
+            <field name="cana_contenido_sacarosa">13.5</field>
+            <field name="cana_contenido_fibra">12.5</field>
+            <field name="cana_maduracion">temprana</field>
+            <field name="cana_floracion">baja</field>
+            <field name="cana_tch_tipico">90</field>
+            <field name="cana_resistencia_carbon">alta</field>
+            <field name="cana_resistencia_roya">media</field>
+        </record>
+
+        <record id="variedad_cana_mex7919" model="fincas_pma.variedad_cultivo">
+            <field name="name">Mex 79-19</field>
+            <field name="codigo">MEX7919</field>
+            <field name="cultivo_id" ref="cultivo_cana"/>
+            <field name="origen">México</field>
+            <field name="cana_contenido_sacarosa">14.0</field>
+            <field name="cana_maduracion">media</field>
+            <field name="cana_tch_tipico">85</field>
+        </record>
+
+    </data>
+</odoo>

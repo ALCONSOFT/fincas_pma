@@ -1,0 +1,425 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- ================================================== -->
+    <!-- PLAGA - VISTAS                                     -->
+    <!-- ================================================== -->
+
+    <!-- Plaga - Vista Lista -->
+    <record id="view_plaga_list" model="ir.ui.view">
+        <field name="name">fincas_pma.plaga.list</field>
+        <field name="model">fincas_pma.plaga</field>
+        <field name="arch" type="xml">
+            <list string="Plagas y Enfermedades"
+                  decoration-danger="es_cuarentenaria == True">
+                <field name="codigo"/>
+                <field name="name"/>
+                <field name="nombre_cientifico"/>
+                <field name="tipo"/>
+                <field name="categoria"/>
+                <field name="importancia" widget="badge"
+                       decoration-danger="importancia == 'alta'"
+                       decoration-warning="importancia == 'media'"
+                       decoration-success="importancia == 'baja'"/>
+                <field name="parte_afectada"/>
+                <field name="es_cuarentenaria"/>
+            </list>
+        </field>
+    </record>
+
+    <!-- Plaga - Vista Formulario -->
+    <record id="view_plaga_form" model="ir.ui.view">
+        <field name="name">fincas_pma.plaga.form</field>
+        <field name="model">fincas_pma.plaga</field>
+        <field name="arch" type="xml">
+            <form string="Plaga o Enfermedad">
+                <sheet>
+                    <widget name="web_ribbon" title="CUARENTENARIA" bg_color="bg-danger"
+                            invisible="not es_cuarentenaria"/>
+                    <div class="oe_title">
+                        <label for="name"/>
+                        <h1><field name="name" placeholder="Nombre común"/></h1>
+                        <field name="nombre_cientifico" placeholder="Nombre científico"/>
+                    </div>
+                    <group>
+                        <group string="Clasificación">
+                            <field name="codigo"/>
+                            <field name="tipo"/>
+                            <field name="categoria"/>
+                            <field name="importancia"/>
+                            <field name="es_cuarentenaria"/>
+                            <field name="active"/>
+                        </group>
+                        <group string="Afectación">
+                            <field name="parte_afectada"/>
+                            <field name="cultivo_ids" widget="many2many_tags"/>
+                            <field name="epocas_mayor_incidencia"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Biología" name="biologia">
+                            <group>
+                                <field name="ciclo_vida" placeholder="Descripción del ciclo de vida..."/>
+                            </group>
+                            <group>
+                                <field name="hospederos" placeholder="Plantas hospederas..."/>
+                            </group>
+                            <group>
+                                <field name="condiciones_favorables" placeholder="Condiciones que favorecen su desarrollo..."/>
+                            </group>
+                        </page>
+                        <page string="Daños y Síntomas" name="danos">
+                            <group>
+                                <field name="sintomas" placeholder="Síntomas visibles..."/>
+                            </group>
+                            <group>
+                                <field name="danos" placeholder="Descripción de los daños causados..."/>
+                            </group>
+                        </page>
+                        <page string="Monitoreo" name="monitoreo">
+                            <group>
+                                <group>
+                                    <field name="umbral_economico"/>
+                                    <field name="umbral_accion"/>
+                                </group>
+                            </group>
+                            <group>
+                                <field name="metodo_muestreo" placeholder="Protocolo de muestreo..."/>
+                            </group>
+                        </page>
+                        <page string="Control" name="control">
+                            <group>
+                                <field name="control_cultural" placeholder="Prácticas culturales..."/>
+                            </group>
+                            <group>
+                                <field name="control_biologico" placeholder="Enemigos naturales y biocontroladores..."/>
+                            </group>
+                            <group>
+                                <field name="control_quimico" placeholder="Productos químicos recomendados..."/>
+                            </group>
+                            <separator string="Insumos Recomendados"/>
+                            <field name="insumo_ids" widget="many2many_tags"/>
+                        </page>
+                        <page string="Imágenes" name="imagenes">
+                            <group>
+                                <group>
+                                    <field name="imagen_1" widget="image"/>
+                                </group>
+                                <group>
+                                    <field name="imagen_2" widget="image"/>
+                                </group>
+                            </group>
+                            <group>
+                                <group>
+                                    <field name="imagen_3" widget="image"/>
+                                </group>
+                            </group>
+                        </page>
+                        <page string="Referencias" name="referencias">
+                            <group>
+                                <field name="descripcion"/>
+                            </group>
+                            <group>
+                                <field name="referencias"/>
+                            </group>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Plaga - Búsqueda -->
+    <record id="view_plaga_search" model="ir.ui.view">
+        <field name="name">fincas_pma.plaga.search</field>
+        <field name="model">fincas_pma.plaga</field>
+        <field name="arch" type="xml">
+            <search string="Buscar Plagas">
+                <field name="name"/>
+                <field name="codigo"/>
+                <field name="nombre_cientifico"/>
+                <filter string="Plagas" name="plagas" domain="[('categoria', '=', 'plaga')]"/>
+                <filter string="Enfermedades" name="enfermedades" domain="[('categoria', '=', 'enfermedad')]"/>
+                <filter string="Alta Importancia" name="alta" domain="[('importancia', '=', 'alta')]"/>
+                <filter string="Cuarentenarias" name="cuarentenaria" domain="[('es_cuarentenaria', '=', True)]"/>
+                <group expand="0" string="Agrupar Por">
+                    <filter string="Tipo" name="group_tipo" context="{'group_by': 'tipo'}"/>
+                    <filter string="Categoría" name="group_categoria" context="{'group_by': 'categoria'}"/>
+                    <filter string="Importancia" name="group_importancia" context="{'group_by': 'importancia'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <!-- Plaga - Acción -->
+    <record id="action_plaga" model="ir.actions.act_window">
+        <field name="name">Plagas y Enfermedades</field>
+        <field name="res_model">fincas_pma.plaga</field>
+        <field name="view_mode">list,form</field>
+        <field name="context">{'search_default_group_categoria': 1}</field>
+    </record>
+
+    <!-- ================================================== -->
+    <!-- MONITOREO SANITARIO - VISTAS                       -->
+    <!-- ================================================== -->
+
+    <!-- Monitoreo - Vista Lista -->
+    <record id="view_monitoreo_sanitario_list" model="ir.ui.view">
+        <field name="name">fincas_pma.monitoreo_sanitario.list</field>
+        <field name="model">fincas_pma.monitoreo_sanitario</field>
+        <field name="arch" type="xml">
+            <list string="Monitoreos Sanitarios"
+                  decoration-danger="requiere_tratamiento == True and urgencia in ('alta', 'critica')"
+                  decoration-warning="requiere_tratamiento == True">
+                <field name="fecha"/>
+                <field name="lote_id"/>
+                <field name="finca_id"/>
+                <field name="cultivo_id"/>
+                <field name="tipo_monitoreo"/>
+                <field name="hay_hallazgos"/>
+                <field name="requiere_tratamiento"/>
+                <field name="urgencia" widget="badge"
+                       decoration-danger="urgencia in ('alta', 'critica')"
+                       decoration-warning="urgencia == 'media'"
+                       decoration-success="urgencia == 'baja'"/>
+                <field name="monitor_id"/>
+                <field name="estado" widget="badge"/>
+            </list>
+        </field>
+    </record>
+
+    <!-- Monitoreo - Vista Formulario -->
+    <record id="view_monitoreo_sanitario_form" model="ir.ui.view">
+        <field name="name">fincas_pma.monitoreo_sanitario.form</field>
+        <field name="model">fincas_pma.monitoreo_sanitario</field>
+        <field name="arch" type="xml">
+            <form string="Monitoreo Sanitario">
+                <header>
+                    <field name="estado" widget="statusbar"
+                           statusbar_visible="borrador,completado,verificado"/>
+                </header>
+                <sheet>
+                    <widget name="web_ribbon" title="REQUIERE TRATAMIENTO" bg_color="bg-danger"
+                            invisible="not requiere_tratamiento"/>
+                    <div class="oe_title">
+                        <label for="name"/>
+                        <h1><field name="name" readonly="1"/></h1>
+                    </div>
+                    <group>
+                        <group string="Ubicación">
+                            <field name="lote_id"/>
+                            <field name="finca_id"/>
+                            <field name="cultivo_id"/>
+                            <field name="etapa_fenologica"/>
+                        </group>
+                        <group string="Monitoreo">
+                            <field name="fecha"/>
+                            <field name="tipo_monitoreo"/>
+                            <field name="metodologia"/>
+                            <field name="monitor_id"/>
+                        </group>
+                    </group>
+                    <group>
+                        <group>
+                            <field name="plantas_muestreadas"/>
+                            <field name="area_muestreada_ha"/>
+                        </group>
+                        <group string="Clima">
+                            <field name="temperatura"/>
+                            <field name="humedad_relativa"/>
+                            <field name="precipitacion_reciente"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Hallazgos" name="hallazgos">
+                            <field name="hallazgo_ids">
+                                <list editable="bottom">
+                                    <field name="plaga_id"/>
+                                    <field name="nivel_incidencia" widget="badge"
+                                           decoration-danger="nivel_incidencia in ('alto', 'severo')"
+                                           decoration-warning="nivel_incidencia == 'medio'"/>
+                                    <field name="incidencia_pct"/>
+                                    <field name="severidad"/>
+                                    <field name="area_afectada_ha"/>
+                                    <field name="ubicacion_en_lote"/>
+                                    <field name="tendencia"/>
+                                    <field name="supera_umbral"/>
+                                    <field name="requiere_tratamiento"/>
+                                </list>
+                            </field>
+                        </page>
+                        <page string="Fotos" name="fotos">
+                            <field name="foto_ids">
+                                <kanban>
+                                    <field name="image"/>
+                                    <field name="descripcion"/>
+                                    <templates>
+                                        <t t-name="card">
+                                            <field name="image" widget="image" class="o_kanban_image"/>
+                                            <main>
+                                                <field name="descripcion"/>
+                                            </main>
+                                        </t>
+                                    </templates>
+                                </kanban>
+                            </field>
+                        </page>
+                        <page string="Conclusiones" name="conclusiones">
+                            <group>
+                                <group>
+                                    <field name="requiere_tratamiento"/>
+                                    <field name="urgencia"/>
+                                    <field name="fecha_siguiente_monitoreo"/>
+                                    <field name="verificado_por_id"/>
+                                </group>
+                            </group>
+                            <group>
+                                <field name="recomendaciones" placeholder="Acciones recomendadas..."/>
+                            </group>
+                            <group>
+                                <field name="observaciones" placeholder="Observaciones generales..."/>
+                            </group>
+                        </page>
+                    </notebook>
+                </sheet>
+                <chatter/>
+            </form>
+        </field>
+    </record>
+
+    <!-- Monitoreo - Vista Calendario -->
+    <record id="view_monitoreo_sanitario_calendar" model="ir.ui.view">
+        <field name="name">fincas_pma.monitoreo_sanitario.calendar</field>
+        <field name="model">fincas_pma.monitoreo_sanitario</field>
+        <field name="arch" type="xml">
+            <calendar string="Monitoreos" date_start="fecha" color="lote_id" mode="month">
+                <field name="lote_id"/>
+                <field name="tipo_monitoreo"/>
+                <field name="hay_hallazgos"/>
+            </calendar>
+        </field>
+    </record>
+
+    <!-- Monitoreo - Búsqueda -->
+    <record id="view_monitoreo_sanitario_search" model="ir.ui.view">
+        <field name="name">fincas_pma.monitoreo_sanitario.search</field>
+        <field name="model">fincas_pma.monitoreo_sanitario</field>
+        <field name="arch" type="xml">
+            <search string="Buscar Monitoreos">
+                <field name="lote_id"/>
+                <field name="finca_id"/>
+                <filter string="Con Hallazgos" name="hallazgos" domain="[('hay_hallazgos', '=', True)]"/>
+                <filter string="Requiere Tratamiento" name="tratamiento" domain="[('requiere_tratamiento', '=', True)]"/>
+                <filter string="Urgente" name="urgente" domain="[('urgencia', 'in', ['alta', 'critica'])]"/>
+                <separator/>
+                <filter string="Esta Semana" name="this_week" domain="[('fecha', '&gt;=', (context_today() - relativedelta(days=context_today().weekday())).strftime('%Y-%m-%d'))]"/>
+                <group expand="0" string="Agrupar Por">
+                    <filter string="Lote" name="group_lote" context="{'group_by': 'lote_id'}"/>
+                    <filter string="Finca" name="group_finca" context="{'group_by': 'finca_id'}"/>
+                    <filter string="Tipo" name="group_tipo" context="{'group_by': 'tipo_monitoreo'}"/>
+                    <filter string="Mes" name="group_mes" context="{'group_by': 'fecha:month'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <!-- Monitoreo - Acción -->
+    <record id="action_monitoreo_sanitario" model="ir.actions.act_window">
+        <field name="name">Monitoreos Sanitarios</field>
+        <field name="res_model">fincas_pma.monitoreo_sanitario</field>
+        <field name="view_mode">list,calendar,form</field>
+        <field name="context">{'search_default_this_week': 1}</field>
+    </record>
+
+    <!-- ================================================== -->
+    <!-- TRATAMIENTO - VISTAS                               -->
+    <!-- ================================================== -->
+
+    <record id="view_tratamiento_list" model="ir.ui.view">
+        <field name="name">fincas_pma.tratamiento.list</field>
+        <field name="model">fincas_pma.tratamiento</field>
+        <field name="arch" type="xml">
+            <list string="Tratamientos">
+                <field name="fecha"/>
+                <field name="lote_id"/>
+                <field name="objetivo"/>
+                <field name="numero_aplicaciones"/>
+                <field name="efectividad" widget="badge"
+                       decoration-success="efectividad in ('excelente', 'buena')"
+                       decoration-warning="efectividad == 'regular'"
+                       decoration-danger="efectividad in ('pobre', 'sin_efecto')"/>
+                <field name="estado" widget="badge"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="view_tratamiento_form" model="ir.ui.view">
+        <field name="name">fincas_pma.tratamiento.form</field>
+        <field name="model">fincas_pma.tratamiento</field>
+        <field name="arch" type="xml">
+            <form string="Tratamiento Fitosanitario">
+                <header>
+                    <field name="estado" widget="statusbar"
+                           statusbar_visible="planificado,en_progreso,completado,evaluado"/>
+                </header>
+                <sheet>
+                    <div class="oe_title">
+                        <label for="name"/>
+                        <h1><field name="name" readonly="1"/></h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="lote_id"/>
+                            <field name="monitoreo_id"/>
+                            <field name="objetivo"/>
+                        </group>
+                        <group>
+                            <field name="fecha_planificada"/>
+                            <field name="fecha"/>
+                        </group>
+                    </group>
+                    <group>
+                        <field name="plaga_ids" widget="many2many_tags"/>
+                    </group>
+                    <notebook>
+                        <page string="Aplicaciones" name="aplicaciones">
+                            <field name="aplicacion_ids">
+                                <list>
+                                    <field name="fecha_aplicacion"/>
+                                    <field name="insumo_id"/>
+                                    <field name="area_aplicada_ha"/>
+                                    <field name="dosis_aplicada"/>
+                                    <field name="metodo_aplicacion"/>
+                                    <field name="estado"/>
+                                </list>
+                            </field>
+                        </page>
+                        <page string="Evaluación" name="evaluacion">
+                            <group>
+                                <group>
+                                    <field name="fecha_evaluacion"/>
+                                    <field name="efectividad"/>
+                                    <field name="reduccion_incidencia_pct"/>
+                                </group>
+                            </group>
+                            <group>
+                                <field name="recomendaciones_futuras"/>
+                            </group>
+                        </page>
+                        <page string="Observaciones" name="observaciones">
+                            <field name="observaciones"/>
+                        </page>
+                    </notebook>
+                </sheet>
+                <chatter/>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_tratamiento" model="ir.actions.act_window">
+        <field name="name">Tratamientos</field>
+        <field name="res_model">fincas_pma.tratamiento</field>
+        <field name="view_mode">list,form</field>
+    </record>
+
+</odoo>

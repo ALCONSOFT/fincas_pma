@@ -15,7 +15,7 @@ class equiposymq(models.Model):
     localizacion = fields.Char(string= 'Localizacion')
     # Agregados 2020-12-11
     foto = fields.Binary('Image', attachment=True, tracking=True)
-    project_id = fields.Many2one('project.project', 'Proyecto UPLote', track_visibility='onchange', tracking=True)
+    project_id = fields.Many2one('project.project', 'Proyecto UPLote', tracking=True)
     frente = fields.Many2one('fincas_pma.frentes', string = 'Frente', tracking=True)
     contrato = fields.Char(string= 'Contrato', tracking=True)
     external_id = fields.Char(string='External Reference', states={'open': [('readonly', False)]}, copy=False, readonly=True, help="Used to hold the reference of the external mean that created this statement (name of imported file, reference of online synchronization...)")    

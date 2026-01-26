@@ -1,4 +1,5 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+# Modelos base existentes
 access_fincas_pma_fincas_pma,fincas_pma.fincas_pma,model_fincas_pma_fincas_pma,base.group_user,1,1,1,1
 access_fincas_pma_zafras,fincas_pma.zafras,model_fincas_pma_zafras,base.group_user,1,1,1,1
 access_fincas_pma_frentes,fincas_pma.frentes,model_fincas_pma_frentes,base.group_user,1,1,1,1
@@ -16,3 +17,37 @@ access_fincas_pma_tipo_equipo,fincas_pma.tipo_equipo,model_fincas_pma_tipo_equip
 access_fincas_pma_marca,fincas_pma.marca,model_fincas_pma_marca,base.group_user,1,1,1,1
 access_fincas_pma_tipo_cane,fincas_pma.tipo_cane,model_fincas_pma_tipo_cane,base.group_user,1,1,1,1
 access_fincas_pma_calendario,fincas_pma.calendario,model_fincas_pma_calendario,base.group_user,1,1,1,1
+# ============================================
+# NUEVOS MODELOS MULTI-CULTIVO
+# ============================================
+# Cultivos y Variedades
+access_fincas_pma_cultivo,fincas_pma.cultivo,model_fincas_pma_cultivo,base.group_user,1,1,1,1
+access_fincas_pma_variedad_cultivo,fincas_pma.variedad_cultivo,model_fincas_pma_variedad_cultivo,base.group_user,1,1,1,1
+access_fincas_pma_fenologia,fincas_pma.fenologia,model_fincas_pma_fenologia,base.group_user,1,1,1,1
+access_fincas_pma_parametro_calidad,fincas_pma.parametro_calidad,model_fincas_pma_parametro_calidad,base.group_user,1,1,1,1
+# Lotes de Producción
+access_fincas_pma_lote,fincas_pma.lote,model_fincas_pma_lote,base.group_user,1,1,1,1
+access_fincas_pma_analisis_suelo,fincas_pma.analisis_suelo,model_fincas_pma_analisis_suelo,base.group_user,1,1,1,1
+# Insumos y Aplicaciones
+access_fincas_pma_tipo_insumo,fincas_pma.tipo_insumo,model_fincas_pma_tipo_insumo,base.group_user,1,1,1,1
+access_fincas_pma_insumo,fincas_pma.insumo,model_fincas_pma_insumo,base.group_user,1,1,1,1
+access_fincas_pma_aplicacion,fincas_pma.aplicacion,model_fincas_pma_aplicacion,base.group_user,1,1,1,1
+# Ciclos de Producción y Cosechas
+access_fincas_pma_ciclo_produccion,fincas_pma.ciclo_produccion,model_fincas_pma_ciclo_produccion,base.group_user,1,1,1,1
+access_fincas_pma_cosecha,fincas_pma.cosecha,model_fincas_pma_cosecha,base.group_user,1,1,1,1
+access_fincas_pma_cuadrilla,fincas_pma.cuadrilla,model_fincas_pma_cuadrilla,base.group_user,1,1,1,1
+access_fincas_pma_lote_cosecha,fincas_pma.lote_cosecha,model_fincas_pma_lote_cosecha,base.group_user,1,1,1,1
+# Sanidad Vegetal
+access_fincas_pma_plaga,fincas_pma.plaga,model_fincas_pma_plaga,base.group_user,1,1,1,1
+access_fincas_pma_monitoreo_sanitario,fincas_pma.monitoreo_sanitario,model_fincas_pma_monitoreo_sanitario,base.group_user,1,1,1,1
+access_fincas_pma_hallazgo_monitoreo,fincas_pma.hallazgo_monitoreo,model_fincas_pma_hallazgo_monitoreo,base.group_user,1,1,1,1
+access_fincas_pma_foto_monitoreo,fincas_pma.foto_monitoreo,model_fincas_pma_foto_monitoreo,base.group_user,1,1,1,1
+access_fincas_pma_tratamiento,fincas_pma.tratamiento,model_fincas_pma_tratamiento,base.group_user,1,1,1,1
+# Certificaciones
+access_fincas_pma_tipo_certificacion,fincas_pma.tipo_certificacion,model_fincas_pma_tipo_certificacion,base.group_user,1,1,1,1
+access_fincas_pma_certificacion,fincas_pma.certificacion,model_fincas_pma_certificacion,base.group_user,1,1,1,1
+access_fincas_pma_auditoria,fincas_pma.auditoria,model_fincas_pma_auditoria,base.group_user,1,1,1,1
+access_fincas_pma_no_conformidad,fincas_pma.no_conformidad,model_fincas_pma_no_conformidad,base.group_user,1,1,1,1
+# Labores
+access_fincas_pma_labor_lote,fincas_pma.labor_lote,model_fincas_pma_labor_lote,base.group_user,1,1,1,1
+access_fincas_pma_siembra,fincas_pma.siembra,model_fincas_pma_siembra,base.group_user,1,1,1,1

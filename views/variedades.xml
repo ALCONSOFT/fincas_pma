@@ -5,19 +5,19 @@
       <field name="name">fincas_pma_listvariedades</field>
       <field name="model">fincas_pma.variedades</field>
       <field name="arch" type="xml">
-        <tree>
+        <list>
           <field name="name"/>
           <field name="active"/>
           <field name="code_variedad"/>
           <field name="description"/>
-        </tree>
+        </list>
       </field>
     </record>
 
 <record model="ir.actions.act_window" id="fincas_pma.action_window_variedades">
       <field name="name">fincas_pma window variedades</field>
       <field name="res_model">fincas_pma.variedades</field>
-      <field name="view_mode">tree,form</field>
+      <field name="view_mode">list,form</field>
     </record>
 
 

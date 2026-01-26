@@ -1,0 +1,494 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- ================================================== -->
+    <!-- CICLO DE PRODUCCIÓN - VISTAS                       -->
+    <!-- ================================================== -->
+
+    <!-- Ciclo - Vista Lista -->
+    <record id="view_ciclo_produccion_list" model="ir.ui.view">
+        <field name="name">fincas_pma.ciclo_produccion.list</field>
+        <field name="model">fincas_pma.ciclo_produccion</field>
+        <field name="arch" type="xml">
+            <list string="Ciclos de Producción">
+                <field name="codigo"/>
+                <field name="name"/>
+                <field name="cultivo_id"/>
+                <field name="finca_id"/>
+                <field name="fecha_inicio"/>
+                <field name="fecha_fin"/>
+                <field name="area_planificada_ha" sum="Total Ha"/>
+                <field name="produccion_objetivo"/>
+                <field name="produccion_real"/>
+                <field name="estado" widget="badge"
+                       decoration-info="estado == 'planificacion'"
+                       decoration-success="estado == 'activo'"
+                       decoration-muted="estado == 'cerrado'"/>
+            </list>
+        </field>
+    </record>
+
+    <!-- Ciclo - Vista Formulario -->
+    <record id="view_ciclo_produccion_form" model="ir.ui.view">
+        <field name="name">fincas_pma.ciclo_produccion.form</field>
+        <field name="model">fincas_pma.ciclo_produccion</field>
+        <field name="arch" type="xml">
+            <form string="Ciclo de Producción">
+                <header>
+                    <field name="estado" widget="statusbar"
+                           statusbar_visible="planificacion,activo,cerrado"/>
+                </header>
+                <sheet>
+                    <div class="oe_button_box" name="button_box">
+                        <button name="%(action_cosecha)d" type="action"
+                                class="oe_stat_button" icon="fa-truck"
+                                context="{'search_default_ciclo_id': active_id}">
+                            <field name="total_cosechas" widget="statinfo" string="Cosechas"/>
+                        </button>
+                    </div>
+                    <div class="oe_title">
+                        <label for="name"/>
+                        <h1><field name="name" placeholder="Cosecha 2024-2025"/></h1>
+                    </div>
+                    <group>
+                        <group string="Información General">
+                            <field name="codigo"/>
+                            <field name="cultivo_id"/>
+                            <field name="finca_id"/>
+                            <field name="anio_fiscal"/>
+                            <field name="active"/>
+                        </group>
+                        <group string="Período">
+                            <field name="fecha_inicio"/>
+                            <field name="fecha_fin"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Objetivos y Resultados" name="objetivos">
+                            <group>
+                                <group string="Objetivos">
+                                    <field name="area_planificada_ha"/>
+                                    <field name="produccion_objetivo"/>
+                                    <field name="unidad_produccion_id"/>
+                                    <field name="rendimiento_objetivo"/>
+                                </group>
+                                <group string="Resultados Reales">
+                                    <field name="area_real_ha"/>
+                                    <field name="produccion_real"/>
+                                    <field name="rendimiento_real"/>
+                                </group>
+                            </group>
+                            <group>
+                                <group string="Variaciones">
+                                    <field name="variacion_area_pct"/>
+                                    <field name="variacion_produccion_pct"/>
+                                </group>
+                            </group>
+                        </page>
+                        <page string="Lotes" name="lotes">
+                            <field name="lote_ids" widget="many2many_tags"/>
+                        </page>
+                        <page string="Cosechas" name="cosechas">
+                            <field name="cosecha_ids">
+                                <list>
+                                    <field name="fecha_cosecha"/>
+                                    <field name="lote_id"/>
+                                    <field name="area_cosechada_ha" sum="Total"/>
+                                    <field name="cantidad_neta" sum="Total"/>
+                                    <field name="rendimiento"/>
+                                    <field name="grado_calidad"/>
+                                    <field name="estado"/>
+                                </list>
+                            </field>
+                        </page>
+                        <page string="Notas" name="notas">
+                            <field name="descripcion"/>
+                            <field name="notas"/>
+                        </page>
+                    </notebook>
+                </sheet>
+                <chatter/>
+            </form>
+        </field>
+    </record>
+
+    <!-- Ciclo - Acción -->
+    <record id="action_ciclo_produccion" model="ir.actions.act_window">
+        <field name="name">Ciclos de Producción</field>
+        <field name="res_model">fincas_pma.ciclo_produccion</field>
+        <field name="view_mode">list,form</field>
+        <field name="context">{'search_default_activo': 1}</field>
+    </record>
+
+    <!-- ================================================== -->
+    <!-- COSECHA - VISTAS                                   -->
+    <!-- ================================================== -->
+
+    <!-- Cosecha - Vista Lista -->
+    <record id="view_cosecha_list" model="ir.ui.view">
+        <field name="name">fincas_pma.cosecha.list</field>
+        <field name="model">fincas_pma.cosecha</field>
+        <field name="arch" type="xml">
+            <list string="Cosechas" decoration-success="estado == 'completada'"
+                  decoration-warning="estado == 'en_proceso'">
+                <field name="name"/>
+                <field name="fecha_cosecha"/>
+                <field name="lote_id"/>
+                <field name="cultivo_id"/>
+                <field name="area_cosechada_ha" sum="Total Ha"/>
+                <field name="cantidad_neta" sum="Total"/>
+                <field name="unidad_cosecha_id"/>
+                <field name="rendimiento"/>
+                <field name="grado_calidad" widget="badge"/>
+                <field name="destino"/>
+                <field name="estado" widget="badge"
+                       decoration-info="estado in ('borrador', 'programada')"
+                       decoration-warning="estado == 'en_proceso'"
+                       decoration-success="estado in ('completada', 'verificada')"/>
+            </list>
+        </field>
+    </record>
+
+    <!-- Cosecha - Vista Formulario -->
+    <record id="view_cosecha_form" model="ir.ui.view">
+        <field name="name">fincas_pma.cosecha.form</field>
+        <field name="model">fincas_pma.cosecha</field>
+        <field name="arch" type="xml">
+            <form string="Cosecha">
+                <header>
+                    <field name="estado" widget="statusbar"
+                           statusbar_visible="borrador,programada,en_proceso,completada,verificada"/>
+                </header>
+                <sheet>
+                    <div class="oe_title">
+                        <label for="name"/>
+                        <h1><field name="name"/></h1>
+                    </div>
+                    <group>
+                        <group string="Ubicación">
+                            <field name="lote_id"/>
+                            <field name="finca_id"/>
+                            <field name="up_id"/>
+                            <field name="ciclo_id" domain="[('cultivo_id', '=', cultivo_id)]"/>
+                        </group>
+                        <group string="Cultivo">
+                            <field name="cultivo_id"/>
+                            <field name="variedad_id"/>
+                            <field name="fecha_cosecha"/>
+                            <field name="metodo_cosecha"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Cantidades" name="cantidades">
+                            <group>
+                                <group string="Área y Producción">
+                                    <field name="area_cosechada_ha"/>
+                                    <field name="cantidad_bruta"/>
+                                    <field name="cantidad_descuento"/>
+                                    <field name="cantidad_neta"/>
+                                    <field name="unidad_cosecha_id"/>
+                                </group>
+                                <group string="Rendimiento">
+                                    <field name="rendimiento"/>
+                                    <field name="rendimiento_estimado"/>
+                                    <field name="variacion_rendimiento_pct"/>
+                                </group>
+                            </group>
+                            <group>
+                                <group string="Calidad General">
+                                    <field name="grado_calidad"/>
+                                    <field name="porcentaje_exportacion"/>
+                                    <field name="porcentaje_primera"/>
+                                    <field name="porcentaje_segunda"/>
+                                    <field name="porcentaje_rechazo"/>
+                                </group>
+                            </group>
+                        </page>
+                        <page string="Café" name="cafe"
+                              invisible="cultivo_id.codigo != 'CAF'">
+                            <group>
+                                <group>
+                                    <field name="cafe_cereza_kg"/>
+                                    <field name="cafe_pergamino_kg"/>
+                                    <field name="cafe_factor_conversion"/>
+                                    <field name="cafe_qq_oro"/>
+                                </group>
+                                <group>
+                                    <field name="cafe_humedad_pct"/>
+                                    <field name="cafe_defectos_pct"/>
+                                    <field name="cafe_puntaje_taza"/>
+                                    <field name="cafe_proceso"/>
+                                </group>
+                            </group>
+                            <group>
+                                <field name="cafe_perfil_taza" placeholder="Notas de cata..."/>
+                            </group>
+                        </page>
+                        <page string="Banano" name="banano"
+                              invisible="cultivo_id.codigo != 'BAN'">
+                            <group>
+                                <group>
+                                    <field name="banano_racimos"/>
+                                    <field name="banano_cajas_total"/>
+                                    <field name="banano_cajas_exportacion"/>
+                                    <field name="banano_cajas_rechazo"/>
+                                    <field name="banano_ratio_exportacion"/>
+                                </group>
+                                <group>
+                                    <field name="banano_calibre_promedio"/>
+                                    <field name="banano_largo_dedo_cm"/>
+                                    <field name="banano_manos_promedio"/>
+                                    <field name="banano_peso_racimo_kg"/>
+                                    <field name="banano_merma_pct"/>
+                                    <field name="banano_semana_cosecha"/>
+                                </group>
+                            </group>
+                        </page>
+                        <page string="Piña" name="pina"
+                              invisible="cultivo_id.codigo != 'PIN'">
+                            <group>
+                                <group>
+                                    <field name="pina_frutas_totales"/>
+                                    <field name="pina_peso_promedio_kg"/>
+                                    <field name="pina_cajas_exportacion"/>
+                                </group>
+                                <group>
+                                    <field name="pina_brix"/>
+                                    <field name="pina_acidez_pct"/>
+                                    <field name="pina_ratio"/>
+                                    <field name="pina_corona"/>
+                                    <field name="pina_color"/>
+                                </group>
+                            </group>
+                        </page>
+                        <page string="Palma" name="palma"
+                              invisible="cultivo_id.codigo != 'PAL'">
+                            <group>
+                                <group>
+                                    <field name="palma_rff_tons"/>
+                                    <field name="palma_racimos"/>
+                                    <field name="palma_peso_racimo_kg"/>
+                                </group>
+                                <group>
+                                    <field name="palma_aceite_pct"/>
+                                    <field name="palma_tons_aceite"/>
+                                    <field name="palma_acidez"/>
+                                    <field name="palma_ciclo_dias"/>
+                                </group>
+                            </group>
+                        </page>
+                        <page string="Caña" name="cana"
+                              invisible="cultivo_id.codigo != 'CAN'">
+                            <group>
+                                <group string="Producción">
+                                    <field name="cana_tons_brutas"/>
+                                    <field name="cana_tons_netas"/>
+                                    <field name="cana_tch"/>
+                                    <field name="cana_numero_corte"/>
+                                    <field name="cana_orden_corte"/>
+                                    <field name="cana_tipo_corte_id"/>
+                                </group>
+                                <group string="Calidad de Jugo">
+                                    <field name="cana_brix"/>
+                                    <field name="cana_pol"/>
+                                    <field name="cana_pureza"/>
+                                    <field name="cana_sacarosa"/>
+                                    <field name="cana_fibra"/>
+                                    <field name="cana_humedad"/>
+                                    <field name="cana_reductores"/>
+                                    <field name="cana_arr"/>
+                                    <field name="cana_ph"/>
+                                    <field name="cana_trash_pct"/>
+                                </group>
+                            </group>
+                            <group>
+                                <group string="Quema (si aplica)">
+                                    <field name="cana_hora_quema"/>
+                                    <field name="cana_has_quemadas"/>
+                                    <field name="cana_tons_quemadas"/>
+                                </group>
+                                <group string="Caña Verde">
+                                    <field name="cana_has_verde"/>
+                                    <field name="cana_tons_verde"/>
+                                </group>
+                            </group>
+                        </page>
+                        <page string="Personal y Equipos" name="personal">
+                            <group>
+                                <group>
+                                    <field name="cuadrilla_id"/>
+                                    <field name="trabajadores"/>
+                                    <field name="jornales"/>
+                                    <field name="horas_trabajo"/>
+                                </group>
+                                <group>
+                                    <field name="equipo_ids" widget="many2many_tags"/>
+                                </group>
+                            </group>
+                        </page>
+                        <page string="Transporte y Destino" name="transporte">
+                            <group>
+                                <group string="Transporte">
+                                    <field name="vehiculo"/>
+                                    <field name="conductor"/>
+                                    <field name="guia_transporte"/>
+                                </group>
+                                <group string="Destino">
+                                    <field name="destino"/>
+                                    <field name="destino_partner_id"/>
+                                    <field name="fecha_entrega"/>
+                                    <field name="numero_ticket"/>
+                                </group>
+                            </group>
+                        </page>
+                        <page string="Costos" name="costos">
+                            <group>
+                                <group>
+                                    <field name="costo_cosecha"/>
+                                    <field name="costo_transporte"/>
+                                    <field name="costo_total"/>
+                                    <field name="costo_por_unidad"/>
+                                </group>
+                            </group>
+                        </page>
+                        <page string="Trazabilidad" name="trazabilidad">
+                            <field name="lote_cosecha_ids">
+                                <list>
+                                    <field name="name"/>
+                                    <field name="cantidad"/>
+                                    <field name="unidad_id"/>
+                                    <field name="grado_calidad"/>
+                                    <field name="destino_id"/>
+                                    <field name="estado"/>
+                                </list>
+                            </field>
+                        </page>
+                        <page string="Observaciones" name="observaciones">
+                            <group>
+                                <field name="condiciones_climaticas" placeholder="Condiciones climáticas durante la cosecha..."/>
+                            </group>
+                            <group>
+                                <field name="incidentes" placeholder="Incidentes o problemas..."/>
+                            </group>
+                            <group>
+                                <field name="observaciones" placeholder="Observaciones generales..."/>
+                            </group>
+                        </page>
+                    </notebook>
+                </sheet>
+                <chatter/>
+            </form>
+        </field>
+    </record>
+
+    <!-- Cosecha - Vista Pivot -->
+    <record id="view_cosecha_pivot" model="ir.ui.view">
+        <field name="name">fincas_pma.cosecha.pivot</field>
+        <field name="model">fincas_pma.cosecha</field>
+        <field name="arch" type="xml">
+            <pivot string="Análisis de Cosechas">
+                <field name="cultivo_id" type="row"/>
+                <field name="fecha_cosecha" type="col" interval="month"/>
+                <field name="cantidad_neta" type="measure"/>
+                <field name="area_cosechada_ha" type="measure"/>
+                <field name="rendimiento" type="measure"/>
+            </pivot>
+        </field>
+    </record>
+
+    <!-- Cosecha - Búsqueda -->
+    <record id="view_cosecha_search" model="ir.ui.view">
+        <field name="name">fincas_pma.cosecha.search</field>
+        <field name="model">fincas_pma.cosecha</field>
+        <field name="arch" type="xml">
+            <search string="Buscar Cosechas">
+                <field name="name"/>
+                <field name="lote_id"/>
+                <field name="finca_id"/>
+                <field name="cultivo_id"/>
+                <field name="ciclo_id"/>
+                <filter string="Hoy" name="today" domain="[('fecha_cosecha', '=', context_today())]"/>
+                <filter string="Esta Semana" name="this_week" domain="[('fecha_cosecha', '&gt;=', (context_today() - relativedelta(days=context_today().weekday())).strftime('%Y-%m-%d'))]"/>
+                <filter string="Este Mes" name="this_month" domain="[('fecha_cosecha', '&gt;=', (context_today()).strftime('%Y-%m-01'))]"/>
+                <separator/>
+                <filter string="Completadas" name="completada" domain="[('estado', '=', 'completada')]"/>
+                <filter string="Premium" name="premium" domain="[('grado_calidad', '=', 'premium')]"/>
+                <group expand="0" string="Agrupar Por">
+                    <filter string="Lote" name="group_lote" context="{'group_by': 'lote_id'}"/>
+                    <filter string="Finca" name="group_finca" context="{'group_by': 'finca_id'}"/>
+                    <filter string="Cultivo" name="group_cultivo" context="{'group_by': 'cultivo_id'}"/>
+                    <filter string="Ciclo" name="group_ciclo" context="{'group_by': 'ciclo_id'}"/>
+                    <filter string="Mes" name="group_mes" context="{'group_by': 'fecha_cosecha:month'}"/>
+                    <filter string="Calidad" name="group_calidad" context="{'group_by': 'grado_calidad'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <!-- Cosecha - Acción -->
+    <record id="action_cosecha" model="ir.actions.act_window">
+        <field name="name">Cosechas</field>
+        <field name="res_model">fincas_pma.cosecha</field>
+        <field name="view_mode">list,form,pivot</field>
+        <field name="context">{'search_default_this_month': 1}</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Registrar una nueva cosecha
+            </p>
+        </field>
+    </record>
+
+    <!-- ================================================== -->
+    <!-- CUADRILLA - VISTAS                                 -->
+    <!-- ================================================== -->
+
+    <record id="view_cuadrilla_list" model="ir.ui.view">
+        <field name="name">fincas_pma.cuadrilla.list</field>
+        <field name="model">fincas_pma.cuadrilla</field>
+        <field name="arch" type="xml">
+            <list string="Cuadrillas">
+                <field name="codigo"/>
+                <field name="name"/>
+                <field name="responsable_id"/>
+                <field name="finca_id"/>
+                <field name="especialidad"/>
+                <field name="capacidad_ha_dia"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="view_cuadrilla_form" model="ir.ui.view">
+        <field name="name">fincas_pma.cuadrilla.form</field>
+        <field name="model">fincas_pma.cuadrilla</field>
+        <field name="arch" type="xml">
+            <form string="Cuadrilla">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="codigo"/>
+                            <field name="name"/>
+                            <field name="responsable_id"/>
+                            <field name="finca_id"/>
+                        </group>
+                        <group>
+                            <field name="especialidad"/>
+                            <field name="capacidad_ha_dia"/>
+                            <field name="active"/>
+                        </group>
+                    </group>
+                    <separator string="Miembros"/>
+                    <field name="miembro_ids" widget="many2many_tags"/>
+                    <separator string="Notas"/>
+                    <field name="notas"/>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_cuadrilla" model="ir.actions.act_window">
+        <field name="name">Cuadrillas</field>
+        <field name="res_model">fincas_pma.cuadrilla</field>
+        <field name="view_mode">list,form</field>
+    </record>
+
+</odoo>

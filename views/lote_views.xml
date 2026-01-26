@@ -1,0 +1,422 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- ================================================== -->
+    <!-- LOTE DE PRODUCCIÓN - VISTAS                        -->
+    <!-- ================================================== -->
+
+    <!-- Lote - Vista Lista -->
+    <record id="view_lote_list" model="ir.ui.view">
+        <field name="name">fincas_pma.lote.list</field>
+        <field name="model">fincas_pma.lote</field>
+        <field name="arch" type="xml">
+            <list string="Lotes de Producción" decoration-info="estado == 'desarrollo'"
+                  decoration-success="estado == 'produccion'" decoration-warning="estado == 'cosecha'"
+                  decoration-muted="estado in ('descanso', 'inhabilitado')">
+                <field name="name"/>
+                <field name="finca_id"/>
+                <field name="up_id"/>
+                <field name="cultivo_id"/>
+                <field name="variedad_id"/>
+                <field name="area_efectiva_ha" sum="Total Ha"/>
+                <field name="estado" widget="badge"
+                       decoration-info="estado == 'desarrollo'"
+                       decoration-success="estado == 'produccion'"
+                       decoration-warning="estado == 'cosecha'"/>
+                <field name="fecha_siembra"/>
+                <field name="edad_meses"/>
+            </list>
+        </field>
+    </record>
+
+    <!-- Lote - Vista Formulario -->
+    <record id="view_lote_form" model="ir.ui.view">
+        <field name="name">fincas_pma.lote.form</field>
+        <field name="model">fincas_pma.lote</field>
+        <field name="arch" type="xml">
+            <form string="Lote de Producción">
+                <header>
+                    <field name="estado" widget="statusbar"
+                           statusbar_visible="disponible,sembrado,desarrollo,produccion,cosecha"/>
+                </header>
+                <sheet>
+                    <div class="oe_button_box" name="button_box">
+                        <button name="%(action_cosecha)d" type="action"
+                                class="oe_stat_button" icon="fa-truck"
+                                context="{'search_default_lote_id': active_id}">
+                            <field name="total_cosechas" widget="statinfo" string="Cosechas"/>
+                        </button>
+                    </div>
+                    <widget name="web_ribbon" title="Orgánico" bg_color="bg-success"
+                            invisible="not es_organico"/>
+                    <div class="oe_title">
+                        <label for="name"/>
+                        <h1><field name="name" readonly="1"/></h1>
+                    </div>
+                    <group>
+                        <group string="Ubicación">
+                            <field name="finca_id"/>
+                            <field name="subfinca_id"/>
+                            <field name="up_id"/>
+                            <field name="codigo" placeholder="001"/>
+                            <field name="frente_id"/>
+                        </group>
+                        <group string="Cultivo">
+                            <field name="cultivo_id"/>
+                            <field name="variedad_id" domain="[('cultivo_id', '=', cultivo_id)]"/>
+                            <field name="fecha_siembra"/>
+                            <field name="edad_meses"/>
+                            <field name="numero_ciclo"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Áreas y Ubicación" name="areas">
+                            <group>
+                                <group string="Áreas">
+                                    <field name="area_total_ha"/>
+                                    <field name="area_efectiva_ha"/>
+                                    <field name="area_infraestructura_ha"/>
+                                    <field name="porcentaje_efectivo" widget="progressbar"/>
+                                </group>
+                                <group string="Ubicación Geográfica">
+                                    <field name="correg_id"/>
+                                    <field name="distrito_id"/>
+                                    <field name="provincia_id"/>
+                                    <field name="ubicacion_texto"/>
+                                </group>
+                            </group>
+                            <group>
+                                <group string="Geolocalización">
+                                    <field name="latitud"/>
+                                    <field name="longitud"/>
+                                    <field name="altitud_msnm"/>
+                                </group>
+                                <group string="Densidad de Siembra">
+                                    <field name="densidad_plantas"/>
+                                    <field name="distancia_entre_plantas"/>
+                                    <field name="distancia_entre_hileras"/>
+                                </group>
+                            </group>
+                        </page>
+                        <page string="Suelo y Riego" name="suelo">
+                            <group>
+                                <group string="Características del Suelo">
+                                    <field name="tipo_suelo"/>
+                                    <field name="textura_suelo"/>
+                                    <field name="ph_suelo"/>
+                                    <field name="materia_organica_pct"/>
+                                </group>
+                                <group string="Topografía">
+                                    <field name="pendiente_pct"/>
+                                    <field name="orientacion"/>
+                                    <field name="drenaje"/>
+                                </group>
+                            </group>
+                            <group>
+                                <group string="Riego">
+                                    <field name="sistema_riego"/>
+                                    <field name="fuente_agua"/>
+                                </group>
+                                <group string="Proveedor">
+                                    <field name="partner_id"/>
+                                </group>
+                            </group>
+                            <separator string="Análisis de Suelo"/>
+                            <field name="analisis_suelo_ids">
+                                <list>
+                                    <field name="fecha"/>
+                                    <field name="laboratorio"/>
+                                    <field name="ph"/>
+                                    <field name="materia_organica"/>
+                                    <field name="nitrogeno"/>
+                                    <field name="fosforo"/>
+                                    <field name="potasio"/>
+                                </list>
+                            </field>
+                        </page>
+                        <page string="Certificaciones" name="certificaciones">
+                            <group>
+                                <group>
+                                    <field name="es_organico"/>
+                                    <field name="en_transicion_organica"
+                                           invisible="es_organico"/>
+                                    <field name="fecha_inicio_transicion"
+                                           invisible="not en_transicion_organica"/>
+                                </group>
+                            </group>
+                            <separator string="Certificaciones Activas"/>
+                            <field name="certificacion_ids" widget="many2many_tags"/>
+                        </page>
+                        <page string="Café" name="cafe"
+                              invisible="cultivo_id.codigo != 'CAF'">
+                            <group>
+                                <group>
+                                    <field name="cafe_sistema_produccion"/>
+                                    <field name="cafe_sombra_pct"/>
+                                    <field name="cafe_especie_sombra"/>
+                                </group>
+                            </group>
+                        </page>
+                        <page string="Banano" name="banano"
+                              invisible="cultivo_id.codigo != 'BAN'">
+                            <group>
+                                <group>
+                                    <field name="banano_generacion"/>
+                                    <field name="banano_tipo_semilla"/>
+                                    <field name="banano_sistema_cable"/>
+                                </group>
+                            </group>
+                        </page>
+                        <page string="Piña" name="pina"
+                              invisible="cultivo_id.codigo != 'PIN'">
+                            <group>
+                                <group>
+                                    <field name="pina_ciclo_produccion"/>
+                                    <field name="pina_tipo_semilla"/>
+                                </group>
+                            </group>
+                        </page>
+                        <page string="Palma" name="palma"
+                              invisible="cultivo_id.codigo != 'PAL'">
+                            <group>
+                                <group>
+                                    <field name="palma_ano_siembra"/>
+                                    <field name="palma_fase_produccion"/>
+                                </group>
+                            </group>
+                        </page>
+                        <page string="Caña" name="cana"
+                              invisible="cultivo_id.codigo != 'CAN'">
+                            <group>
+                                <group>
+                                    <field name="cana_numero_corte"/>
+                                    <field name="cana_edad_cepa"/>
+                                    <field name="cana_tipo"/>
+                                </group>
+                                <group>
+                                    <field name="cana_orden_corte"/>
+                                    <field name="cana_distancia_ingenio"/>
+                                    <field name="cana_distancia_surcos"/>
+                                </group>
+                            </group>
+                        </page>
+                        <page string="Historial" name="historial">
+                            <group>
+                                <group string="Fechas Importantes">
+                                    <field name="fecha_preparacion"/>
+                                    <field name="fecha_siembra"/>
+                                    <field name="fecha_primera_cosecha"/>
+                                    <field name="fecha_ultima_cosecha"/>
+                                </group>
+                                <group string="Estadísticas">
+                                    <field name="total_cosechas"/>
+                                    <field name="produccion_total"/>
+                                    <field name="rendimiento_promedio"/>
+                                </group>
+                            </group>
+                        </page>
+                        <page string="Notas" name="notas">
+                            <field name="notas" placeholder="Notas adicionales..."/>
+                        </page>
+                    </notebook>
+                </sheet>
+                <chatter/>
+            </form>
+        </field>
+    </record>
+
+    <!-- Lote - Vista Kanban -->
+    <record id="view_lote_kanban" model="ir.ui.view">
+        <field name="name">fincas_pma.lote.kanban</field>
+        <field name="model">fincas_pma.lote</field>
+        <field name="arch" type="xml">
+            <kanban default_group_by="estado" class="o_kanban_small_column">
+                <field name="name"/>
+                <field name="finca_id"/>
+                <field name="cultivo_id"/>
+                <field name="variedad_id"/>
+                <field name="area_efectiva_ha"/>
+                <field name="estado"/>
+                <field name="es_organico"/>
+                <progressbar field="estado" colors='{"disponible": "muted", "preparacion": "warning", "sembrado": "info", "desarrollo": "primary", "produccion": "success", "cosecha": "danger"}'/>
+                <templates>
+                    <t t-name="card">
+                        <div class="ribbon ribbon-top-right" t-if="record.es_organico.raw_value">
+                            <span class="bg-success">ORG</span>
+                        </div>
+                        <main>
+                            <strong><field name="name"/></strong>
+                            <div class="text-muted">
+                                <field name="finca_id"/> | <field name="up_id"/>
+                            </div>
+                            <div>
+                                <field name="cultivo_id"/> - <field name="variedad_id"/>
+                            </div>
+                            <div class="mt-2">
+                                <span class="badge bg-primary">
+                                    <field name="area_efectiva_ha"/> ha
+                                </span>
+                            </div>
+                        </main>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
+
+    <!-- Lote - Búsqueda -->
+    <record id="view_lote_search" model="ir.ui.view">
+        <field name="name">fincas_pma.lote.search</field>
+        <field name="model">fincas_pma.lote</field>
+        <field name="arch" type="xml">
+            <search string="Buscar Lotes">
+                <field name="name"/>
+                <field name="codigo"/>
+                <field name="finca_id"/>
+                <field name="up_id"/>
+                <field name="cultivo_id"/>
+                <field name="variedad_id"/>
+                <filter string="En Producción" name="produccion" domain="[('estado', '=', 'produccion')]"/>
+                <filter string="En Cosecha" name="cosecha" domain="[('estado', '=', 'cosecha')]"/>
+                <filter string="Orgánicos" name="organico" domain="[('es_organico', '=', True)]"/>
+                <separator/>
+                <filter string="Mis Lotes" name="my_lotes" domain="[('finca_id.employee_in_charge', '=', uid)]"/>
+                <group expand="0" string="Agrupar Por">
+                    <filter string="Finca" name="group_finca" context="{'group_by': 'finca_id'}"/>
+                    <filter string="UP" name="group_up" context="{'group_by': 'up_id'}"/>
+                    <filter string="Cultivo" name="group_cultivo" context="{'group_by': 'cultivo_id'}"/>
+                    <filter string="Estado" name="group_estado" context="{'group_by': 'estado'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <!-- Lote - Acción -->
+    <record id="action_lote" model="ir.actions.act_window">
+        <field name="name">Lotes de Producción</field>
+        <field name="res_model">fincas_pma.lote</field>
+        <field name="view_mode">kanban,list,form</field>
+        <field name="context">{'search_default_group_finca': 1}</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Crear un nuevo lote de producción
+            </p>
+            <p>
+                Los lotes son las unidades mínimas de gestión productiva.
+                Cada lote tiene un cultivo, variedad y trazabilidad completa.
+            </p>
+        </field>
+    </record>
+
+    <!-- ================================================== -->
+    <!-- ANÁLISIS DE SUELO - VISTAS                         -->
+    <!-- ================================================== -->
+
+    <!-- Análisis Suelo - Vista Lista -->
+    <record id="view_analisis_suelo_list" model="ir.ui.view">
+        <field name="name">fincas_pma.analisis_suelo.list</field>
+        <field name="model">fincas_pma.analisis_suelo</field>
+        <field name="arch" type="xml">
+            <list string="Análisis de Suelo">
+                <field name="fecha"/>
+                <field name="lote_id"/>
+                <field name="laboratorio"/>
+                <field name="ph"/>
+                <field name="materia_organica"/>
+                <field name="nitrogeno"/>
+                <field name="fosforo"/>
+                <field name="potasio"/>
+                <field name="cic"/>
+            </list>
+        </field>
+    </record>
+
+    <!-- Análisis Suelo - Vista Formulario -->
+    <record id="view_analisis_suelo_form" model="ir.ui.view">
+        <field name="name">fincas_pma.analisis_suelo.form</field>
+        <field name="model">fincas_pma.analisis_suelo</field>
+        <field name="arch" type="xml">
+            <form string="Análisis de Suelo">
+                <sheet>
+                    <group>
+                        <group string="Información General">
+                            <field name="lote_id"/>
+                            <field name="fecha"/>
+                            <field name="laboratorio"/>
+                            <field name="numero_muestra"/>
+                        </group>
+                        <group string="Propiedades Físicas">
+                            <field name="ph"/>
+                            <field name="conductividad_electrica"/>
+                            <field name="materia_organica"/>
+                            <field name="textura"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Macronutrientes" name="macro">
+                            <group>
+                                <group>
+                                    <field name="nitrogeno"/>
+                                    <field name="fosforo"/>
+                                    <field name="potasio"/>
+                                </group>
+                                <group>
+                                    <field name="calcio"/>
+                                    <field name="magnesio"/>
+                                    <field name="azufre"/>
+                                </group>
+                            </group>
+                        </page>
+                        <page string="Micronutrientes" name="micro">
+                            <group>
+                                <group>
+                                    <field name="hierro"/>
+                                    <field name="manganeso"/>
+                                    <field name="cobre"/>
+                                </group>
+                                <group>
+                                    <field name="zinc"/>
+                                    <field name="boro"/>
+                                </group>
+                            </group>
+                        </page>
+                        <page string="Relaciones Catiónicas" name="relaciones">
+                            <group>
+                                <group>
+                                    <field name="cic"/>
+                                    <field name="saturacion_bases"/>
+                                </group>
+                                <group>
+                                    <field name="ca_mg"/>
+                                    <field name="mg_k"/>
+                                    <field name="ca_k"/>
+                                </group>
+                            </group>
+                            <group>
+                                <group>
+                                    <field name="aluminio"/>
+                                    <field name="saturacion_aluminio"/>
+                                </group>
+                            </group>
+                        </page>
+                        <page string="Recomendaciones" name="recomendaciones">
+                            <field name="recomendaciones" placeholder="Recomendaciones de fertilización..."/>
+                            <group>
+                                <field name="documento" filename="documento_nombre"/>
+                                <field name="documento_nombre" invisible="1"/>
+                            </group>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Análisis Suelo - Acción -->
+    <record id="action_analisis_suelo" model="ir.actions.act_window">
+        <field name="name">Análisis de Suelo</field>
+        <field name="res_model">fincas_pma.analisis_suelo</field>
+        <field name="view_mode">list,form</field>
+    </record>
+
+</odoo>

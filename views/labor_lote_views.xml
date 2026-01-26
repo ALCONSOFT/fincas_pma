@@ -1,0 +1,302 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- ================================================== -->
+    <!-- LABOR POR LOTE - VISTAS                            -->
+    <!-- ================================================== -->
+
+    <!-- Labor - Vista Lista -->
+    <record id="view_labor_lote_list" model="ir.ui.view">
+        <field name="name">fincas_pma.labor_lote.list</field>
+        <field name="model">fincas_pma.labor_lote</field>
+        <field name="arch" type="xml">
+            <list string="Labores Realizadas">
+                <field name="fecha"/>
+                <field name="lote_id"/>
+                <field name="labor_id"/>
+                <field name="categoria_labor"/>
+                <field name="area_trabajada_ha" sum="Total Ha"/>
+                <field name="jornales" sum="Total"/>
+                <field name="numero_trabajadores"/>
+                <field name="costo_total" sum="Total"/>
+                <field name="estado" widget="badge"
+                       decoration-success="estado == 'completada'"/>
+            </list>
+        </field>
+    </record>
+
+    <!-- Labor - Vista Formulario -->
+    <record id="view_labor_lote_form" model="ir.ui.view">
+        <field name="name">fincas_pma.labor_lote.form</field>
+        <field name="model">fincas_pma.labor_lote</field>
+        <field name="arch" type="xml">
+            <form string="Labor Realizada">
+                <header>
+                    <field name="estado" widget="statusbar"
+                           statusbar_visible="planificada,en_progreso,completada"/>
+                </header>
+                <sheet>
+                    <div class="oe_title">
+                        <label for="name"/>
+                        <h1><field name="name" readonly="1"/></h1>
+                    </div>
+                    <group>
+                        <group string="Ubicación">
+                            <field name="lote_id"/>
+                            <field name="finca_id"/>
+                            <field name="cultivo_id"/>
+                        </group>
+                        <group string="Labor">
+                            <field name="labor_id"/>
+                            <field name="categoria_labor"/>
+                            <field name="fecha"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Ejecución" name="ejecucion">
+                            <group>
+                                <group string="Tiempo">
+                                    <field name="hora_inicio" widget="float_time"/>
+                                    <field name="hora_fin" widget="float_time"/>
+                                    <field name="duracion_horas"/>
+                                </group>
+                                <group string="Cantidad">
+                                    <field name="area_trabajada_ha"/>
+                                    <field name="cantidad"/>
+                                    <field name="unidad_medida_id"/>
+                                </group>
+                            </group>
+                            <group>
+                                <group string="Rendimiento">
+                                    <field name="rendimiento"/>
+                                    <field name="rendimiento_hora"/>
+                                    <field name="calidad"/>
+                                </group>
+                                <group string="Clima">
+                                    <field name="condicion_climatica"/>
+                                    <field name="temperatura"/>
+                                </group>
+                            </group>
+                            <group>
+                                <field name="descripcion" placeholder="Descripción de la labor..."/>
+                            </group>
+                        </page>
+                        <page string="Personal" name="personal">
+                            <group>
+                                <group>
+                                    <field name="cuadrilla_id"/>
+                                    <field name="supervisor_id"/>
+                                    <field name="jornales"/>
+                                </group>
+                            </group>
+                            <separator string="Trabajadores"/>
+                            <field name="trabajador_ids" widget="many2many_tags"/>
+                        </page>
+                        <page string="Equipos e Insumos" name="equipos">
+                            <group>
+                                <group>
+                                    <field name="horas_maquina"/>
+                                    <field name="combustible_litros"/>
+                                </group>
+                            </group>
+                            <separator string="Equipos Utilizados"/>
+                            <field name="equipo_ids" widget="many2many_tags"/>
+                            <separator string="Insumos"/>
+                            <field name="insumo_ids" widget="many2many_tags"/>
+                        </page>
+                        <page string="Costos" name="costos">
+                            <group>
+                                <group>
+                                    <field name="costo_mano_obra"/>
+                                    <field name="costo_maquinaria"/>
+                                    <field name="costo_insumos"/>
+                                    <field name="costo_total"/>
+                                    <field name="costo_por_ha"/>
+                                </group>
+                            </group>
+                        </page>
+                        <page string="Observaciones" name="observaciones">
+                            <group>
+                                <field name="interrupciones" placeholder="Interrupciones por lluvia, fallas..."/>
+                            </group>
+                            <group>
+                                <field name="problemas" placeholder="Problemas encontrados..."/>
+                            </group>
+                            <group>
+                                <field name="recomendaciones"/>
+                            </group>
+                            <group>
+                                <field name="observaciones"/>
+                            </group>
+                        </page>
+                    </notebook>
+                </sheet>
+                <chatter/>
+            </form>
+        </field>
+    </record>
+
+    <!-- Labor - Vista Calendario -->
+    <record id="view_labor_lote_calendar" model="ir.ui.view">
+        <field name="name">fincas_pma.labor_lote.calendar</field>
+        <field name="model">fincas_pma.labor_lote</field>
+        <field name="arch" type="xml">
+            <calendar string="Labores" date_start="fecha" color="categoria_labor" mode="month">
+                <field name="lote_id"/>
+                <field name="labor_id"/>
+                <field name="area_trabajada_ha"/>
+            </calendar>
+        </field>
+    </record>
+
+    <!-- Labor - Búsqueda -->
+    <record id="view_labor_lote_search" model="ir.ui.view">
+        <field name="name">fincas_pma.labor_lote.search</field>
+        <field name="model">fincas_pma.labor_lote</field>
+        <field name="arch" type="xml">
+            <search string="Buscar Labores">
+                <field name="lote_id"/>
+                <field name="labor_id"/>
+                <field name="finca_id"/>
+                <filter string="Hoy" name="today" domain="[('fecha', '=', context_today())]"/>
+                <filter string="Esta Semana" name="this_week" domain="[('fecha', '&gt;=', (context_today() - relativedelta(days=context_today().weekday())).strftime('%Y-%m-%d'))]"/>
+                <separator/>
+                <filter string="Fertilización" name="fertilizacion" domain="[('categoria_labor', '=', 'fertilizacion')]"/>
+                <filter string="Control Malezas" name="malezas" domain="[('categoria_labor', '=', 'control_malezas')]"/>
+                <filter string="Cosecha" name="cosecha" domain="[('categoria_labor', '=', 'cosecha')]"/>
+                <group expand="0" string="Agrupar Por">
+                    <filter string="Lote" name="group_lote" context="{'group_by': 'lote_id'}"/>
+                    <filter string="Labor" name="group_labor" context="{'group_by': 'labor_id'}"/>
+                    <filter string="Categoría" name="group_categoria" context="{'group_by': 'categoria_labor'}"/>
+                    <filter string="Mes" name="group_mes" context="{'group_by': 'fecha:month'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <!-- Labor - Acción -->
+    <record id="action_labor_lote" model="ir.actions.act_window">
+        <field name="name">Labores por Lote</field>
+        <field name="res_model">fincas_pma.labor_lote</field>
+        <field name="view_mode">list,calendar,form</field>
+        <field name="context">{'search_default_this_week': 1}</field>
+    </record>
+
+    <!-- ================================================== -->
+    <!-- SIEMBRA - VISTAS                                   -->
+    <!-- ================================================== -->
+
+    <record id="view_siembra_list" model="ir.ui.view">
+        <field name="name">fincas_pma.siembra.list</field>
+        <field name="model">fincas_pma.siembra</field>
+        <field name="arch" type="xml">
+            <list string="Siembras">
+                <field name="fecha"/>
+                <field name="lote_id"/>
+                <field name="cultivo_id"/>
+                <field name="variedad_id"/>
+                <field name="tipo_siembra"/>
+                <field name="area_sembrada_ha" sum="Total Ha"/>
+                <field name="densidad_plantas_ha"/>
+                <field name="germinacion_pct"/>
+                <field name="supervivencia_pct"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="view_siembra_form" model="ir.ui.view">
+        <field name="name">fincas_pma.siembra.form</field>
+        <field name="model">fincas_pma.siembra</field>
+        <field name="arch" type="xml">
+            <form string="Siembra">
+                <sheet>
+                    <div class="oe_title">
+                        <label for="name"/>
+                        <h1><field name="name" readonly="1"/></h1>
+                    </div>
+                    <group>
+                        <group string="Ubicación">
+                            <field name="lote_id"/>
+                            <field name="fecha"/>
+                            <field name="tipo_siembra"/>
+                        </group>
+                        <group string="Cultivo">
+                            <field name="cultivo_id"/>
+                            <field name="variedad_id" domain="[('cultivo_id', '=', cultivo_id)]"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Material de Siembra" name="material">
+                            <group>
+                                <group>
+                                    <field name="tipo_material"/>
+                                    <field name="procedencia_material"/>
+                                    <field name="lote_semilla"/>
+                                </group>
+                                <group>
+                                    <field name="cantidad_material"/>
+                                    <field name="unidad_material_id"/>
+                                </group>
+                            </group>
+                        </page>
+                        <page string="Densidad" name="densidad">
+                            <group>
+                                <group>
+                                    <field name="area_sembrada_ha"/>
+                                    <field name="densidad_plantas_ha"/>
+                                </group>
+                                <group>
+                                    <field name="distancia_plantas"/>
+                                    <field name="distancia_hileras"/>
+                                    <field name="sistema_siembra"/>
+                                </group>
+                            </group>
+                        </page>
+                        <page string="Preparación" name="preparacion">
+                            <group>
+                                <field name="preparacion_suelo"/>
+                            </group>
+                            <group>
+                                <field name="fertilizacion_base"/>
+                            </group>
+                            <group>
+                                <field name="tratamiento_semilla"/>
+                            </group>
+                        </page>
+                        <page string="Seguimiento" name="seguimiento">
+                            <group>
+                                <group>
+                                    <field name="fecha_emergencia"/>
+                                    <field name="germinacion_pct"/>
+                                    <field name="supervivencia_pct"/>
+                                    <field name="requiere_resiembra"/>
+                                </group>
+                            </group>
+                        </page>
+                        <page string="Costos" name="costos">
+                            <group>
+                                <group>
+                                    <field name="jornales"/>
+                                    <field name="costo_material"/>
+                                    <field name="costo_mano_obra"/>
+                                    <field name="costo_total"/>
+                                </group>
+                            </group>
+                        </page>
+                        <page string="Observaciones" name="observaciones">
+                            <field name="observaciones"/>
+                        </page>
+                    </notebook>
+                </sheet>
+                <chatter/>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_siembra" model="ir.actions.act_window">
+        <field name="name">Siembras</field>
+        <field name="res_model">fincas_pma.siembra</field>
+        <field name="view_mode">list,form</field>
+    </record>
+
+</odoo>

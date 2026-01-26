@@ -5,7 +5,7 @@
       <field name="name">fincas_pma lista labores</field>
       <field name="model">fincas_pma.labores</field>
       <field name="arch" type="xml">
-        <tree>
+        <list>
           <field name="name"/>
           <field name="active"/>
           <field name="code_labor"/>
@@ -16,14 +16,14 @@
           <field name="cantidad_maxima"/>
           <field name="equivalencia_tiempo"/>
           <field name="observacion"/>
-        </tree>
+        </list>
       </field>
     </record>
     <!--ACCION DE VENTANA: Labores-->
     <record model="ir.actions.act_window" id="fincas_pma.action_window_labor">
       <field name="name">Mantenimiento de Labores</field>
       <field name="res_model">fincas_pma.labores</field>
-      <field name="view_mode">tree,form</field>
+      <field name="view_mode">list,form</field>
     </record>
 
     <!--ELEMENTO DE MENU: Lista de Labores-->

@@ -1,0 +1,252 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- ================================================== -->
+    <!-- MENÚ PRINCIPAL FINCAS PMA                          -->
+    <!-- ================================================== -->
+
+    <menuitem id="menu_fincas_pma_root"
+              name="Gestión Agrícola"
+              web_icon="fincas_pma,static/description/icon.png"
+              sequence="50"/>
+
+    <!-- ================================================== -->
+    <!-- MENÚ: CULTIVOS Y VARIEDADES                        -->
+    <!-- ================================================== -->
+
+    <menuitem id="menu_cultivos"
+              name="Cultivos"
+              parent="menu_fincas_pma_root"
+              sequence="10"/>
+
+    <menuitem id="menu_cultivo_catalogo"
+              name="Catálogo de Cultivos"
+              parent="menu_cultivos"
+              action="action_cultivo"
+              sequence="10"/>
+
+    <menuitem id="menu_variedad"
+              name="Variedades"
+              parent="menu_cultivos"
+              action="action_variedad_cultivo"
+              sequence="20"/>
+
+    <menuitem id="menu_fenologia"
+              name="Etapas Fenológicas"
+              parent="menu_cultivos"
+              action="action_fenologia"
+              sequence="30"/>
+
+    <menuitem id="menu_parametro_calidad"
+              name="Parámetros de Calidad"
+              parent="menu_cultivos"
+              action="action_parametro_calidad"
+              sequence="40"/>
+
+    <!-- ================================================== -->
+    <!-- MENÚ: FINCAS Y LOTES                               -->
+    <!-- ================================================== -->
+
+    <menuitem id="menu_fincas"
+              name="Fincas y Lotes"
+              parent="menu_fincas_pma_root"
+              sequence="20"/>
+
+    <menuitem id="menu_lotes"
+              name="Lotes de Producción"
+              parent="menu_fincas"
+              action="action_lote"
+              sequence="10"/>
+
+    <menuitem id="menu_analisis_suelo"
+              name="Análisis de Suelo"
+              parent="menu_fincas"
+              action="action_analisis_suelo"
+              sequence="20"/>
+
+    <!-- ================================================== -->
+    <!-- MENÚ: PRODUCCIÓN                                   -->
+    <!-- ================================================== -->
+
+    <menuitem id="menu_produccion"
+              name="Producción"
+              parent="menu_fincas_pma_root"
+              sequence="30"/>
+
+    <menuitem id="menu_ciclos"
+              name="Ciclos de Producción"
+              parent="menu_produccion"
+              action="action_ciclo_produccion"
+              sequence="10"/>
+
+    <menuitem id="menu_siembras"
+              name="Siembras"
+              parent="menu_produccion"
+              action="action_siembra"
+              sequence="20"/>
+
+    <menuitem id="menu_labores"
+              name="Labores de Campo"
+              parent="menu_produccion"
+              action="action_labor_lote"
+              sequence="30"/>
+
+    <menuitem id="menu_cosechas"
+              name="Cosechas"
+              parent="menu_produccion"
+              action="action_cosecha"
+              sequence="40"/>
+
+    <menuitem id="menu_cuadrillas"
+              name="Cuadrillas"
+              parent="menu_produccion"
+              action="action_cuadrilla"
+              sequence="50"/>
+
+    <!-- ================================================== -->
+    <!-- MENÚ: INSUMOS Y APLICACIONES                       -->
+    <!-- ================================================== -->
+
+    <menuitem id="menu_insumos"
+              name="Insumos"
+              parent="menu_fincas_pma_root"
+              sequence="40"/>
+
+    <menuitem id="menu_insumos_catalogo"
+              name="Catálogo de Insumos"
+              parent="menu_insumos"
+              action="action_insumo"
+              sequence="10"/>
+
+    <menuitem id="menu_aplicaciones"
+              name="Aplicaciones"
+              parent="menu_insumos"
+              action="action_aplicacion"
+              sequence="20"/>
+
+    <menuitem id="menu_tipo_insumo"
+              name="Tipos de Insumo"
+              parent="menu_insumos"
+              action="action_tipo_insumo"
+              sequence="30"/>
+
+    <!-- ================================================== -->
+    <!-- MENÚ: SANIDAD VEGETAL                              -->
+    <!-- ================================================== -->
+
+    <menuitem id="menu_sanidad"
+              name="Sanidad Vegetal"
+              parent="menu_fincas_pma_root"
+              sequence="50"/>
+
+    <menuitem id="menu_monitoreos"
+              name="Monitoreos"
+              parent="menu_sanidad"
+              action="action_monitoreo_sanitario"
+              sequence="10"/>
+
+    <menuitem id="menu_tratamientos"
+              name="Tratamientos"
+              parent="menu_sanidad"
+              action="action_tratamiento"
+              sequence="20"/>
+
+    <menuitem id="menu_plagas"
+              name="Catálogo de Plagas"
+              parent="menu_sanidad"
+              action="action_plaga"
+              sequence="30"/>
+
+    <!-- ================================================== -->
+    <!-- MENÚ: CERTIFICACIONES                              -->
+    <!-- ================================================== -->
+
+    <menuitem id="menu_certificaciones"
+              name="Certificaciones"
+              parent="menu_fincas_pma_root"
+              sequence="60"/>
+
+    <menuitem id="menu_certificaciones_activas"
+              name="Certificaciones"
+              parent="menu_certificaciones"
+              action="action_certificacion"
+              sequence="10"/>
+
+    <menuitem id="menu_no_conformidades"
+              name="No Conformidades"
+              parent="menu_certificaciones"
+              action="action_no_conformidad"
+              sequence="20"/>
+
+    <menuitem id="menu_tipo_certificacion"
+              name="Tipos de Certificación"
+              parent="menu_certificaciones"
+              action="action_tipo_certificacion"
+              sequence="30"/>
+
+    <!-- ================================================== -->
+    <!-- MENÚ: CONFIGURACIÓN                                -->
+    <!-- ================================================== -->
+
+    <menuitem id="menu_configuracion"
+              name="Configuración"
+              parent="menu_fincas_pma_root"
+              sequence="100"/>
+
+    <menuitem id="menu_config_cultivos"
+              name="Cultivos"
+              parent="menu_configuracion"
+              sequence="10"/>
+
+    <menuitem id="menu_config_cultivo"
+              name="Tipos de Cultivo"
+              parent="menu_config_cultivos"
+              action="action_cultivo"
+              sequence="10"/>
+
+    <menuitem id="menu_config_variedad"
+              name="Variedades"
+              parent="menu_config_cultivos"
+              action="action_variedad_cultivo"
+              sequence="20"/>
+
+    <menuitem id="menu_config_fenologia"
+              name="Etapas Fenológicas"
+              parent="menu_config_cultivos"
+              action="action_fenologia"
+              sequence="30"/>
+
+    <menuitem id="menu_config_insumos"
+              name="Insumos"
+              parent="menu_configuracion"
+              sequence="20"/>
+
+    <menuitem id="menu_config_tipo_insumo"
+              name="Tipos de Insumo"
+              parent="menu_config_insumos"
+              action="action_tipo_insumo"
+              sequence="10"/>
+
+    <menuitem id="menu_config_sanidad"
+              name="Sanidad"
+              parent="menu_configuracion"
+              sequence="30"/>
+
+    <menuitem id="menu_config_plagas"
+              name="Plagas y Enfermedades"
+              parent="menu_config_sanidad"
+              action="action_plaga"
+              sequence="10"/>
+
+    <menuitem id="menu_config_certificaciones"
+              name="Certificaciones"
+              parent="menu_configuracion"
+              sequence="40"/>
+
+    <menuitem id="menu_config_tipo_certificacion"
+              name="Tipos de Certificación"
+              parent="menu_config_certificaciones"
+              action="action_tipo_certificacion"
+              sequence="10"/>
+
+</odoo>

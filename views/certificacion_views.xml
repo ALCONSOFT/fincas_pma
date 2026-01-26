@@ -1,0 +1,395 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- ================================================== -->
+    <!-- TIPO CERTIFICACIÓN - VISTAS                        -->
+    <!-- ================================================== -->
+
+    <record id="view_tipo_certificacion_list" model="ir.ui.view">
+        <field name="name">fincas_pma.tipo_certificacion.list</field>
+        <field name="model">fincas_pma.tipo_certificacion</field>
+        <field name="arch" type="xml">
+            <list string="Tipos de Certificación" editable="bottom">
+                <field name="secuencia" widget="handle"/>
+                <field name="codigo"/>
+                <field name="name"/>
+                <field name="es_sostenibilidad"/>
+                <field name="es_organico"/>
+                <field name="es_comercio_justo"/>
+                <field name="vigencia_meses"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="action_tipo_certificacion" model="ir.actions.act_window">
+        <field name="name">Tipos de Certificación</field>
+        <field name="res_model">fincas_pma.tipo_certificacion</field>
+        <field name="view_mode">list</field>
+    </record>
+
+    <!-- ================================================== -->
+    <!-- CERTIFICACIÓN - VISTAS                             -->
+    <!-- ================================================== -->
+
+    <!-- Certificación - Vista Lista -->
+    <record id="view_certificacion_list" model="ir.ui.view">
+        <field name="name">fincas_pma.certificacion.list</field>
+        <field name="model">fincas_pma.certificacion</field>
+        <field name="arch" type="xml">
+            <list string="Certificaciones"
+                  decoration-danger="estado_semaforo == 'rojo'"
+                  decoration-warning="estado_semaforo == 'amarillo'"
+                  decoration-success="estado_semaforo == 'verde'">
+                <field name="name"/>
+                <field name="tipo_id"/>
+                <field name="finca_id"/>
+                <field name="numero_certificado"/>
+                <field name="certificador_id"/>
+                <field name="fecha_emision"/>
+                <field name="fecha_vencimiento"/>
+                <field name="dias_para_vencer"/>
+                <field name="nc_pendientes"/>
+                <field name="estado" widget="badge"
+                       decoration-success="estado == 'aprobada'"
+                       decoration-warning="estado == 'condicionada'"
+                       decoration-danger="estado in ('suspendida', 'vencida')"/>
+                <field name="estado_semaforo" column_invisible="True"/>
+            </list>
+        </field>
+    </record>
+
+    <!-- Certificación - Vista Formulario -->
+    <record id="view_certificacion_form" model="ir.ui.view">
+        <field name="name">fincas_pma.certificacion.form</field>
+        <field name="model">fincas_pma.certificacion</field>
+        <field name="arch" type="xml">
+            <form string="Certificación">
+                <header>
+                    <field name="estado" widget="statusbar"
+                           statusbar_visible="solicitada,en_proceso,aprobada"/>
+                </header>
+                <sheet>
+                    <widget name="web_ribbon" title="VENCIDA" bg_color="bg-danger"
+                            invisible="estado != 'vencida'"/>
+                    <widget name="web_ribbon" title="POR VENCER" bg_color="bg-warning"
+                            invisible="dias_para_vencer &gt; 30 or dias_para_vencer &lt;= 0"/>
+                    <div class="oe_button_box" name="button_box">
+                        <button class="oe_stat_button" icon="fa-warning"
+                                name="%(action_no_conformidad)d" type="action"
+                                context="{'search_default_certificacion_id': active_id}">
+                            <field name="nc_pendientes" widget="statinfo" string="NC Pendientes"/>
+                        </button>
+                    </div>
+                    <div class="oe_title">
+                        <label for="name"/>
+                        <h1><field name="name"/></h1>
+                    </div>
+                    <group>
+                        <group string="Información General">
+                            <field name="tipo_id"/>
+                            <field name="finca_id"/>
+                            <field name="area_certificada_ha"/>
+                            <field name="active"/>
+                        </group>
+                        <group string="Certificador">
+                            <field name="numero_certificado"/>
+                            <field name="certificador_id"/>
+                            <field name="auditor"/>
+                        </group>
+                    </group>
+                    <group>
+                        <group string="Fechas">
+                            <field name="fecha_solicitud"/>
+                            <field name="fecha_auditoria"/>
+                            <field name="fecha_emision"/>
+                            <field name="fecha_vencimiento"/>
+                            <field name="dias_para_vencer"/>
+                        </group>
+                        <group string="Resultados">
+                            <field name="puntaje_auditoria"/>
+                            <field name="nivel_certificacion"/>
+                            <field name="total_nc_mayores"/>
+                            <field name="total_nc_menores"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Lotes Certificados" name="lotes">
+                            <field name="lote_ids" widget="many2many_tags"/>
+                        </page>
+                        <page string="Auditorías" name="auditorias">
+                            <field name="auditoria_ids">
+                                <list>
+                                    <field name="fecha"/>
+                                    <field name="tipo"/>
+                                    <field name="auditor_lider"/>
+                                    <field name="resultado" widget="badge"
+                                           decoration-success="resultado == 'aprobada'"
+                                           decoration-warning="resultado == 'aprobada_condiciones'"
+                                           decoration-danger="resultado == 'rechazada'"/>
+                                    <field name="puntaje"/>
+                                    <field name="total_nc"/>
+                                </list>
+                            </field>
+                        </page>
+                        <page string="No Conformidades" name="nc">
+                            <field name="no_conformidad_ids">
+                                <list>
+                                    <field name="name"/>
+                                    <field name="tipo" widget="badge"
+                                           decoration-danger="tipo == 'mayor'"
+                                           decoration-warning="tipo == 'menor'"/>
+                                    <field name="categoria"/>
+                                    <field name="criterio"/>
+                                    <field name="fecha_limite"/>
+                                    <field name="responsable_id"/>
+                                    <field name="estado" widget="badge"
+                                           decoration-danger="estado == 'abierta'"
+                                           decoration-warning="estado == 'en_proceso'"
+                                           decoration-success="estado in ('cerrada', 'verificada')"/>
+                                </list>
+                            </field>
+                        </page>
+                        <page string="Documentos" name="documentos">
+                            <group>
+                                <group>
+                                    <field name="certificado_pdf" filename="certificado_nombre"/>
+                                    <field name="certificado_nombre" invisible="1"/>
+                                </group>
+                            </group>
+                        </page>
+                        <page string="Costos" name="costos">
+                            <group>
+                                <group>
+                                    <field name="costo_certificacion"/>
+                                    <field name="costo_auditoria"/>
+                                </group>
+                            </group>
+                        </page>
+                        <page string="Notas" name="notas">
+                            <field name="notas"/>
+                        </page>
+                    </notebook>
+                </sheet>
+                <chatter/>
+            </form>
+        </field>
+    </record>
+
+    <!-- Certificación - Vista Kanban -->
+    <record id="view_certificacion_kanban" model="ir.ui.view">
+        <field name="name">fincas_pma.certificacion.kanban</field>
+        <field name="model">fincas_pma.certificacion</field>
+        <field name="arch" type="xml">
+            <kanban class="o_kanban_small_column" default_group_by="estado">
+                <field name="name"/>
+                <field name="tipo_id"/>
+                <field name="estado"/>
+                <field name="estado_semaforo"/>
+                <field name="dias_para_vencer"/>
+                <field name="nc_pendientes"/>
+                <progressbar field="estado_semaforo" colors='{"verde": "success", "amarillo": "warning", "rojo": "danger"}'/>
+                <templates>
+                    <t t-name="card">
+                        <main>
+                            <strong><field name="name"/></strong>
+                            <div class="text-muted">
+                                <field name="tipo_id"/>
+                            </div>
+                            <div>
+                                <field name="finca_id"/>
+                            </div>
+                            <div class="mt-2">
+                                <span t-if="record.dias_para_vencer.raw_value > 30" class="badge bg-success">
+                                    <field name="dias_para_vencer"/> días
+                                </span>
+                                <span t-elif="record.dias_para_vencer.raw_value > 0" class="badge bg-warning">
+                                    <field name="dias_para_vencer"/> días
+                                </span>
+                                <span t-else="" class="badge bg-danger">
+                                    Vencida
+                                </span>
+                                <span t-if="record.nc_pendientes.raw_value > 0" class="badge bg-danger float-end">
+                                    <field name="nc_pendientes"/> NC
+                                </span>
+                            </div>
+                        </main>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
+
+    <!-- Certificación - Búsqueda -->
+    <record id="view_certificacion_search" model="ir.ui.view">
+        <field name="name">fincas_pma.certificacion.search</field>
+        <field name="model">fincas_pma.certificacion</field>
+        <field name="arch" type="xml">
+            <search string="Buscar Certificaciones">
+                <field name="name"/>
+                <field name="tipo_id"/>
+                <field name="finca_id"/>
+                <field name="numero_certificado"/>
+                <filter string="Vigentes" name="vigentes" domain="[('estado', '=', 'aprobada')]"/>
+                <filter string="Por Vencer (30 días)" name="por_vencer" domain="[('estado', '=', 'aprobada'), ('dias_para_vencer', '&lt;=', 30), ('dias_para_vencer', '&gt;', 0)]"/>
+                <filter string="Vencidas" name="vencidas" domain="[('estado', '=', 'vencida')]"/>
+                <filter string="Con NC Pendientes" name="nc_pendientes" domain="[('nc_pendientes', '&gt;', 0)]"/>
+                <group expand="0" string="Agrupar Por">
+                    <filter string="Tipo" name="group_tipo" context="{'group_by': 'tipo_id'}"/>
+                    <filter string="Finca" name="group_finca" context="{'group_by': 'finca_id'}"/>
+                    <filter string="Estado" name="group_estado" context="{'group_by': 'estado'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <!-- Certificación - Acción -->
+    <record id="action_certificacion" model="ir.actions.act_window">
+        <field name="name">Certificaciones</field>
+        <field name="res_model">fincas_pma.certificacion</field>
+        <field name="view_mode">kanban,list,form</field>
+        <field name="context">{'search_default_vigentes': 1}</field>
+    </record>
+
+    <!-- ================================================== -->
+    <!-- NO CONFORMIDAD - VISTAS                            -->
+    <!-- ================================================== -->
+
+    <record id="view_no_conformidad_list" model="ir.ui.view">
+        <field name="name">fincas_pma.no_conformidad.list</field>
+        <field name="model">fincas_pma.no_conformidad</field>
+        <field name="arch" type="xml">
+            <list string="No Conformidades"
+                  decoration-danger="tipo == 'mayor' and estado == 'abierta'"
+                  decoration-warning="estado in ('abierta', 'en_proceso')">
+                <field name="name"/>
+                <field name="certificacion_id"/>
+                <field name="tipo" widget="badge"
+                       decoration-danger="tipo == 'mayor'"
+                       decoration-warning="tipo == 'menor'"
+                       decoration-info="tipo == 'observacion'"/>
+                <field name="categoria"/>
+                <field name="criterio"/>
+                <field name="fecha_deteccion"/>
+                <field name="fecha_limite"/>
+                <field name="responsable_id"/>
+                <field name="estado" widget="badge"
+                       decoration-danger="estado == 'abierta'"
+                       decoration-warning="estado == 'en_proceso'"
+                       decoration-info="estado == 'corregida'"
+                       decoration-success="estado in ('verificada', 'cerrada')"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="view_no_conformidad_form" model="ir.ui.view">
+        <field name="name">fincas_pma.no_conformidad.form</field>
+        <field name="model">fincas_pma.no_conformidad</field>
+        <field name="arch" type="xml">
+            <form string="No Conformidad">
+                <header>
+                    <field name="estado" widget="statusbar"
+                           statusbar_visible="abierta,en_proceso,corregida,verificada,cerrada"/>
+                </header>
+                <sheet>
+                    <widget name="web_ribbon" title="MAYOR" bg_color="bg-danger"
+                            invisible="tipo != 'mayor'"/>
+                    <div class="oe_title">
+                        <label for="name"/>
+                        <h1><field name="name"/></h1>
+                    </div>
+                    <group>
+                        <group string="Clasificación">
+                            <field name="certificacion_id"/>
+                            <field name="auditoria_id"/>
+                            <field name="tipo"/>
+                            <field name="categoria"/>
+                            <field name="criterio"/>
+                        </group>
+                        <group string="Fechas">
+                            <field name="fecha_deteccion"/>
+                            <field name="fecha_limite"/>
+                            <field name="fecha_correccion"/>
+                            <field name="fecha_verificacion"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Descripción" name="descripcion">
+                            <group>
+                                <field name="descripcion" placeholder="Descripción del hallazgo..."/>
+                            </group>
+                            <group>
+                                <field name="evidencia" placeholder="Evidencia encontrada..."/>
+                            </group>
+                            <group>
+                                <field name="causa_raiz" placeholder="Análisis de causa raíz..."/>
+                            </group>
+                        </page>
+                        <page string="Plan de Acción" name="plan_accion">
+                            <group>
+                                <group>
+                                    <field name="responsable_id"/>
+                                </group>
+                            </group>
+                            <group>
+                                <field name="accion_correctiva" placeholder="Acciones para corregir..."/>
+                            </group>
+                            <group>
+                                <field name="accion_preventiva" placeholder="Acciones para prevenir recurrencia..."/>
+                            </group>
+                            <group>
+                                <field name="recursos_requeridos"/>
+                            </group>
+                        </page>
+                        <page string="Cierre" name="cierre">
+                            <group>
+                                <group>
+                                    <field name="verificado_por"/>
+                                </group>
+                            </group>
+                            <group>
+                                <field name="evidencia_cierre" placeholder="Evidencia de cierre..."/>
+                            </group>
+                            <group>
+                                <field name="documento_evidencia" filename="documento_nombre"/>
+                                <field name="documento_nombre" invisible="1"/>
+                            </group>
+                        </page>
+                        <page string="Observaciones" name="observaciones">
+                            <field name="observaciones"/>
+                        </page>
+                    </notebook>
+                </sheet>
+                <chatter/>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_no_conformidad_search" model="ir.ui.view">
+        <field name="name">fincas_pma.no_conformidad.search</field>
+        <field name="model">fincas_pma.no_conformidad</field>
+        <field name="arch" type="xml">
+            <search string="Buscar No Conformidades">
+                <field name="name"/>
+                <field name="certificacion_id"/>
+                <filter string="Abiertas" name="abiertas" domain="[('estado', '=', 'abierta')]"/>
+                <filter string="En Proceso" name="en_proceso" domain="[('estado', '=', 'en_proceso')]"/>
+                <filter string="Mayores" name="mayores" domain="[('tipo', '=', 'mayor')]"/>
+                <filter string="Vencidas" name="vencidas" domain="[('fecha_limite', '&lt;', context_today()), ('estado', 'not in', ['cerrada', 'verificada'])]"/>
+                <group expand="0" string="Agrupar Por">
+                    <filter string="Certificación" name="group_cert" context="{'group_by': 'certificacion_id'}"/>
+                    <filter string="Tipo" name="group_tipo" context="{'group_by': 'tipo'}"/>
+                    <filter string="Estado" name="group_estado" context="{'group_by': 'estado'}"/>
+                    <filter string="Categoría" name="group_categoria" context="{'group_by': 'categoria'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="action_no_conformidad" model="ir.actions.act_window">
+        <field name="name">No Conformidades</field>
+        <field name="res_model">fincas_pma.no_conformidad</field>
+        <field name="view_mode">list,form</field>
+        <field name="context">{'search_default_abiertas': 1}</field>
+    </record>
+
+</odoo>
